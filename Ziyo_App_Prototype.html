@@ -209,6 +209,69 @@
   .notif-item.unread{border-left:3px solid var(--green);}
   .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:6px;}
   .notif-ico{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+
+  /* ===== MATCH / % INDICATOR ===== */
+  .match{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:20px;
+    font-size:11px;font-weight:800;background:var(--green-l);color:var(--green-d);}
+  .match.mid{background:#FFF6DB;color:#9A7400;}
+  .match.low{background:#FFECEC;color:#D23B3B;}
+  .match-ring{position:relative;width:46px;height:46px;flex-shrink:0;}
+  .match-ring svg{transform:rotate(-90deg);width:46px;height:46px;}
+  .match-ring .mr-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;color:var(--green-d);}
+  .mbar{height:7px;border-radius:6px;background:#EEF1EE;overflow:hidden;}
+  .mbar>i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#17C41E,#0E9E14);}
+
+  /* ===== VIDEO THUMBNAIL (success stories / expert tutorials) ===== */
+  .vthumb{position:relative;flex-shrink:0;width:150px;border-radius:14px;overflow:hidden;cursor:pointer;}
+  .vthumb .vcover{height:92px;display:flex;align-items:center;justify-content:center;color:#fff;position:relative;}
+  .vthumb .vplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;
+    border-radius:50%;background:rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;
+    font-size:16px;backdrop-filter:blur(2px);}
+  .vthumb .vdur{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;
+    font-weight:700;padding:2px 6px;border-radius:6px;}
+  .vthumb .vmeta{padding:9px 10px;background:#fff;}
+
+  /* ===== REVIEW STARS ===== */
+  .stars-sm{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:1px;}
+  .review{background:#fff;border-radius:16px;padding:13px 15px;box-shadow:0 6px 20px rgba(14,27,18,.06);}
+
+  /* ===== QUIZ / SKILL TEST ===== */
+  .quiz-opt{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);
+    border-radius:16px;padding:15px 16px;font-weight:600;font-size:15px;cursor:pointer;transition:.15s;color:var(--ink);}
+  .quiz-opt:active{transform:scale(.98);}
+  .quiz-opt.correct{border-color:var(--green);background:var(--green-ll);color:var(--green-d);}
+  .quiz-opt.wrong{border-color:var(--coral);background:#FFECEC;color:#D23B3B;}
+  .quiz-opt .qkey{width:26px;height:26px;border-radius:8px;background:#F0F2F0;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:13px;color:var(--ink2);flex-shrink:0;}
+  .q-prog{height:8px;border-radius:6px;background:#EEF1EE;overflow:hidden;flex:1;}
+  .q-prog>i{display:block;height:100%;background:var(--green);border-radius:6px;transition:width .3s;}
+  .heart-row{display:flex;gap:3px;font-size:15px;}
+
+  /* ===== ONBOARDING QUESTIONNAIRE ===== */
+  .ob-prog{height:8px;border-radius:6px;background:#EEF1EE;overflow:hidden;}
+  .ob-prog>i{display:block;height:100%;background:var(--green);border-radius:6px;transition:width .35s;}
+  .ob-step{display:none;flex-direction:column;}
+  .ob-step.on{display:flex;animation:fade .3s ease;}
+  .opt-tile{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);
+    border-radius:15px;padding:14px 15px;font-weight:600;font-size:14px;cursor:pointer;transition:.15s;}
+  .opt-tile .obx{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;}
+  .opt-tile.on{border-color:var(--green);background:var(--green-ll);}
+  .opt-tile.on .obx{background:var(--green);border-color:var(--green);}
+
+  /* ===== MASCOT ===== */
+  .mascot{position:absolute;right:14px;bottom:calc(var(--tab-h) + 14px);z-index:55;cursor:pointer;
+    width:58px;height:58px;animation:mascotBob 2.6s ease-in-out infinite;}
+  .mascot.notab{bottom:26px;}
+  .mascot svg{width:100%;height:100%;filter:drop-shadow(0 8px 16px rgba(14,27,18,.28));}
+  @keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .mascot-bubble{position:absolute;right:0;bottom:66px;width:198px;background:#fff;border-radius:16px 16px 4px 16px;
+    box-shadow:0 10px 30px rgba(14,27,18,.18);padding:12px 14px;font-size:12.5px;line-height:1.45;color:var(--ink2);
+    display:none;animation:fade .25s ease;}
+  .mascot-bubble.show{display:block;}
+  .mascot-bubble .mb-close{position:absolute;top:6px;right:9px;color:var(--muted);font-size:14px;cursor:pointer;}
+  .mascot-bubble b{color:var(--green-d);}
 </style>
 </head>
 <body>
@@ -303,13 +366,71 @@
             <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">🎓</div></div>
             <div class="xs mt8" style="font-weight:600;">Grantlar</div>
           </div>
+          <div onclick="go('jobs')" style="flex:1;text-align:center;cursor:pointer;">
+            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">💼</div></div>
+            <div class="xs mt8" style="font-weight:600;">Ishlar</div>
+          </div>
           <div onclick="go('podcasts')" style="flex:1;text-align:center;cursor:pointer;">
             <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">🎧</div></div>
             <div class="xs mt8" style="font-weight:600;">Podkastlar</div>
           </div>
-          <div onclick="go('news')" style="flex:1;text-align:center;cursor:pointer;">
-            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">📰</div></div>
-            <div class="xs mt8" style="font-weight:600;">Yangiliklar</div>
+        </div>
+
+        <!-- complete-profile prompt (hides once profile completed) -->
+        <div class="px mt20" id="home-ob-prompt">
+          <div class="card shadow" onclick="go('onboarding')" style="cursor:pointer;overflow:hidden;background:linear-gradient(135deg,#0E9E14,#17C41E);color:#fff;padding:16px 18px;position:relative;">
+            <div class="row sb" style="align-items:center;">
+              <div style="max-width:72%;">
+                <div style="font-weight:800;font-size:15px;">Profilingizni to'ldiring ✨</div>
+                <div class="xs mt4" style="opacity:.92;line-height:1.45;">Qiziqishlaringizni belgilang — sizga mos grant, ish va kurslarni topamiz.</div>
+                <div class="row gap8 mt12" style="align-items:center;">
+                  <div style="flex:1;max-width:120px;height:7px;border-radius:6px;background:rgba(255,255,255,.3);overflow:hidden;"><div id="home-pct-bar" style="width:40%;height:100%;background:#fff;border-radius:6px;"></div></div>
+                  <span class="xs" id="home-pct-txt" style="font-weight:700;">40%</span>
+                </div>
+              </div>
+              <div style="font-size:40px;">🧭</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOR YOU personalised rail -->
+        <div class="px mt24 row sb mb12"><div class="h-sec">Siz uchun ✨</div><div class="link" onclick="go('onboarding')">Sozlash</div></div>
+        <div class="hscroll">
+          <div onclick="go('grant')" style="cursor:pointer;flex-shrink:0;width:230px;">
+            <div class="card shadow" style="overflow:hidden;">
+              <div style="height:92px;background:linear-gradient(135deg,#0E6B8C,#17C41E);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;">🎓<span class="match" style="position:absolute;top:8px;left:8px;">● 94% mos</span></div>
+              <div style="padding:11px 13px;">
+                <div style="font-weight:700;font-size:14px;line-height:1.3;">DAAD Germaniya stipendiyasi</div>
+                <div class="xs muted mt4">Grant · Magistratura</div>
+              </div>
+            </div>
+          </div>
+          <div onclick="go('jobs')" style="cursor:pointer;flex-shrink:0;width:230px;">
+            <div class="card shadow" style="overflow:hidden;">
+              <div style="height:92px;background:linear-gradient(135deg,#13A318,#17C41E);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;">💼<span class="match" style="position:absolute;top:8px;left:8px;">● 88% mos</span></div>
+              <div style="padding:11px 13px;">
+                <div style="font-weight:700;font-size:14px;line-height:1.3;">EPAM — Frontend amaliyot</div>
+                <div class="xs muted mt4">Internship · YPIP</div>
+              </div>
+            </div>
+          </div>
+          <div onclick="go('skilltest')" style="cursor:pointer;flex-shrink:0;width:230px;">
+            <div class="card shadow" style="overflow:hidden;">
+              <div style="height:92px;background:linear-gradient(135deg,#B47A00,#F7B500);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;">🧠<span class="pill" style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);color:#9A7400;">TEST</span></div>
+              <div style="padding:11px 13px;">
+                <div style="font-weight:700;font-size:14px;line-height:1.3;">JavaScript bilim testi</div>
+                <div class="xs muted mt4">10 savol · 🪙 gacha +120</div>
+              </div>
+            </div>
+          </div>
+          <div onclick="go('mocktests')" style="cursor:pointer;flex-shrink:0;width:230px;">
+            <div class="card shadow" style="overflow:hidden;">
+              <div style="height:92px;background:linear-gradient(135deg,#5B2E91,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;">📝<span class="pill" style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);color:#5B2E91;">MOCK</span></div>
+              <div style="padding:11px 13px;">
+                <div style="font-weight:700;font-size:14px;line-height:1.3;">Mock Tests</div>
+                <div class="xs muted mt4">Siz uchun tanlangan · 3 urinish</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -707,7 +828,7 @@
         </div>
       </div>
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);display:flex;gap:12px;">
-        <button class="btn ghost" style="flex:1;" onclick="toast('Kalendarga qo‘shildi')">Kalendarga</button>
+        <button class="btn ghost" style="flex:1;" onclick="toast('Kalendarga qo'shildi')">Kalendarga</button>
         <button class="btn" style="flex:1.4;" onclick="histStack=['home'];go('home',false)">Tayyor</button>
       </div>
     </div>
@@ -739,7 +860,7 @@
           <div style="padding:0 24px 60px;">
             <button class="btn" onclick="simulateScan()">QR kodni skanerlash (demo)</button>
             <div class="row" style="justify-content:center;gap:6px;margin-top:16px;opacity:.75;font-size:13px;">
-              <span>yoki</span><span onclick="toast('Kodni qo‘lda kiriting')" style="color:var(--green);font-weight:700;cursor:pointer;">kodni qo'lda kiriting</span>
+              <span>yoki</span><span onclick="toast('Kodni qo'lda kiriting')" style="color:var(--green);font-weight:700;cursor:pointer;">kodni qo'lda kiriting</span>
             </div>
           </div>
         </div>
@@ -957,10 +1078,10 @@
         <!-- header -->
         <div style="background:linear-gradient(135deg,#17C41E,#0E9E14);padding:20px 18px 56px;color:#fff;position:relative;">
           <div class="row sb">
-            <div style="font-size:20px;font-weight:800;">Profil</div>
+            <div style="font-size:20px;font-weight:800;">Profile</div>
             <div class="row gap12">
-              <div style="cursor:pointer;" onclick="toast('Til: O‘zbek')">🌐</div>
-              <div style="cursor:pointer;" onclick="toast('Sozlamalar')">⚙️</div>
+              <div style="cursor:pointer;font-size:22px;padding:6px;border-radius:50%;transition:background .15s;" onmousedown="this.style.background='rgba(255,255,255,.25)'" onmouseup="this.style.background=''" onmouseleave="this.style.background=''" onclick="openSheet('sheet-settings')">🌐</div>
+              <div style="cursor:pointer;font-size:22px;padding:6px;border-radius:50%;transition:background .15s;" onmousedown="this.style.background='rgba(255,255,255,.25)'" onmouseup="this.style.background=''" onmouseleave="this.style.background=''" onclick="openSheet('sheet-settings')">⚙️</div>
             </div>
           </div>
           <div class="row gap12 mt16" style="align-items:center;">
@@ -979,6 +1100,42 @@
             <div style="flex:1;text-align:center;"><div style="font-size:20px;font-weight:800;">7</div><div class="xs muted">Tadbir</div></div>
             <div style="width:1px;background:var(--line);"></div>
             <div style="flex:1;text-align:center;"><div style="font-size:20px;font-weight:800;">3</div><div class="xs muted">Sertifikat</div></div>
+          </div>
+        </div>
+
+        <!-- skills match / complete profile -->
+        <div class="px mt16">
+          <div class="card shadow" style="padding:16px;" onclick="go('onboarding')">
+            <div class="row sb" style="align-items:center;cursor:pointer;">
+              <div class="row gap12" style="align-items:center;">
+                <div class="match-ring">
+                  <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#EEF1EE" stroke-width="5"/><circle id="profile-pct-circle" cx="23" cy="23" r="20" fill="none" stroke="#17C41E" stroke-width="5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="75"/></svg>
+                  <div class="mr-txt" id="profile-pct-txt">40%</div>
+                </div>
+                <div>
+                  <div style="font-weight:700;">Profil to'ldirilgan</div>
+                  <div class="xs muted mt4">Ko'nikma qo'shing — moslikni oshiring</div>
+                </div>
+              </div>
+              <span style="color:var(--green);font-weight:800;font-size:18px;">›</span>
+            </div>
+            <button class="btn sec mt16" style="height:42px;font-size:14px;" onclick="event.stopPropagation();go('onboarding')">✏️ Profilni to'ldirish</button>
+          </div>
+        </div>
+
+        <!-- Skills & CV card -->
+        <div class="px mt16">
+          <div class="card shadow" style="padding:16px;cursor:pointer;" onclick="go('skills')">
+            <div class="row sb" style="align-items:center;">
+              <div class="row gap12" style="align-items:center;">
+                <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#2E3A8C,#5B7CF6);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🧠</div>
+                <div>
+                  <div style="font-weight:700;">Ko'nikmalar va CV</div>
+                  <div class="xs muted mt4" id="skills-summary-txt">Ko'nikmalar qo'shing · CV biriktiring</div>
+                </div>
+              </div>
+              <span style="color:var(--green);font-weight:800;font-size:18px;">›</span>
+            </div>
           </div>
         </div>
 
@@ -1366,7 +1523,528 @@
       </div>
     </div>
 
+    <!-- ============ ONBOARDING / COMPLETE PROFILE ============ -->
+    <div class="view" id="v-onboarding" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Profilni to'ldirish</div></div>
+      <div class="px mt16" style="padding-top:106px;position:absolute;top:0;left:0;right:0;z-index:5;background:var(--bg);padding-bottom:10px;">
+        <div class="row gap12" style="align-items:center;">
+          <div class="ob-prog" style="flex:1;"><i id="ob-bar" style="width:20%;"></i></div>
+          <span class="xs muted" id="ob-count" style="font-weight:700;">1/5</span>
+        </div>
+      </div>
+      <div class="scroll no-tab" style="padding-top:150px;padding-bottom:110px;">
+        <div class="px">
+          <!-- step 1: interests -->
+          <div class="ob-step on" data-step="1">
+            <div class="h-sec">Qaysi sohalar sizni qiziqtiradi?</div>
+            <div class="sm muted mt4">Bir nechtasini tanlang</div>
+            <div class="mt16" style="display:flex;flex-direction:column;gap:10px;">
+              <div class="opt-tile" data-interest="it" onclick="obToggle(this)"><div class="obx">✓</div><span>💻 IT &amp; Dasturlash</span></div>
+              <div class="opt-tile" data-interest="design" onclick="obToggle(this)"><div class="obx">✓</div><span>🎨 Dizayn &amp; Ijod</span></div>
+              <div class="opt-tile" data-interest="biz" onclick="obToggle(this)"><div class="obx">✓</div><span>📈 Biznes &amp; Marketing</span></div>
+              <div class="opt-tile" data-interest="lang" onclick="obToggle(this)"><div class="obx">✓</div><span>🗣️ Til o'rganish</span></div>
+              <div class="opt-tile" data-interest="eng" onclick="obToggle(this)"><div class="obx">✓</div><span>⚙️ Muhandislik</span></div>
+              <div class="opt-tile" data-interest="sci" onclick="obToggle(this)"><div class="obx">✓</div><span>🔬 Fan &amp; Tadqiqot</span></div>
+            </div>
+          </div>
+          <!-- step 2: skills -->
+          <div class="ob-step" data-step="2">
+            <div class="h-sec">Qanday ko'nikmalaringiz bor?</div>
+            <div class="sm muted mt4">Bilganlaringizni belgilang</div>
+            <div class="hscroll mt16" style="padding:0;flex-wrap:wrap;gap:9px;">
+              <div class="chip" onclick="this.classList.toggle('on')">JavaScript</div>
+              <div class="chip" onclick="this.classList.toggle('on')">Python</div>
+              <div class="chip" onclick="this.classList.toggle('on')">HTML/CSS</div>
+              <div class="chip" onclick="this.classList.toggle('on')">Figma</div>
+              <div class="chip" onclick="this.classList.toggle('on')">SQL</div>
+              <div class="chip" onclick="this.classList.toggle('on')">Excel</div>
+              <div class="chip" onclick="this.classList.toggle('on')">Public Speaking</div>
+              <div class="chip" onclick="this.classList.toggle('on')">SMM</div>
+              <div class="chip" onclick="this.classList.toggle('on')">Rasm chizish</div>
+            </div>
+          </div>
+          <!-- step 3: language -->
+          <div class="ob-step" data-step="3">
+            <div class="h-sec">Ingliz tili darajangiz?</div>
+            <div class="sm muted mt4">Bittasini tanlang</div>
+            <div class="mt16" style="display:flex;flex-direction:column;gap:10px;">
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🌱 Boshlang'ich (A1–A2)</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🌿 O'rta (B1–B2)</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🌳 Yuqori (C1–C2)</span></div>
+            </div>
+          </div>
+          <!-- step 4: experience -->
+          <div class="ob-step" data-step="4">
+            <div class="h-sec">Hozirgi bosqichingiz?</div>
+            <div class="sm muted mt4">Bittasini tanlang</div>
+            <div class="mt16" style="display:flex;flex-direction:column;gap:10px;">
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🎒 Maktab o'quvchisi</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🎓 Talaba</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🧑‍🎓 Bitiruvchi kurs</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>💼 1–2 yil tajriba</span></div>
+            </div>
+          </div>
+          <!-- step 5: goal -->
+          <div class="ob-step" data-step="5">
+            <div class="h-sec">Asosiy maqsadingiz nima?</div>
+            <div class="sm muted mt4">Bir nechtasini tanlang</div>
+            <div class="mt16" style="display:flex;flex-direction:column;gap:10px;">
+              <div class="opt-tile" onclick="obToggle(this)"><div class="obx">✓</div><span>✈️ Chet elda o'qish</span></div>
+              <div class="opt-tile" onclick="obToggle(this)"><div class="obx">✓</div><span>🎓 Grant / stipendiya yutish</span></div>
+              <div class="opt-tile" onclick="obToggle(this)"><div class="obx">✓</div><span>💼 Amaliyot / ish topish</span></div>
+              <div class="opt-tile" onclick="obToggle(this)"><div class="obx">✓</div><span>🚀 Ko'nikma oshirish</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);display:flex;gap:12px;">
+        <button class="btn ghost" id="ob-back" style="flex:0 0 54px;font-size:20px;display:none;" onclick="obPrev()">‹</button>
+        <button class="btn" id="ob-next" style="flex:1;" onclick="obNext()">Keyingi</button>
+      </div>
+    </div>
+
+    <!-- ============ GRANTS LIST ============ -->
+    <div class="view" id="v-grants" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Grantlar &amp; stipendiyalar</div></div>
+      <div class="scroll no-tab" style="padding-top:98px;padding-bottom:24px;">
+        <!-- consulting banner -->
+        <div class="px">
+          <div class="card shadow" onclick="openSheet('sheet-consult')" style="cursor:pointer;background:linear-gradient(135deg,#2E3A8C,#2E7CF6);color:#fff;padding:15px 17px;">
+            <div class="row sb" style="align-items:center;">
+              <div class="row gap12" style="align-items:center;">
+                <div style="font-size:28px;">🧑‍🏫</div>
+                <div>
+                  <div style="font-weight:800;font-size:15px;">Chet elga o'qish — maslahat</div>
+                  <div class="xs mt4" style="opacity:.9;">Mutaxassis bilan 1:1 bepul konsultatsiya</div>
+                </div>
+              </div>
+              <span style="font-size:20px;opacity:.9;">›</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- success story videos -->
+        <div class="px mt24 row sb mb12"><div class="h-sec" style="font-size:16px;">Muvaffaqiyat tarixi 🎬</div></div>
+
+        <!-- featured hero card -->
+        <div class="px mb16">
+          <div class="card shadow" style="background:linear-gradient(135deg,#0D7A3E,#17C41E);border-radius:18px;overflow:hidden;cursor:pointer;padding:0;"
+               onclick="showMascot('Sherzod TU Munich DAAD — Germaniyaga kirdi! Siz ham qila olasiz 💚');toast('Video: Sherzod — TU Munich')">
+            <div style="padding:16px 16px 14px;color:#fff;">
+              <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;opacity:.85;margin-bottom:10px;">Muvaffaqiyat tarixi 🦉 Ziyo tavsiya qiladi</div>
+              <div class="row gap12" style="align-items:flex-start;">
+                <div style="background:rgba(255,255,255,.2);border-radius:14px;width:72px;height:60px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">🎓</div>
+                <div style="flex:1;">
+                  <div style="font-weight:800;font-size:15px;line-height:1.3;">"Germaniyaga qanday bordim"</div>
+                  <div style="font-size:12px;opacity:.9;margin-top:4px;">Sherzod · TU Munich · DAAD g'olibi</div>
+                </div>
+                <div style="font-size:26px;">🦉</div>
+              </div>
+              <div style="background:rgba(0,0,0,.18);border-radius:12px;padding:10px 12px;margin-top:12px;">
+                <div style="font-style:italic;font-size:12.5px;line-height:1.5;">"Boshida imkonsiz tuyuldi. Ziyo menga yo'l ko'rsatdi — hujjatlardan suhbatgacha."</div>
+                <div style="font-size:11px;opacity:.75;margin-top:5px;">— Sherzod, 24 yosh, Toshkent → Myunxen</div>
+              </div>
+              <div class="row gap10 mt12" style="align-items:center;">
+                <div style="background:rgba(255,255,255,.3);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:14px;">▶</div>
+                <div>
+                  <div style="font-size:12px;font-weight:700;">4:35 · O'zbek tilida</div>
+                  <div style="font-size:10.5px;opacity:.8;">Ziyo Forum · Muvaffaqiyat hikoyalari</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hscroll">
+          <div class="vthumb shadow" onclick="toast('Video: Nodira — DAAD g\'olibi')">
+            <div class="vcover" style="background:linear-gradient(135deg,#0E6B8C,#17C41E);">🎓<div class="vplay">▶</div><div class="vdur">2:40</div></div>
+            <div class="vmeta"><div style="font-weight:700;font-size:12.5px;">"DAAD'ni qanday yutdim"</div><div class="xs muted mt4">Nodira · Germaniya</div></div>
+          </div>
+          <div class="vthumb shadow" onclick="toast('Video: Jasur — Chevening')">
+            <div class="vcover" style="background:linear-gradient(135deg,#7A2E8C,#C44FD6);">🇬🇧<div class="vplay">▶</div><div class="vdur">3:15</div></div>
+            <div class="vmeta"><div style="font-weight:700;font-size:12.5px;">"Chevening tajribam"</div><div class="xs muted mt4">Jasur · London</div></div>
+          </div>
+          <div class="vthumb shadow" onclick="toast('Video: Malika — Fulbright')">
+            <div class="vcover" style="background:linear-gradient(135deg,#B47A00,#F7B500);">🇺🇸<div class="vplay">▶</div><div class="vdur">4:02</div></div>
+            <div class="vmeta"><div style="font-weight:700;font-size:12.5px;">"Fulbright yo'lim"</div><div class="xs muted mt4">Malika · AQSH</div></div>
+          </div>
+        </div>
+
+        <!-- expert tutorials -->
+        <div class="px mt24 row sb mb12"><div class="h-sec" style="font-size:16px;">Mutaxassis darslari 🎥</div></div>
+        <div class="hscroll">
+          <div class="vthumb shadow" onclick="toast('Dars: Motivatsion xat yozish')">
+            <div class="vcover" style="background:linear-gradient(135deg,#13A318,#17C41E);">✍️<div class="vplay">▶</div><div class="vdur">8:20</div></div>
+            <div class="vmeta"><div style="font-weight:700;font-size:12.5px;">Motivatsion xat</div><div class="xs muted mt4">Ekspert · Qadam-baqadam</div></div>
+          </div>
+          <div class="vthumb shadow" onclick="toast('Dars: Hujjatlarni tayyorlash')">
+            <div class="vcover" style="background:linear-gradient(135deg,#2E3A8C,#2E7CF6);">📑<div class="vplay">▶</div><div class="vdur">11:05</div></div>
+            <div class="vmeta"><div style="font-weight:700;font-size:12.5px;">Hujjatlar to'plami</div><div class="xs muted mt4">Ekspert · Checklist</div></div>
+          </div>
+        </div>
+
+        <!-- grant cards -->
+        <div class="px mt24 h-sec mb12" style="font-size:16px;">Siz uchun grantlar</div>
+        <div class="px" style="display:flex;flex-direction:column;gap:14px;">
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('grant')">
+            <div style="padding:14px 15px;">
+              <div class="row sb" style="align-items:flex-start;">
+                <div style="flex:1;"><div style="font-weight:700;font-size:16px;">DAAD Germaniya stipendiyasi</div>
+                <div class="xs muted mt4">Magistratura · To'liq moliyalashtirilgan</div></div>
+                <span class="match">● 94% mos</span>
+              </div>
+              <div class="mbar mt12"><i style="width:94%;"></i></div>
+              <div class="row sb mt12"><span class="xs muted">⏳ Muddat: 15-dekabr</span><span class="pill free">Bepul ariza</span></div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('grant')">
+            <div style="padding:14px 15px;">
+              <div class="row sb" style="align-items:flex-start;">
+                <div style="flex:1;"><div style="font-weight:700;font-size:16px;">Chevening Scholarship (UK)</div>
+                <div class="xs muted mt4">Magistratura · 1 yillik</div></div>
+                <span class="match mid">● 72% mos</span>
+              </div>
+              <div class="mbar mt12"><i style="width:72%;background:linear-gradient(90deg,#F7B500,#B47A00);"></i></div>
+              <div class="row sb mt12"><span class="xs muted">⏳ Muddat: 7-noyabr</span><span class="pill soon">IELTS kerak</span></div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('grant')">
+            <div style="padding:14px 15px;">
+              <div class="row sb" style="align-items:flex-start;">
+                <div style="flex:1;"><div style="font-weight:700;font-size:16px;">El-Yurt Umidi (Davlat)</div>
+                <div class="xs muted mt4">Bakalavr/Magistr · O'zbekiston</div></div>
+                <span class="match">● 88% mos</span>
+              </div>
+              <div class="mbar mt12"><i style="width:88%;"></i></div>
+              <div class="row sb mt12"><span class="xs muted">⏳ Doimiy ochiq</span><span class="pill free">Bepul ariza</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+    </div>
+
+    <!-- ============ GRANT DETAIL ============ -->
+    <div class="view" id="v-grant" data-notab="1" data-light="1">
+      <div class="nav ghost"><div class="back" onclick="back()">‹</div></div>
+      <div class="scroll no-tab" style="padding-top:0;padding-bottom:120px;">
+        <div style="height:220px;background:linear-gradient(135deg,#0E6B8C,#17C41E);position:relative;display:flex;align-items:flex-end;padding:20px;">
+          <span style="position:absolute;top:56px;left:18px;font-size:54px;">🎓</span>
+          <div style="color:#fff;">
+            <span class="pill" style="background:rgba(255,255,255,.25);color:#fff;">🎓 GRANT · Magistratura</span>
+            <div style="font-size:23px;font-weight:800;margin-top:8px;text-shadow:0 2px 10px rgba(0,0,0,.4);">DAAD Germaniya stipendiyasi</div>
+          </div>
+        </div>
+        <div class="card" style="margin:-24px 14px 0;border-radius:22px;position:relative;padding:18px;">
+          <!-- match block -->
+          <div class="row gap12" style="align-items:center;">
+            <div class="match-ring">
+              <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#EEF1EE" stroke-width="5"/><circle cx="23" cy="23" r="20" fill="none" stroke="#17C41E" stroke-width="5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="7.5"/></svg>
+              <div class="mr-txt">94%</div>
+            </div>
+            <div style="flex:1;">
+              <div style="font-weight:700;">Siz uchun mosligi yuqori</div>
+              <div class="xs muted mt4">Profilingiz talablarga mos keladi</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <!-- eligibility checklist -->
+          <div class="h-sec" style="font-size:16px;">Talablarga mosligingiz</div>
+          <div class="mt12" style="display:flex;flex-direction:column;gap:10px;">
+            <div class="row gap12"><span style="color:var(--green);font-size:17px;">✓</span><div class="sm">Bakalavr diplomi (yoki bitiruvchi kurs)</div></div>
+            <div class="row gap12"><span style="color:var(--green);font-size:17px;">✓</span><div class="sm">Ingliz tili B2 daraja</div></div>
+            <div class="row gap12"><span style="color:var(--green);font-size:17px;">✓</span><div class="sm">IT / Muhandislik sohasi</div></div>
+            <div class="row gap12"><span style="color:var(--gold);font-size:17px;">!</span><div class="sm">Motivatsion xat (hali yuklanmagan)</div></div>
+          </div>
+          <div class="divider"></div>
+          <div class="h-sec" style="font-size:16px;">Grant haqida</div>
+          <div class="sm mt8" style="color:var(--ink2);line-height:1.6;">DAAD — Germaniyada magistratura uchun to'liq stipendiya: o'quv to'lovi, oylik nafaqa (~992€), sayohat va sug'urta. Ariza onlayn topshiriladi.</div>
+
+          <!-- success story -->
+          <div class="h-sec mt20" style="font-size:16px;">G'olib tajribasi 🎬</div>
+          <div class="card" style="margin-top:12px;background:var(--green-ll);border-radius:16px;padding:12px;cursor:pointer;" onclick="toast('Video: Nodira — DAAD g\'olibi')">
+            <div class="row gap12" style="align-items:center;">
+              <div style="width:64px;height:52px;border-radius:12px;background:linear-gradient(135deg,#0E6B8C,#17C41E);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;position:relative;">▶</div>
+              <div style="flex:1;"><div style="font-weight:700;font-size:14px;">"DAAD'ni qanday yutdim" — Nodira</div><div class="xs muted mt4">2:40 · Qadam-baqadam tajriba</div></div>
+            </div>
+          </div>
+
+          <!-- expert tutorial -->
+          <div class="h-sec mt20" style="font-size:16px;">Mutaxassis darsi 🎥</div>
+          <div class="card" style="margin-top:12px;background:#EDF4FF;border-radius:16px;padding:12px;cursor:pointer;" onclick="toast('Dars: Motivatsion xat yozish')">
+            <div class="row gap12" style="align-items:center;">
+              <div style="width:64px;height:52px;border-radius:12px;background:linear-gradient(135deg,#2E3A8C,#2E7CF6);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;">▶</div>
+              <div style="flex:1;"><div style="font-weight:700;font-size:14px;">Motivatsion xatni qanday yozish kerak</div><div class="xs muted mt4">8:20 · Ekspert tushuntiradi</div></div>
+            </div>
+          </div>
+
+          <!-- consulting -->
+          <button class="btn sec mt20" onclick="openSheet('sheet-consult')">🧑‍🏫 Maslahat olish — bepul</button>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);z-index:30;">
+        <div class="row sb gap12">
+          <div><div class="xs muted">Muddat</div><div style="font-size:17px;font-weight:800;color:var(--coral);">15-dekabr</div></div>
+          <button class="btn" style="flex:1;" onclick="toast('Ariza boshlandi! 📝');setTimeout(()=>back(),1000)">Ariza topshirish</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ JOBS (Internships / Jobs / Social) ============ -->
+    <div class="view" id="v-jobs" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Ishlar &amp; amaliyot</div></div>
+      <div class="scroll no-tab" style="padding-top:98px;padding-bottom:24px;">
+        <div class="px"><div class="seg" id="seg-jobs">
+          <div class="on" onclick="jobsTab(this,'intern')">Amaliyot</div>
+          <div onclick="jobsTab(this,'job')">Ish</div>
+          <div onclick="jobsTab(this,'social')">Loyihalar</div>
+        </div></div>
+
+        <!-- INTERNSHIPS -->
+        <div id="jobs-intern" class="px mt16" style="display:flex;flex-direction:column;gap:14px;">
+          <!-- YPIP banner -->
+          <div class="card shadow" style="background:linear-gradient(135deg,#13A318,#0E9E14);color:#fff;padding:15px 17px;">
+            <div class="row gap12" style="align-items:center;">
+              <div style="font-size:28px;">🚀</div>
+              <div style="flex:1;"><div style="font-weight:800;font-size:15px;">YPIP amaliyot dasturi</div><div class="xs mt4" style="opacity:.9;">Kompaniyalar bilan rasmiy shartnoma asosida — kafolatlangan amaliyot o'rni</div></div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏢</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">EPAM Systems</span><span class="match">94%</span></div>
+                <div class="xs muted mt4">Frontend amaliyot · 6 oy · YPIP</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 36 sharh</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏦</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">TBC Bank UZ</span><span class="match mid">70%</span></div>
+                <div class="xs muted mt4">Data Analyst amaliyot · 3 oy · YPIP</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.3 · 21 sharh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JOBS -->
+        <div id="jobs-job" class="px mt16" style="display:none;flex-direction:column;gap:14px;">
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">💻</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">Junior Frontend Dev</span><span class="match">90%</span></div>
+                <div class="xs muted mt4">Uzum · To'liq stavka · Toshkent</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.7 · 52 sharh</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:#FFF6DB;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📊</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">SMM Menejer</span><span class="match mid">65%</span></div>
+                <div class="xs muted mt4">Click · Qisman stavka · Masofaviy</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.1 · 18 sharh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL PROJECTS -->
+        <div id="jobs-social" class="px mt16" style="display:none;flex-direction:column;gap:14px;">
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🌱</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">Eco Volontyorlik</span><span class="pill free">+40 🪙</span></div>
+                <div class="xs muted mt4">Green Uzbekistan · Daraxt ekish aksiyasi</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.9 · 64 sharh</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+            <div class="row gap12" style="padding:14px;align-items:center;">
+              <div style="width:52px;height:52px;border-radius:14px;background:#FFF0E8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📚</div>
+              <div style="flex:1;">
+                <div class="row sb"><span style="font-weight:700;font-size:15px;">Bolalarga ta'lim</span><span class="pill free">+30 🪙</span></div>
+                <div class="xs muted mt4">Ziyo Forum · Mahalla o'quv markazi</div>
+                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 29 sharh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+    </div>
+
+    <!-- ============ JOB / INTERNSHIP DETAIL (with reviews) ============ -->
+    <div class="view" id="v-job" data-notab="1" data-light="1">
+      <div class="nav ghost"><div class="back" onclick="back()">‹</div></div>
+      <div class="scroll no-tab" style="padding-top:0;padding-bottom:120px;">
+        <div style="height:200px;background:linear-gradient(135deg,#1b3a2e,#17C41E);position:relative;display:flex;align-items:flex-end;padding:20px;">
+          <div style="color:#fff;">
+            <span class="pill" style="background:rgba(255,255,255,.25);color:#fff;">💼 AMALIYOT · YPIP</span>
+            <div style="font-size:23px;font-weight:800;margin-top:8px;text-shadow:0 2px 10px rgba(0,0,0,.4);">EPAM — Frontend amaliyot</div>
+          </div>
+        </div>
+        <div class="card" style="margin:-24px 14px 0;border-radius:22px;position:relative;padding:18px;">
+          <div class="row gap12" style="align-items:center;">
+            <div class="match-ring">
+              <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#EEF1EE" stroke-width="5"/><circle cx="23" cy="23" r="20" fill="none" stroke="#17C41E" stroke-width="5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="7.5"/></svg>
+              <div class="mr-txt">94%</div>
+            </div>
+            <div style="flex:1;"><div style="font-weight:700;">Ko'nikmalaringizga mos</div><div class="xs muted mt4">1 ta ko'nikma yetishmaydi — kursni ko'ring</div></div>
+          </div>
+          <!-- skill gap -->
+          <div class="mt16" style="display:flex;flex-direction:column;gap:8px;">
+            <div class="row gap8" style="align-items:center;"><span style="color:var(--green);">✓</span><span class="sm" style="flex:1;">JavaScript · React</span><span class="xs muted">bor</span></div>
+            <div class="row gap8" style="align-items:center;"><span style="color:var(--green);">✓</span><span class="sm" style="flex:1;">HTML / CSS</span><span class="xs muted">bor</span></div>
+            <div class="row gap8" style="align-items:center;"><span style="color:var(--gold);">○</span><span class="sm" style="flex:1;">TypeScript</span><span class="link" onclick="go('courses')">Kurs ›</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="h-sec" style="font-size:16px;">Amaliyot haqida</div>
+          <div class="sm mt8" style="color:var(--ink2);line-height:1.6;">6 oylik to'liq amaliyot. Mentor, real loyiha va yakunda ishga taklif imkoni. YPIP shartnomasi asosida kafolatlangan o'rin.</div>
+
+          <!-- reviews -->
+          <div class="row sb mt20" style="align-items:center;">
+            <div class="h-sec" style="font-size:16px;">Sharhlar</div>
+            <div class="row gap8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="sm" style="font-weight:700;">4.8</span><span class="xs muted">· 36</span></div>
+          </div>
+          <div class="mt12" style="display:flex;flex-direction:column;gap:10px;">
+            <div class="review">
+              <div class="row sb"><div class="row gap8" style="align-items:center;"><div class="avatar xs" style="width:28px;height:28px;">SB</div><span class="sm" style="font-weight:700;">Sardor B.</span></div><span class="stars-sm">★★★★★</span></div>
+              <div class="sm mt8" style="color:var(--ink2);line-height:1.5;">Mentorlar juda yordam berdi. 6 oydan keyin ishga taklif qilishdi 🙌</div>
+            </div>
+            <div class="review">
+              <div class="row sb"><div class="row gap8" style="align-items:center;"><div class="avatar xs" style="width:28px;height:28px;background:#E8F0FF;color:#2E7CF6;">NK</div><span class="sm" style="font-weight:700;">Nilufar K.</span></div><span class="stars-sm">★★★★☆</span></div>
+              <div class="sm mt8" style="color:var(--ink2);line-height:1.5;">Yaxshi tajriba, lekin tempi tez. Oldindan React o'rganib boring.</div>
+            </div>
+          </div>
+          <button class="btn ghost mt12" style="height:44px;font-size:14px;" onclick="toast('Sharh yozish')">✍️ Sharh qoldirish</button>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);z-index:30;">
+        <div class="row sb gap12">
+          <div><div class="xs muted">Muddat</div><div style="font-size:17px;font-weight:800;color:var(--green);">6 oy</div></div>
+          <button class="btn" style="flex:1;" onclick="toast('Ariza yuborildi! 🚀');setTimeout(()=>back(),1000)">Ariza yuborish</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SKILL TEST (Duolingo-style) ============ -->
+    <div class="view" id="v-skilltest" data-notab="1" data-light="1">
+      <div class="scroll no-tab" style="padding-top:0;background:#0B140D;">
+        <div style="min-height:844px;display:flex;flex-direction:column;color:#fff;padding:60px 20px 30px;">
+          <!-- top bar -->
+          <div class="row gap12" style="align-items:center;">
+            <div onclick="back()" style="font-size:24px;cursor:pointer;flex-shrink:0;">✕</div>
+            <div class="q-prog"><i id="q-bar" style="width:10%;"></i></div>
+            <div class="heart-row" id="q-hearts">❤️❤️</div>
+          </div>
+          <div class="row sb mt16" style="align-items:center;">
+            <span class="pill" id="q-test-label" style="background:rgba(255,255,255,.15);color:#fff;">JavaScript testi</span>
+            <span class="xs" style="opacity:.8;" id="q-reward">Bu savol: +10 🪙</span>
+          </div>
+
+          <!-- question -->
+          <div style="margin-top:30px;">
+            <div class="xs" style="opacity:.7;text-transform:uppercase;letter-spacing:1px;" id="q-diff">Oson</div>
+            <div style="font-size:21px;font-weight:800;line-height:1.4;margin-top:8px;" id="q-text">Yuklanmoqda…</div>
+          </div>
+
+          <!-- options -->
+          <div id="q-opts" style="margin-top:26px;display:flex;flex-direction:column;gap:12px;"></div>
+
+          <div style="flex:1;"></div>
+          <!-- feedback + action -->
+          <div id="q-feedback" style="display:none;border-radius:16px;padding:14px 16px;margin-bottom:12px;font-weight:700;"></div>
+          <button class="btn" id="q-check" onclick="quizCheck()">Tekshirish</button>
+        </div>
+      </div>
+    </div>
     </div><!-- /views -->
+
+    <!-- ============ MOCK TESTS VIEW ============ -->
+    <div class="view" id="v-mocktests" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Mock Tests 📝</div></div>
+      <div class="scroll no-tab" style="padding-top:98px;padding-bottom:30px;">
+        <div class="px">
+          <div class="sm muted mb4" id="mocktests-subtitle">Qiziqishlaringizga mos testlar</div>
+          <div class="xs muted mb20" style="line-height:1.5;">Har bir test uchun <b>3 urinish</b> — keyin qayta tiklanadi. Gaming oldini olish uchun.</div>
+          <div id="mocktests-grid" style="display:flex;flex-direction:column;gap:14px;"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ============ SKILLS & CV VIEW ============ -->
+    <div class="view" id="v-skills" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Ko'nikmalar va CV 🧠</div></div>
+      <div class="scroll no-tab" style="padding-top:98px;padding-bottom:40px;">
+        <div class="px">
+
+          <!-- CV upload banner -->
+          <div class="card shadow" id="cv-banner" style="padding:16px;background:linear-gradient(135deg,#EEF2FF,#F0F4FF);border:1.5px dashed #5B7CF6;">
+            <div class="row gap12" style="align-items:center;">
+              <div style="font-size:32px;">📎</div>
+              <div style="flex:1;">
+                <div style="font-weight:700;color:#2E3A8C;">CV / Rezyume</div>
+                <div class="xs muted mt4" id="cv-status-txt">CV yuklanmagan</div>
+              </div>
+              <button class="btn" id="cv-btn" style="height:38px;font-size:13px;background:linear-gradient(135deg,#2E3A8C,#5B7CF6);padding:0 14px;" onclick="uploadCV()">Yuklash</button>
+            </div>
+            <div id="cv-uploaded-row" style="display:none;margin-top:12px;" class="row gap8">
+              <div style="flex:1;padding:8px 12px;background:rgba(94,120,246,.1);border-radius:8px;font-size:13px;font-weight:600;color:#2E3A8C;">📄 <span id="cv-filename">CV_Doston_2026.pdf</span></div>
+              <button class="btn ghost" style="height:36px;font-size:12px;" onclick="removeCV()">✕</button>
+            </div>
+          </div>
+
+          <!-- Skills section -->
+          <div style="margin-top:20px;">
+            <div class="row sb" style="align-items:center;margin-bottom:12px;">
+              <div style="font-weight:700;font-size:16px;">Ko'nikmalar</div>
+              <button class="btn sec" style="height:34px;font-size:13px;padding:0 12px;" onclick="openAddSkill()">+ Qo'shish</button>
+            </div>
+            <div id="skills-tags" style="display:flex;flex-wrap:wrap;gap:8px;min-height:40px;">
+              <!-- dynamically rendered -->
+            </div>
+            <div id="skills-empty" class="xs muted" style="display:none;margin-top:8px;">Ko'nikma qo'shing — AI siz uchun tavsiya beradi</div>
+          </div>
+
+          <!-- Add skill input (hidden by default) -->
+          <div id="add-skill-box" style="display:none;margin-top:12px;">
+            <div class="card shadow" style="padding:14px;">
+              <div class="xs muted mb8">Ko'nikma nomini kiriting yoki tanlang:</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;" id="skill-suggestions-row">
+                <!-- populated by openAddSkill() -->
+              </div>
+              <div class="row gap8">
+                <input id="skill-input" type="text" placeholder="Masalan: Python, Figma..." style="flex:1;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px;font-family:inherit;outline:none;" oninput="filterSkillSuggestions(this.value)" onkeydown="if(event.key==='Enter')addSkillFromInput()"/>
+                <button class="btn" style="height:40px;padding:0 16px;font-size:13px;" onclick="addSkillFromInput()">Qo'shish</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill gap divider -->
+          <div style="margin-top:24px;padding:12px 14px;background:linear-gradient(135deg,#F0F4FF,#EEF2FF);border-radius:12px;display:flex;align-items:center;gap:10px;">
+            <div style="font-size:22px;">✨</div>
+            <div>
+              <div style="font-weight:700;font-size:13px;color:#2E3A8C;">AI tahlili</div>
+              <div class="xs muted mt2" id="gap-summary-txt">Ko'nikmalaringizga asoslanib tavsiyalar tayyorlanmoqda…</div>
+            </div>
+          </div>
+
+          <!-- Suggestions grid -->
+          <div id="skill-suggestions-grid" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;"></div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- ============ NOTIFICATIONS VIEW ============ -->
     <!-- placeholder comment, actual view is above -->
@@ -1454,6 +2132,102 @@
       </div>
     </div>
 
+    <!-- CONSULTING SHEET -->
+    <div class="sheet-wrap" id="sheet-consult">
+      <div class="sheet-bg" onclick="closeSheet('sheet-consult')"></div>
+      <div class="sheet">
+        <div class="grab"></div>
+        <div style="text-align:center;">
+          <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#2E3A8C,#2E7CF6);display:flex;align-items:center;justify-content:center;font-size:32px;margin:4px auto 0;">🧑‍🏫</div>
+          <div style="font-size:20px;font-weight:800;margin-top:12px;">Chet elga o'qish — maslahat</div>
+          <div class="sm muted mt8" style="line-height:1.6;">Universitet tanlash, hujjatlar va grant bo'yicha mutaxassis bilan bepul 1:1 konsultatsiya.</div>
+        </div>
+        <div class="h-sec mt24" style="font-size:15px;">Maslahatchi tanlang</div>
+        <div class="mt12" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="card shadow row gap12" style="padding:12px;align-items:center;cursor:pointer;" onclick="pickConsult(this)">
+            <div class="avatar" style="width:44px;height:44px;background:linear-gradient(135deg,#0E6B8C,#17C41E);color:#fff;">MA</div>
+            <div style="flex:1;"><div style="font-weight:700;">Madina A.</div><div class="xs muted mt4">Germaniya · DAAD · 5 yil tajriba</div></div>
+            <div class="consult-check" style="font-size:18px;opacity:0;">✅</div>
+          </div>
+          <div class="card shadow row gap12" style="padding:12px;align-items:center;cursor:pointer;" onclick="pickConsult(this)">
+            <div class="avatar" style="width:44px;height:44px;background:linear-gradient(135deg,#7A2E8C,#C44FD6);color:#fff;">JX</div>
+            <div style="flex:1;"><div style="font-weight:700;">Jahongir X.</div><div class="xs muted mt4">UK/USA · Chevening, Fulbright</div></div>
+            <div class="consult-check" style="font-size:18px;opacity:0;">✅</div>
+          </div>
+        </div>
+        <div class="h-sec mt20" style="font-size:15px;">Qulay vaqt</div>
+        <div class="hscroll mt12" style="padding:0;gap:8px;">
+          <div class="chip" onclick="segPick(this)">Bugun 16:00</div>
+          <div class="chip on" onclick="segPick(this)">Ertaga 10:00</div>
+          <div class="chip" onclick="segPick(this)">Ertaga 15:00</div>
+          <div class="chip" onclick="segPick(this)">Shanba 12:00</div>
+        </div>
+        <button class="btn mt20" onclick="closeSheet('sheet-consult');toast('✅ Konsultatsiya band qilindi!')">Band qilish — bepul</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS SHEET -->
+    <div class="sheet-wrap" id="sheet-settings">
+      <div class="sheet-bg" onclick="closeSheet('sheet-settings')"></div>
+      <div class="sheet">
+        <div class="grab"></div>
+        <div style="font-size:20px;font-weight:800;margin-bottom:18px;" id="set-title">Sozlamalar</div>
+
+        <!-- Language -->
+        <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;" id="set-lang-lbl">🌐 Til</div>
+        <div class="seg" id="lang-seg">
+          <div id="lang-uz" class="on" onclick="setLang('uz')" style="cursor:pointer;">🇺🇿 O'zbek</div>
+          <div id="lang-en" onclick="setLang('en')" style="cursor:pointer;">🇬🇧 English</div>
+        </div>
+
+        <div class="divider" style="margin-top:20px;"></div>
+
+        <!-- Notifications stub -->
+        <div class="row sb" style="align-items:center;padding:4px 0;cursor:pointer;" onclick="closeSheet('sheet-settings');toast(_lang==='en'?'Coming soon':'Tez orada...')">
+          <div class="row gap12" style="align-items:center;">
+            <div class="ico" style="background:#FFF6DB;"><svg viewBox="0 0 24 24" style="stroke:#B47A00;"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></div>
+            <div style="font-weight:600;" id="set-notif">Bildirishnomalar</div>
+          </div>
+          <span style="color:var(--muted);">›</span>
+        </div>
+        <div class="row sb" style="align-items:center;padding:4px 0;margin-top:8px;cursor:pointer;" onclick="closeSheet('sheet-settings');toast(_lang==='en'?'Coming soon':'Tez orada...')">
+          <div class="row gap12" style="align-items:center;">
+            <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg></div>
+            <div style="font-weight:600;" id="set-acct">Hisob ma'lumotlari</div>
+          </div>
+          <span style="color:var(--muted);">›</span>
+        </div>
+
+        <div class="divider" style="margin-top:16px;"></div>
+
+        <div style="text-align:center;color:var(--muted);font-size:12px;margin-top:4px;" id="set-ver">Ziyo App · v1.0 prototype</div>
+        <button class="btn mt16" onclick="closeSheet('sheet-settings')" id="set-close">Yopish</button>
+      </div>
+    </div>
+
+    <!-- MASCOT -->
+    <div class="mascot" id="mascot" style="display:none;" onclick="toggleMascot()">
+      <div class="mascot-bubble" id="mascot-bubble">
+        <span class="mb-close" onclick="event.stopPropagation();hideMascot()">✕</span>
+        <span id="mascot-text"></span>
+      </div>
+      <svg viewBox="0 0 64 64" fill="none">
+        <ellipse cx="32" cy="60" rx="15" ry="3" fill="rgba(0,0,0,.12)"/>
+        <circle cx="32" cy="34" r="24" fill="#17C41E"/>
+        <circle cx="32" cy="34" r="24" fill="url(#mg)" opacity=".5"/>
+        <path d="M14 20c-3-6 2-11 7-9M50 20c3-6-2-11-7-9" stroke="#0E9E14" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="24" cy="30" r="9" fill="#fff"/>
+        <circle cx="40" cy="30" r="9" fill="#fff"/>
+        <circle cx="25" cy="31" r="4.5" fill="#0E1B12"/>
+        <circle cx="39" cy="31" r="4.5" fill="#0E1B12"/>
+        <circle cx="26.5" cy="29.5" r="1.5" fill="#fff"/>
+        <circle cx="40.5" cy="29.5" r="1.5" fill="#fff"/>
+        <path d="M29 40l3 3 3-3z" fill="#F7B500"/>
+        <path d="M22 46c4 3 16 3 20 0" stroke="#0E9E14" stroke-width="2" stroke-linecap="round" fill="none" opacity=".5"/>
+        <defs><radialGradient id="mg" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#5BE85F"/><stop offset="100%" stop-color="#17C41E"/></radialGradient></defs>
+      </svg>
+    </div>
+
     <div class="toast" id="toast"></div>
   </div>
 </div>
@@ -1478,6 +2252,11 @@ function go(id, push=true){
   document.querySelectorAll('.tab[data-tab]').forEach(t=>t.classList.toggle('on', t.dataset.tab===tabName));
   setTabbar(v.dataset.notab!=='1');
   setStatus(v.dataset.light==='1');
+  mascotUpdate(id);
+  if(id==='skilltest') quizStart();
+  if(id==='onboarding'){ obStep=1; obShow(); }
+  if(id==='mocktests') showMockTests();
+  if(id==='skills') showSkillsView();
 
   if(push){ if(histStack[histStack.length-1]!==id) histStack.push(id); }
 }
@@ -1501,7 +2280,7 @@ function segPick(el){ [...el.parentNode.children].forEach(c=>c.classList.remove(
 function likeByte(el){ const h=el.querySelector('div'); const on=h.textContent==='❤️'; h.textContent=on?'🤍':'❤️'; }
 function toggleAudio(el){ const p=el.textContent.trim()==='▶'; el.textContent=p?'⏸':'▶'; toast(p?'Ijro etilmoqda':'Pauza'); }
 function segHist(el,which){ segPick(el); document.getElementById('hist-past').style.display = which==='past'?'flex':'none'; document.getElementById('hist-upcoming').style.display = which==='upcoming'?'flex':'none'; }
-const STAR_LBL=['','Yomon 😕','O‘rtacha','Yaxshi 🙂','Zo‘r 😃','Ajoyib! 🤩'];
+const STAR_LBL=['','Yomon 😕',"O'rtacha",'Yaxshi 🙂',"Zo'r 😃",'Ajoyib! 🤩'];
 function setStars(n){ const s=document.getElementById('stars').children; for(let i=0;i<5;i++) s[i].textContent=i<n?'★':'☆'; document.getElementById('stars').style.color='var(--gold)'; document.getElementById('starLabel').textContent=STAR_LBL[n]; }
 function escapeHtml(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function sendMsg(){
@@ -1561,7 +2340,1027 @@ function pickReminder(el, label){
   el.querySelector('.reminder-check').style.opacity='1';
   el.style.borderColor = 'var(--green)';
 }
-renderCoins();
+
+/* === CONSULTING PICKER === */
+function pickConsult(el){
+  document.querySelectorAll('#sheet-consult .consult-check').forEach(c=>c.style.opacity='0');
+  document.querySelectorAll('#sheet-consult .card').forEach(c=>c.style.borderColor='');
+  el.querySelector('.consult-check').style.opacity='1';
+  el.style.border='1.5px solid var(--green)';
+}
+
+/* === JOBS SEGMENTED === */
+function jobsTab(el, which){
+  segPick(el);
+  ['intern','job','social'].forEach(k=>{
+    document.getElementById('jobs-'+k).style.display = (k===which)?'flex':'none';
+  });
+}
+
+/* === ONBOARDING QUESTIONNAIRE === */
+let obStep = 1; const OB_TOTAL = 5;
+let profilePct = 40;
+const obDoneSteps = new Set();
+let userInterests = new Set();
+
+function obToggle(el){ el.classList.toggle('on'); }
+function obPick(el){ [...el.parentNode.children].forEach(c=>c.classList.remove('on')); el.classList.add('on'); }
+function obShow(){
+  document.querySelectorAll('#v-onboarding .ob-step').forEach(s=>s.classList.toggle('on', +s.dataset.step===obStep));
+  document.getElementById('ob-bar').style.width = (obStep/OB_TOTAL*100)+'%';
+  document.getElementById('ob-count').textContent = obStep+'/'+OB_TOTAL;
+  document.getElementById('ob-back').style.display = obStep>1?'flex':'none';
+  document.getElementById('ob-next').textContent = obStep===OB_TOTAL?'Yakunlash ✨':'Keyingi';
+  document.querySelector('#v-onboarding .scroll').scrollTop=0;
+}
+function obNext(){
+  obDoneSteps.add(obStep);
+  profilePct = 40 + Math.min(obDoneSteps.size, OB_TOTAL) * 12;
+  updateProfilePct();
+  if(obStep<OB_TOTAL){ obStep++; obShow(); }
+  else{ obFinish(); }
+}
+function obPrev(){ if(obStep>1){ obStep--; obShow(); } }
+function obFinish(){
+  getSelectedInterests();
+  obStep=1; obShow();
+  const prompt=document.getElementById('home-ob-prompt');
+  if(prompt){
+    if(profilePct>=100){
+      prompt.style.display='none';
+    } else {
+      const bar=prompt.querySelector('#home-pct-bar'); if(bar) bar.style.width=profilePct+'%';
+      const txt=prompt.querySelector('#home-pct-txt'); if(txt) txt.textContent=profilePct+'%';
+    }
+  }
+  toast('✨ Profil to\'ldirildi! Mosligingiz yangilandi');
+  histStack=['home']; go('home',false);
+  setTimeout(()=>showMascot('Zo\'r! Endi sizga <b>94% mos</b> grant va ishlarni tavsiya qilaman 🎯'),700);
+}
+
+function updateProfilePct(){
+  const circ = 125.6;
+  const offset = +(circ*(1-profilePct/100)).toFixed(1);
+  const bar = document.getElementById('home-pct-bar');
+  if(bar) bar.style.width = profilePct+'%';
+  const txt = document.getElementById('home-pct-txt');
+  if(txt) txt.textContent = profilePct+'%';
+  const circle = document.getElementById('profile-pct-circle');
+  if(circle) circle.setAttribute('stroke-dashoffset', offset);
+  const ptxt = document.getElementById('profile-pct-txt');
+  if(ptxt) ptxt.textContent = profilePct+'%';
+}
+
+function getSelectedInterests(){
+  const step1 = document.querySelector('#v-onboarding .ob-step[data-step="1"]');
+  if(!step1) return;
+  userInterests.clear();
+  step1.querySelectorAll('.opt-tile.on').forEach(el=>{
+    const interest = el.dataset.interest;
+    if(interest) userInterests.add(interest);
+  });
+  if(userInterests.size===0) userInterests.add('it');
+}
+
+/* === MOCK TESTS === */
+const MOCK_TESTS = {
+  'python-basics':{
+    title:'Python Basics', titleUz:'Python asoslari',
+    interest:'it', icon:'🐍', maxReward:90,
+    desc:'5 questions · Python fundamentals',
+    questions:[
+      {d:'Easy',r:10,q:'Which keyword defines a function in Python?',o:['func','function','def','define'],a:2},
+      {d:'Easy',r:10,q:'Output of: print(type([]))?',o:["<class 'list'>",'list','[]','array'],a:0},
+      {d:'Medium',r:20,q:'How to get the LAST item of list arr?',o:['arr.last()','arr[-1]','arr[end]','last(arr)'],a:1},
+      {d:'Medium',r:20,q:'Which loop runs while a condition is True?',o:['for','while','repeat','loop'],a:1},
+      {d:'Hard',r:30,q:'dict.get("k","default") when key missing returns?',o:['None','KeyError','default','0'],a:2},
+    ]
+  },
+  'ui-design':{
+    title:'UI Design Principles', titleUz:'UI Dizayn asoslari',
+    interest:'design', icon:'🎨', maxReward:90,
+    desc:'5 questions · Design fundamentals',
+    questions:[
+      {d:'Easy',r:10,q:'Which CSS property adds space INSIDE an element?',o:['margin','padding','border','outline'],a:1},
+      {d:'Easy',r:10,q:'WCAG AA min contrast ratio for body text is:',o:['2:1','3:1','4.5:1','7:1'],a:2},
+      {d:'Medium',r:20,q:'Gestalt principle that groups nearby elements:',o:['Similarity','Proximity','Closure','Figure-ground'],a:1},
+      {d:'Medium',r:20,q:'White space in design primarily helps with:',o:['Filling empty areas','Readability & focus','Saving screen space','Adding decoration'],a:1},
+      {d:'Hard',r:30,q:'In a 12-column grid, a 4-column component takes up:',o:['1/4 width','1/3 width','1/2 width','2/3 width'],a:1},
+    ]
+  },
+  'marketing':{
+    title:'Marketing Fundamentals', titleUz:'Marketing asoslari',
+    interest:'biz', icon:'📈', maxReward:90,
+    desc:'5 questions · Strategy & metrics',
+    questions:[
+      {d:'Easy',r:10,q:'CTR stands for:',o:['Click-Through Rate','Customer Transaction Record','Content Traffic Ratio','Cost Tier Range'],a:0},
+      {d:'Easy',r:10,q:'The "4 Ps" of marketing are:',o:['People, Price, Place, Post','Product, Price, Place, Promotion','Product, People, Plan, Price','Place, Product, Post, Pay'],a:1},
+      {d:'Medium',r:20,q:'"B2B" means:',o:['Business to Business','Buy to Bargain','Brand to Brand','Budget to Build'],a:0},
+      {d:'Medium',r:20,q:'A/B testing compares:',o:['Server performance','Two design/copy variants','Database queries','User demographics'],a:1},
+      {d:'Hard',r:30,q:'Net Promoter Score (NPS) measures:',o:['Ad spend ROI','Likelihood to recommend','Website traffic','Email open rate'],a:1},
+    ]
+  },
+  'english-gram':{
+    title:'English Grammar B1', titleUz:'Ingliz tili grammatikasi',
+    interest:'lang', icon:'🗣️', maxReward:90,
+    desc:'5 questions · Grammar & usage',
+    questions:[
+      {d:'Easy',r:10,q:'Correct sentence:',o:['She go to school','She goes to school','She going school','She goed to school'],a:1},
+      {d:'Easy',r:10,q:'Past tense of "go" is:',o:['goed','gone','went','goes'],a:2},
+      {d:'Medium',r:20,q:'"I have been studying for 3 hours." Tense:',o:['Simple past','Present perfect continuous','Past perfect','Future perfect'],a:1},
+      {d:'Medium',r:20,q:'Correct: "___ university is near here"',o:['A','An','The','— (no article)'],a:0},
+      {d:'Hard',r:30,q:'Passive: "They built the house in 1900"',o:['House built in 1900','The house was built in 1900','The house is built in 1900','The house had built in 1900'],a:1},
+    ]
+  },
+  'math-eng':{
+    title:'Engineering Math', titleUz:'Muhandislik matematikasi',
+    interest:'eng', icon:'⚙️', maxReward:90,
+    desc:'5 questions · Algebra & logic',
+    questions:[
+      {d:'Easy',r:10,q:'What is 2³ (2 to the power of 3)?',o:['6','8','9','12'],a:1},
+      {d:'Easy',r:10,q:'Area of a circle with radius 5 (π≈3.14):',o:['15.7','31.4','78.5','157'],a:2},
+      {d:'Medium',r:20,q:'Solve: 3x + 7 = 22, x = ?',o:['3','5','7','15'],a:1},
+      {d:'Medium',r:20,q:'Binary 1010 in decimal equals:',o:['8','10','12','14'],a:1},
+      {d:'Hard',r:30,q:'Derivative of f(x) = x² is:',o:['x','2x','x²','2x²'],a:1},
+    ]
+  },
+  'sci-method':{
+    title:'Scientific Method', titleUz:'Ilmiy usul asoslari',
+    interest:'sci', icon:'🔬', maxReward:90,
+    desc:'5 questions · Research fundamentals',
+    questions:[
+      {d:'Easy',r:10,q:'First step of the scientific method is:',o:['Experiment','Observation','Conclusion','Hypothesis'],a:1},
+      {d:'Easy',r:10,q:'A hypothesis is:',o:['A proven fact','A testable prediction','An experiment','A result'],a:1},
+      {d:'Medium',r:20,q:'Control variable in an experiment is:',o:['The variable being changed','The measured result','The variable kept constant','The sample size'],a:2},
+      {d:'Medium',r:20,q:'Peer review ensures:',o:['Faster publication','Errors are caught and credibility verified','More citations','Larger sample size'],a:1},
+      {d:'Hard',r:30,q:'p-value < 0.05 means:',o:['Result is important','Result is statistically significant','Hypothesis is proven','Experiment failed'],a:1},
+    ]
+  },
+};
+const MAX_ATTEMPTS = 3;
+let mockAttempts = {};
+
+function startMockTest(testId){
+  const used = mockAttempts[testId]||0;
+  if(used >= MAX_ATTEMPTS){
+    toast('🔒 Limit tugadi. Ertaga qayta urinib ko\'ring!');
+    return;
+  }
+  go('skilltest');
+  setTimeout(()=>quizStart(testId),50);
+}
+
+function showMockTests(){
+  getSelectedInterests();
+  const grid = document.getElementById('mocktests-grid');
+  if(!grid) return;
+  const sub = document.getElementById('mocktests-subtitle');
+  const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+
+  const relevant = Object.entries(MOCK_TESTS).filter(([id, t])=>
+    userInterests.size===0 || userInterests.has(t.interest)
+  );
+  const others = Object.entries(MOCK_TESTS).filter(([id, t])=>
+    userInterests.size>0 && !userInterests.has(t.interest)
+  );
+
+  const allTests = [...relevant, ...others];
+  if(sub) sub.textContent = userInterests.size>0
+    ? (isLangEn ? 'Matched to your interests' : 'Qiziqishlaringizga mos testlar')
+    : (isLangEn ? 'All available tests' : 'Barcha testlar');
+
+  grid.innerHTML = '';
+  let shownRelevant = false;
+
+  allTests.forEach(([id, t], idx)=>{
+    if(idx===relevant.length && others.length>0 && relevant.length>0){
+      const sep=document.createElement('div');
+      sep.style='margin-top:8px;padding-top:16px;border-top:1px solid var(--line);';
+      sep.innerHTML='<div class="xs muted" style="font-weight:700;letter-spacing:.5px;">'+(isLangEn?'OTHER TOPICS':'BOSHQA MAVZULAR')+'</div>';
+      grid.appendChild(sep);
+    }
+    const used = mockAttempts[id]||0;
+    const left = MAX_ATTEMPTS - used;
+    const locked = left <= 0;
+    const attColor = left>1 ? 'var(--green)' : left===1 ? '#E67E00' : '#D23B3B';
+    const attLabel = locked
+      ? '🔒 Limit reached'
+      : left+' / '+MAX_ATTEMPTS+' attempts left';
+
+    const card = document.createElement('div');
+    card.className='card shadow';
+    card.style='padding:14px 16px;display:flex;align-items:center;gap:14px;'+(locked?'opacity:.6;':'cursor:pointer;');
+    if(!locked) card.onclick=()=>startMockTest(id);
+    card.innerHTML=`
+      <div style="width:48px;height:48px;border-radius:14px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${t.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:700;font-size:14px;">${isLangEn ? t.title : t.titleUz}</div>
+        <div class="xs muted mt4">${t.desc}</div>
+        <div class="xs mt6" style="font-weight:700;color:${attColor};">${attLabel} · 🪙 up to +${t.maxReward}</div>
+      </div>
+      <div style="font-size:22px;color:var(--green);">${locked?'🔒':'›'}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* === SKILLS & CV === */
+let userSkills = [];
+let cvUploaded = false;
+
+const SKILL_POOL = [
+  'Python','JavaScript','React','SQL','Figma','UI/UX Design',
+  'Marketing','SEO','Excel','English','Presentation','Leadership',
+  'Data Analysis','Machine Learning','C++','Java','Photoshop',
+  'Content Writing','Project Management','Networking'
+];
+
+const SKILL_SUGGESTIONS_MAP = {
+  // skill → {type, title, titleUz, icon, action, actionArg}
+  'Python':     [{type:'test',  icon:'🐍', title:'Python Basics test',         titleUz:'Python asoslari testi',    action:'startMockTest', arg:'python-basics'},
+                 {type:'course',icon:'📚', title:'Python for Beginners',       titleUz:'Python darslar kursi',     action:'go',            arg:'courses'}],
+  'JavaScript': [{type:'test',  icon:'🧠', title:'JavaScript Knowledge Test',  titleUz:'JavaScript bilim testi',  action:'quizStart',     arg:null},
+                 {type:'course',icon:'📚', title:'JS Fundamentals Course',     titleUz:'JS asoslari kursi',       action:'go',            arg:'courses'}],
+  'React':      [{type:'course',icon:'⚛️', title:'Frontend Bootcamp',          titleUz:'Frontend Bootcamp',       action:'go',            arg:'courses'}],
+  'Figma':      [{type:'test',  icon:'🎨', title:'UI Design Principles test',  titleUz:'UI Dizayn testi',         action:'startMockTest', arg:'ui-design'},
+                 {type:'event', icon:'🎓', title:'UX/UI Bootcamp 2026',         titleUz:'UX/UI Bootcamp 2026',     action:'go',            arg:'events'}],
+  'UI/UX Design':[{type:'test', icon:'🎨', title:'UI Design Principles test',  titleUz:'UI Dizayn testi',         action:'startMockTest', arg:'ui-design'}],
+  'Marketing':  [{type:'test',  icon:'📈', title:'Marketing Fundamentals test',titleUz:'Marketing asoslari testi',action:'startMockTest', arg:'marketing'}],
+  'English':    [{type:'test',  icon:'🗣️', title:'English Grammar B1 test',    titleUz:'Ingliz tili grammatikasi',action:'startMockTest', arg:'english-gram'},
+                 {type:'event', icon:'📅', title:'English Speaking Club',       titleUz:'Ingliz tili klubi',       action:'go',            arg:'events'}],
+  'Data Analysis':[{type:'test',icon:'⚙️', title:'Engineering Math test',      titleUz:'Muhandislik matematikasi',action:'startMockTest', arg:'math-eng'}],
+  'Machine Learning':[{type:'test',icon:'🐍',title:'Python Basics test',       titleUz:'Python asoslari testi',   action:'startMockTest', arg:'python-basics'}],
+  'C++':        [{type:'test',  icon:'⚙️', title:'Engineering Math test',      titleUz:'Muhandislik matematikasi',action:'startMockTest', arg:'math-eng'}],
+  'Java':       [{type:'course',icon:'📚', title:'Java Bootcamp',               titleUz:'Java Bootcamp',           action:'go',            arg:'courses'}],
+};
+
+function openAddSkill(){
+  const box = document.getElementById('add-skill-box');
+  if(box.style.display==='none'){
+    box.style.display='block';
+    filterSkillSuggestions('');
+    document.getElementById('skill-input').focus();
+  } else {
+    box.style.display='none';
+  }
+}
+
+function filterSkillSuggestions(q){
+  const row = document.getElementById('skill-suggestions-row');
+  if(!row) return;
+  const term = q.toLowerCase();
+  const filtered = SKILL_POOL.filter(s=>s.toLowerCase().includes(term) && !userSkills.includes(s)).slice(0,8);
+  row.innerHTML = filtered.map(s=>`<span onclick="addSkill('${s}')" style="cursor:pointer;padding:5px 11px;border-radius:20px;background:var(--green-ll);font-size:13px;font-weight:600;color:var(--green)">${s}</span>`).join('');
+}
+
+function addSkill(name){
+  if(!name.trim()) return;
+  const clean = name.trim();
+  if(userSkills.includes(clean)) return;
+  userSkills.push(clean);
+  document.getElementById('skill-input').value='';
+  document.getElementById('add-skill-box').style.display='none';
+  renderSkillTags();
+  renderSkillSuggestions();
+  updateSkillsSummary();
+}
+
+function addSkillFromInput(){
+  const v = document.getElementById('skill-input')?.value?.trim();
+  if(v) addSkill(v);
+}
+
+function removeSkill(name){
+  userSkills = userSkills.filter(s=>s!==name);
+  renderSkillTags();
+  renderSkillSuggestions();
+  updateSkillsSummary();
+}
+
+function renderSkillTags(){
+  const container = document.getElementById('skills-tags');
+  const empty = document.getElementById('skills-empty');
+  if(!container) return;
+  if(userSkills.length===0){
+    container.innerHTML='';
+    if(empty) empty.style.display='block';
+    return;
+  }
+  if(empty) empty.style.display='none';
+  container.innerHTML = userSkills.map(s=>`
+    <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:linear-gradient(135deg,#EEF2FF,#E8EDFF);border:1px solid rgba(94,120,246,.3);font-size:13px;font-weight:600;color:#2E3A8C;">
+      ${s}
+      <span onclick="removeSkill('${s}')" style="cursor:pointer;font-size:11px;opacity:.6;font-weight:800;">✕</span>
+    </div>`).join('');
+}
+
+function renderSkillSuggestions(){
+  const grid = document.getElementById('skill-suggestions-grid');
+  const summaryTxt = document.getElementById('gap-summary-txt');
+  if(!grid) return;
+  const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+
+  if(userSkills.length===0 && !cvUploaded){
+    grid.innerHTML='';
+    if(summaryTxt) summaryTxt.textContent = isLangEn ? 'Add skills or upload your CV to get personalised suggestions' : 'Ko\'nikma qo\'shing yoki CV yuklang — AI tavsiya beradi';
+    return;
+  }
+
+  // Collect unique suggestions from matched skills
+  const seen = new Set();
+  const items = [];
+  userSkills.forEach(skill=>{
+    const matches = SKILL_SUGGESTIONS_MAP[skill] || [];
+    matches.forEach(m=>{
+      const key = m.action+':'+m.arg;
+      if(!seen.has(key)){ seen.add(key); items.push({skill, ...m}); }
+    });
+  });
+
+  // Generic fallbacks if no specific matches
+  if(items.length===0){
+    items.push(
+      {type:'test', icon:'🧠', title:'JavaScript Knowledge Test', titleUz:'JavaScript bilim testi', action:'quizStart', arg:null, skill:''},
+      {type:'event',icon:'📅', title:'IT Career Day 2026',         titleUz:'IT Career Day 2026',     action:'go',        arg:'events', skill:''}
+    );
+  }
+
+  if(summaryTxt) summaryTxt.textContent = isLangEn
+    ? `${items.length} suggestion${items.length===1?'':'s'} based on your skills`
+    : `${items.length} ta tavsiya · ko\'nikmalaringizga asoslangan`;
+
+  const typeLabel = {test:'TEST', course:'KURS', event:'TADBIR', test_en:'TEST', course_en:'COURSE', event_en:'EVENT'};
+  const typeBg    = {test:'#5B7CF6', course:'#17C41E', event:'#F7B500'};
+
+  grid.innerHTML = items.map(item=>{
+    const label = isLangEn ? (item.type==='test'?'TEST':item.type==='course'?'COURSE':'EVENT') : (item.type==='test'?'TEST':item.type==='course'?'KURS':'TADBIR');
+    const titleTxt = isLangEn ? item.title : item.titleUz;
+    const skillChip = item.skill ? `<span style="font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(94,120,246,.12);color:#2E3A8C;font-weight:600;">${item.skill}</span>` : '';
+    return `<div class="card shadow" style="padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;" onclick="${item.action}(${item.arg ? "'"+item.arg+"'" : ''})">
+      <div style="width:48px;height:48px;border-radius:14px;background:rgba(94,120,246,.12);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${item.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div class="row gap6" style="align-items:center;flex-wrap:wrap;margin-bottom:4px;">
+          <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;color:#fff;background:${typeBg[item.type]||'#999'}">${label}</span>
+          ${skillChip}
+        </div>
+        <div style="font-weight:700;font-size:14px;">${titleTxt}</div>
+      </div>
+      <div style="font-size:20px;color:var(--green);">›</div>
+    </div>`;
+  }).join('');
+}
+
+function updateSkillsSummary(){
+  const txt = document.getElementById('skills-summary-txt');
+  if(!txt) return;
+  const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+  if(userSkills.length===0 && !cvUploaded){
+    txt.textContent = isLangEn ? 'Add skills · Attach CV' : 'Ko\'nikma qo\'shing · CV biriktiring';
+  } else {
+    const parts = [];
+    if(userSkills.length>0) parts.push(isLangEn ? `${userSkills.length} skill${userSkills.length===1?'':'s'}` : `${userSkills.length} ta ko\'nikma`);
+    if(cvUploaded) parts.push(isLangEn ? 'CV uploaded' : 'CV yuklangan');
+    txt.textContent = parts.join(' · ');
+  }
+}
+
+function uploadCV(){
+  cvUploaded = true;
+  const banner = document.getElementById('cv-banner');
+  const statusTxt = document.getElementById('cv-status-txt');
+  const btn = document.getElementById('cv-btn');
+  const uploadedRow = document.getElementById('cv-uploaded-row');
+  if(statusTxt) statusTxt.textContent = document.getElementById('lang-en')?.classList.contains('on') ? 'CV uploaded successfully' : 'CV muvaffaqiyatli yuklandi';
+  if(btn){ btn.textContent=document.getElementById('lang-en')?.classList.contains('on')?'Replace':'Almashtirish'; }
+  if(uploadedRow) uploadedRow.style.display='flex';
+  if(banner) banner.style.borderStyle='solid';
+  updateSkillsSummary();
+  renderSkillSuggestions();
+  toast('📎 CV yuklandi! AI tahlil qilmoqda…');
+  setTimeout(()=>{
+    const gap = document.getElementById('gap-summary-txt');
+    const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+    if(gap) gap.textContent = isLangEn ? 'CV analysed — skill gaps identified' : 'CV tahlil qilindi — kamchiliklarni aniqlandi';
+  }, 1500);
+}
+
+function removeCV(){
+  cvUploaded = false;
+  const statusTxt = document.getElementById('cv-status-txt');
+  const btn = document.getElementById('cv-btn');
+  const uploadedRow = document.getElementById('cv-uploaded-row');
+  const banner = document.getElementById('cv-banner');
+  if(statusTxt) statusTxt.textContent = document.getElementById('lang-en')?.classList.contains('on') ? 'No CV uploaded' : 'CV yuklanmagan';
+  if(btn){ btn.textContent=document.getElementById('lang-en')?.classList.contains('on')?'Upload':'Yuklash'; }
+  if(uploadedRow) uploadedRow.style.display='none';
+  if(banner) banner.style.borderStyle='dashed';
+  updateSkillsSummary();
+  renderSkillSuggestions();
+}
+
+function showSkillsView(){
+  renderSkillTags();
+  renderSkillSuggestions();
+  updateSkillsSummary();
+}
+
+/* === SKILL TEST (Duolingo-style) === */
+const QUIZ=[
+  {d:'Oson',r:10,q:'JavaScript\'da o\'zgaruvchini e\'lon qilish uchun qaysi kalit so\'z ishlatiladi?',o:['let','loop','make','var-set'],a:0},
+  {d:'Oson',r:10,q:'Qaysi belgi izohni (comment) bildiradi?',o:['<!--','//','##','**'],a:1},
+  {d:'O\'rta',r:20,q:'Array uzunligini qanday olasiz?',o:['arr.size()','arr.count','arr.length','len(arr)'],a:2},
+  {d:'O\'rta',r:20,q:'`===` operatori nimani tekshiradi?',o:['Faqat qiymat','Qiymat va tur','Faqat tur','Manzil'],a:1},
+  {d:'Qiyin',r:30,q:'`[1,2,3].map(x=>x*2)` natijasi?',o:['[1,2,3]','[2,4,6]','6','[1,4,9]'],a:1},
+];
+let qIdx=0, qAttempts=2, qChosen=-1, qLocked=false, qEarned=0;
+let currentQuizQuestions = QUIZ;
+let currentMockTestId = null;
+
+function quizStart(testId){
+  currentMockTestId = testId || null;
+  currentQuizQuestions = testId ? MOCK_TESTS[testId].questions : QUIZ;
+  qIdx=0; qAttempts=2; qEarned=0;
+  const lbl = document.getElementById('q-test-label');
+  if(lbl) lbl.textContent = testId ? (MOCK_TESTS[testId].title) : 'JavaScript testi';
+  quizRender();
+}
+function quizRender(){
+  qChosen=-1; qLocked=false;
+  const item=currentQuizQuestions[qIdx];
+  document.getElementById('q-bar').style.width=((qIdx)/currentQuizQuestions.length*100+10)+'%';
+  document.getElementById('q-hearts').textContent='❤️'.repeat(qAttempts)+'🤍'.repeat(2-qAttempts);
+  document.getElementById('q-diff').textContent=item.d;
+  document.getElementById('q-text').innerHTML=item.q;
+  document.getElementById('q-reward').innerHTML='Bu savol: +'+item.r+' 🪙';
+  const fb=document.getElementById('q-feedback'); fb.style.display='none';
+  const chk=document.getElementById('q-check'); chk.textContent='Tekshirish'; chk.onclick=quizCheck; chk.style.background='var(--green)';
+  const box=document.getElementById('q-opts'); box.innerHTML='';
+  const keys=['A','B','C','D'];
+  item.o.forEach((opt,i)=>{
+    const d=document.createElement('div'); d.className='quiz-opt'; d.innerHTML='<div class="qkey">'+keys[i]+'</div><span>'+opt+'</span>';
+    d.onclick=()=>{ if(qLocked) return; qChosen=i; [...box.children].forEach(c=>c.style.borderColor=''); d.style.borderColor='var(--green)'; };
+    box.appendChild(d);
+  });
+}
+function quizCheck(){
+  if(qChosen<0){ toast('Javobni tanlang'); return; }
+  const item=currentQuizQuestions[qIdx]; const box=document.getElementById('q-opts'); const fb=document.getElementById('q-feedback');
+  const chk=document.getElementById('q-check');
+  if(qChosen===item.a){
+    qLocked=true; box.children[qChosen].classList.add('correct');
+    qEarned+=item.r;
+    fb.style.display='block'; fb.style.background='var(--green-ll)'; fb.style.color='var(--green-d)'; fb.innerHTML='✓ To\'g\'ri! +'+item.r+' 🪙';
+    chk.textContent = qIdx<currentQuizQuestions.length-1?'Keyingi savol':'Testni yakunlash'; chk.onclick=quizNext;
+  } else {
+    qAttempts--;
+    box.children[qChosen].classList.add('wrong');
+    document.getElementById('q-hearts').textContent='❤️'.repeat(Math.max(qAttempts,0))+'🤍'.repeat(2-Math.max(qAttempts,0));
+    if(qAttempts<=0){
+      qLocked=true; box.children[item.a].classList.add('correct');
+      fb.style.display='block'; fb.style.background='#FFECEC'; fb.style.color='#D23B3B'; fb.innerHTML='✗ Urinishlar tugadi. To\'g\'ri javob belgilandi.';
+      chk.textContent = qIdx<currentQuizQuestions.length-1?'Keyingi savol':'Testni yakunlash'; chk.onclick=quizNext;
+    } else {
+      fb.style.display='block'; fb.style.background='#FFF6DB'; fb.style.color='#9A7400'; fb.innerHTML='✗ Noto\'g\'ri. Yana 1 urinish qoldi — qayta urining.';
+      box.children[qChosen].onclick=null;
+      setTimeout(()=>{ fb.style.display='none'; box.children[qChosen].classList.remove('wrong'); },1200);
+    }
+  }
+}
+function quizNext(){
+  if(qIdx<currentQuizQuestions.length-1){ qIdx++; qAttempts=2; quizRender(); }
+  else{
+    const label = currentMockTestId ? MOCK_TESTS[currentMockTestId].title : 'Bilim testi';
+    if(qEarned>0) earnCoins(qEarned, label);
+    toast('🎉 Test tugadi! Jami +'+qEarned+' 🪙');
+    if(currentMockTestId){
+      mockAttempts[currentMockTestId] = (mockAttempts[currentMockTestId]||0)+1;
+      histStack=['home','mocktests']; go('mocktests',false);
+    } else {
+      histStack=['home']; go('home',false);
+    }
+  }
+}
+
+/* === MASCOT === */
+const MASCOT_TIPS={
+  home:"Salom! Men <b>Ziyo</b> 🦉 Profilingizni to'ldiring — har qadamda siz bilanman 💚",
+  grants:"Grant topishda yordam beraman 🎬 G'oliblar videolarini ko'ring!",
+  jobs:"YPIP amaliyotlari kompaniya bilan rasmiy shartnoma asosida 🚀",
+  profile:"Ko'nikmalaringizni belgilang — moslik foizini oshiring 📈",
+  events:"Tadbirlarga borib QR skaner qiling, ZiyoCoin yig'ing 🪙",
+  courses:"Kursni tugating — sertifikat va coin oling 🎓"
+};
+const MASCOT_VIEWS=['home','grants','jobs','profile','events','courses','podcasts'];
+const MASCOT_NOTAB=['grants','jobs'];
+let mascotSeen={};
+function mascotUpdate(id){
+  const m=document.getElementById('mascot'); if(!m) return;
+  if(MASCOT_VIEWS.includes(id)){
+    m.style.display='block';
+    m.classList.toggle('notab', MASCOT_NOTAB.includes(id));
+    const b=document.getElementById('mascot-bubble');
+    if(MASCOT_TIPS[id] && !mascotSeen[id]){
+      document.getElementById('mascot-text').innerHTML=MASCOT_TIPS[id];
+      b.classList.add('show'); mascotSeen[id]=true;
+      clearTimeout(window._mt); window._mt=setTimeout(()=>b.classList.remove('show'),4200);
+    } else { b.classList.remove('show'); }
+  } else { m.style.display='none'; document.getElementById('mascot-bubble').classList.remove('show'); }
+}
+function toggleMascot(){ document.getElementById('mascot-bubble').classList.toggle('show'); }
+function hideMascot(){ document.getElementById('mascot-bubble').classList.remove('show'); }
+function showMascot(txt){
+  const m=document.getElementById('mascot'); if(!m) return; m.style.display='block';
+  document.getElementById('mascot-text').innerHTML=txt;
+  const b=document.getElementById('mascot-bubble'); b.classList.add('show');
+  clearTimeout(window._mt); window._mt=setTimeout(()=>b.classList.remove('show'),4600);
+}
+
+/* ============ I18N / LANGUAGE ============ */
+let _lang = localStorage.getItem('ziyoLang') || 'uz';
+
+/* ---- English translation dictionary (Uzbek text → English text) ---- */
+const EN_DICT = {
+  /* Status / greeting */
+  "Assalomu alaykum 👋": "Hello 👋",
+  /* Home */
+  "ZiyoCoin balansingiz": "Your ZiyoCoin balance",
+  "Haftalik reyting": "Weekly ranking",
+  "Siz #4-o'rindasiz": "You're ranked #4",
+  "Do'kon": "Store",
+  "Tadbir, grant yoki kurs qidiring…": "Search events, grants or courses…",
+  "Tadbirlar": "Events",
+  "Kurslar": "Courses",
+  "Grantlar": "Grants",
+  "Ishlar": "Jobs",
+  "Podkastlar": "Podcasts",
+  "Profilingizni to'ldiring ✨": "Complete your profile ✨",
+  "Qiziqishlaringizni belgilang — sizga mos grant, ish va kurslarni topamiz.": "Tell us your interests — we'll match you with grants, jobs & courses.",
+  "Siz uchun ✨": "For You ✨",
+  "Sozlash": "Customize",
+  "● 94% mos": "● 94% match",
+  "● 88% mos": "● 88% match",
+  "Grant · Magistratura": "Grant · Master's",
+  "DAAD Germaniya stipendiyasi": "DAAD Germany Scholarship",
+  "EPAM — Frontend amaliyot": "EPAM — Frontend Internship",
+  "Internship · YPIP": "Internship · YPIP",
+  "JavaScript bilim testi": "JavaScript Knowledge Test",
+  "10 savol · 🪙 gacha +120": "10 questions · 🪙 up to +120",
+  "Tavsiya etilgan": "Recommended",
+  "Barchasi": "See all",
+  "🔥 Mashhur": "🔥 Popular",
+  "320 ketyapti": "320 attending",
+  "150 ketyapti": "150 attending",
+  "88 ketyapti": "88 attending",
+  "Bepul": "Free",
+  "Kurslar va workshoplar 📚": "Courses & Workshops 📚",
+  "KURS": "COURSE",
+  "WORKSHOP": "WORKSHOP",
+  "Full-Stack Web Dasturlash": "Full-Stack Web Development",
+  "8 hafta · Boshlang'ich": "8 weeks · Beginner",
+  "UX/UI Dizayn Workshopi": "UX/UI Design Workshop",
+  "2 kun · Online": "2 days · Online",
+  "Data Analitika Asoslari": "Data Analytics Fundamentals",
+  "6 hafta · O'rta": "6 weeks · Intermediate",
+  "Quick Bytes ⚡": "Quick Bytes ⚡",
+  "Podkastlar 🎧": "Podcasts 🎧",
+  "Yoshlar va Karyera": "Youth & Career",
+  "▶ 24 daqiqa": "▶ 24 min",
+  "1-qism · Birinchi ishga qanday kirish mumkin": "Episode 1 · How to land your first job",
+  /* Events */
+  "Qidirish…": "Search…",
+  "Volontyorlik": "Volunteering",
+  "Biznes": "Business",
+  "IT Career Day 2026": "IT Career Day 2026",
+  "Startup Weekend Tashkent": "Startup Weekend Tashkent",
+  "Design Thinking Workshop": "Design Thinking Workshop",
+  /* Courses */
+  "Kurslar va treninglar": "Courses & Trainings",
+  "Workshoplar": "Workshops",
+  "Online": "Online",
+  "Boshlang'ich": "Beginner",
+  "Ziyo Academy": "Ziyo Academy",
+  "Dizayn Hub": "Design Hub",
+  /* Profile */
+  "UWLSU · Italiya tili": "UWLSU · Italian",
+  "ZiyoCoin": "ZiyoCoin",
+  "Tadbir": "Event",
+  "Sertifikat": "Certificate",
+  "Profil to'ldirilgan": "Profile completion",
+  "Ko'nikma qo'shing — moslikni oshiring": "Add skills — improve your match",
+  "✏️ Profilni to'ldirish": "✏️ Complete Profile",
+  "ZiyoCoin hamyoni": "ZiyoCoin Wallet",
+  "coin · tadbir va kurslardan": "coins · from events & courses",
+  "ZiyoCoin reytingi": "ZiyoCoin Ranking",
+  "Siz #4-o'rindasiz · Top 3 gacha 290 🪙": "You're #4 · 290 🪙 to Top 3",
+  "🎁 Do'konga o'tish": "🎁 Go to Store",
+  "📷 QR skaner": "📷 QR Scanner",
+  "Chiptalarim": "My Tickets",
+  "Mukofotlar": "Rewards",
+  "Saqlangan": "Saved",
+  "Qatnashgan": "Attended",
+  "Kelgusi": "Upcoming",
+  "✓ Qatnashildi": "✓ Attended",
+  "⭐ Baho berish": "⭐ Rate",
+  "📄 Sertifikat": "📄 Certificate",
+  "12-noyabr · Chipta tayyor": "Nov 12 · Ticket ready",
+  "18-noyabr · Ro'yxatdan o'tilgan": "Nov 18 · Registered",
+  "UX/UI Bootcamp": "UX/UI Bootcamp",
+  "28-sentabr · ✓ Qatnashildi": "Sep 28 · ✓ Attended",
+  "Python Hackathon": "Python Hackathon",
+  "15-sentabr · ✓ Qatnashildi": "Sep 15 · ✓ Attended",
+  "English Speaking Club": "English Speaking Club",
+  "2-sentabr · ✓ Qatnashildi": "Sep 2 · ✓ Attended",
+  "Baholandi": "Rated",
+  /* Chat */
+  "Yangi suhbat": "New Chat",
+  "Guruhlar": "Groups",
+  "Mentorlar": "Mentors",
+  "Tadbir guruhlari": "Event Groups",
+  "Shaxsiy": "Direct",
+  "Kecha": "Yesterday",
+  /* Feedback */
+  "Baho berish": "Rate event",
+  "Tadbir sizga qanday yoqdi?": "How did you enjoy the event?",
+  "Nima yaxshi bo'ldi?": "What went well?",
+  "🎤 Spikerlar": "🎤 Speakers",
+  "📚 Mazmun": "📚 Content",
+  "🤝 Networking": "🤝 Networking",
+  "📍 Joy": "📍 Venue",
+  "⏰ Tashkil etish": "⏰ Organisation",
+  "Izohingiz (ixtiyoriy)": "Your comment (optional)",
+  "Tajribangiz bilan o'rtoqlashing…": "Share your experience…",
+  "Yuborish · +10 🪙": "Submit · +10 🪙",
+  /* Grants */
+  "Chet elda o'qishni orzu qilyapsizmi?": "Dreaming of studying abroad?",
+  "Bepul konsultatsiya oling": "Get a free consultation",
+  "Muvaffaqiyat hikoyalari 🏆": "Success Stories 🏆",
+  "Ekspert darslar 🎬": "Expert Tutorials 🎬",
+  "Grant haqida": "About the Grant",
+  "Talablar": "Requirements",
+  "Ekspert maslahati": "Expert Advice",
+  "Ariza berish": "Apply Now",
+  "Moslik": "Match",
+  "Malakali": "Eligible",
+  "Hujjatlar tayyorlash": "Document preparation",
+  "Xat yozish": "Writing essays",
+  "Suhbat": "Interview",
+  "Magistratura": "Master's",
+  "Doktorantura": "PhD",
+  "Bakalavr": "Bachelor's",
+  /* Jobs */
+  "Amaliyot": "Internship",
+  "Ish": "Jobs",
+  "Loyihalar": "Projects",
+  "YPIP amaliyot stipendiyasi 🚀": "YPIP Internship Programme 🚀",
+  "Kompaniya shartnomasi": "Company contract",
+  "Haftalik to'lov": "Weekly pay",
+  "Sharh qoldirish": "Leave a review",
+  "Ish haqida": "About the Job",
+  "Ko'nikmalar": "Skills",
+  "Sharhlar": "Reviews",
+  /* Onboarding */
+  "Profilingizni to'ldiring": "Set up your profile",
+  "Qiziqishlaringiz qaysi sohalarda?": "What are your areas of interest?",
+  "Ko'p tanlash mumkin": "Multiple selections allowed",
+  "💻 IT & Dasturlash": "💻 IT & Programming",
+  "🎨 Dizayn": "🎨 Design",
+  "📊 Biznes & Moliya": "📊 Business & Finance",
+  "🌍 Xalqaro munosabatlar": "🌍 International Relations",
+  "🔬 Fan & Tadqiqot": "🔬 Science & Research",
+  "📢 Marketing": "📢 Marketing",
+  "⚖️ Huquq": "⚖️ Law",
+  "🎓 Ta'lim": "🎓 Education",
+  "Qaysi ko'nikmalaringiz bor?": "What are your current skills?",
+  "Ingliz tili darajangiz?": "What is your English level?",
+  "Hozirgi o'qish/ish bosqichingiz?": "Your current education / career stage?",
+  "Maqsadlaringiz nima?": "What are your goals?",
+  "Keyingi": "Next",
+  "Yakunlash ✨": "Finish ✨",
+  /* Skill test */
+  "Oson": "Easy",
+  "O'rta": "Medium",
+  "Qiyin": "Hard",
+  "Bu savol: +": "This question: +",
+  "Tekshirish": "Check",
+  "Keyingi savol": "Next question",
+  "Testni yakunlash": "Finish test",
+  "Javobni tanlang": "Please select an answer",
+  /* Sheets */
+  "Eslatma o'rnatish": "Set a Reminder",
+  "IT Career Day 2026 · 12-noyabr, 10:00": "IT Career Day 2026 · Nov 12, 10:00",
+  "Qachon eslatsin?": "When should we remind you?",
+  "Tadbir boshlanishidan 1 soat oldin": "1 hour before the event",
+  "Tadbir boshlanishidan 3 soat oldin": "3 hours before the event",
+  "1 kun oldin (ertalab soat 9:00)": "1 day before (at 9:00 AM)",
+  "1 hafta oldin": "1 week before",
+  "Saqlash": "Save",
+  "ZiyoCoin nima?": "What is ZiyoCoin?",
+  "ZiyoCoin — Ziyo ekotizimidagi mukofot ballari. Faol bo'ling va yig'ib boring!": "ZiyoCoin — reward points within the Ziyo ecosystem. Stay active and keep earning!",
+  "Qanday yig'iladi?": "How to earn?",
+  "Tadbirda qatnashing": "Attend events",
+  "QR kodni skanerlab tasdiqlang · +20–50 🪙": "Scan QR code to confirm · +20–50 🪙",
+  "Kursni tugating": "Complete a course",
+  "Sertifikat bilan birga · +150–250 🪙": "Includes a certificate · +150–250 🪙",
+  "Workshopda ishtirok eting": "Join a workshop",
+  "Amaliy treninglar uchun · +60–80 🪙": "For practical trainings · +60–80 🪙",
+  "Fikr bildiring": "Leave feedback",
+  "Tadbirga baho bering · +10 🪙": "Rate the event · +10 🪙",
+  "Yig'ilgan coinlarni": "Exchange your coins at the",
+  "Do'konni ochish": "Open Store",
+  "Chet elga o'qish — maslahat": "Study Abroad — Consultation",
+  "Universitet tanlash, hujjatlar va grant bo'yicha mutaxassis bilan bepul 1:1 konsultatsiya.": "A free 1:1 consultation with an expert on university selection, documents & grants.",
+  "Maslahatchi tanlang": "Choose a consultant",
+  "Germaniya · DAAD · 5 yil tajriba": "Germany · DAAD · 5 years experience",
+  "UK/USA · Chevening, Fulbright": "UK/USA · Chevening, Fulbright",
+  "Qulay vaqt": "Available times",
+  "Bugun 16:00": "Today 16:00",
+  "Ertaga 10:00": "Tomorrow 10:00",
+  "Ertaga 15:00": "Tomorrow 15:00",
+  "Shanba 12:00": "Saturday 12:00",
+  "Band qilish — bepul": "Book — Free",
+  /* Settings sheet (self) */
+  "Sozlamalar": "Settings",
+  "🌐 Til": "🌐 Language",
+  "Bildirishnomalar": "Notifications",
+  "Hisob ma'lumotlari": "Account Details",
+  "Yopish": "Close",
+  /* Notifications */
+  "Bildirishnomalar": "Notifications",
+  "Barchasi o'qildi": "Mark all read",
+  "Yangi": "New",
+  "O'qilgan": "Read",
+  /* Misc / Leaderboard */
+  "Haftalik": "Weekly",
+  "Oylik": "Monthly",
+  /* Podcast player */
+  "Qism tavsifi": "Episode description",
+  "♡ Saqlash": "♡ Save",
+  "📄 Matn": "📄 Transcript",
+  /* Bytes */
+  "Quick Bytes": "Quick Bytes",
+  /* Shop */
+  "Do'kon": "Store",
+  "Barcha mahsulotlar": "All products",
+  "Elektronika": "Electronics",
+  "Kiyim": "Clothing",
+  "Kitoblar": "Books",
+  /* Event detail */
+  "Dastur": "Programme",
+  "📍 Tashkent IT Park": "📍 Tashkent IT Park",
+  "📅 12-noyabr": "📅 Nov 12",
+  "Tadbir haqida": "About the Event",
+  "Qatnashuvchilar": "Attendees",
+  "Eslatma": "Reminder",
+  "🔔 Eslatma": "🔔 Reminder",
+  "Ro'yxatdan o'tish · Bepul": "Register · Free",
+  "Ro'yxatdan o'tdingiz": "Registered",
+  "✅ Ro'yxatdan o'tdingiz!": "✅ You're registered!",
+  /* Register */
+  "Tasdiqlash": "Confirm",
+  /* Toast messages (dynamic) */
+  "Skanerlanmoqda…": "Scanning…",
+  "Rasm o'zgartirish": "Change photo",
+  "Saqlanganlar": "Saved items",
+  "Izohlar": "Comments",
+  "Ulashildi": "Shared",
+  "Transkript": "Transcript",
+  "1.0x → 1.5x": "1.0x → 1.5x",
+  "Saqlandi": "Saved",
+  "Ijro etilmoqda": "Now playing",
+  "Pauza": "Paused",
+  "Sertifikat yuklandi": "Certificate downloaded",
+  "🔔 Eslatma o'rnatildi!": "🔔 Reminder set!",
+  "✅ Konsultatsiya band qilindi!": "✅ Consultation booked!",
+  "🪙 ZiyoCoin yetarli emas": "🪙 Not enough ZiyoCoin",
+  "Tez orada...": "Coming soon...",
+  /* === Grants page title === */
+  "Grantlar & stipendiyalar": "Grants & Scholarships",
+  /* === Grants success stories section === */
+  "Muvaffaqiyat tarixi 🎬": "Success Stories 🎬",
+  "\"DAAD'ni qanday yutdim\" — Nodira": "\"How I Won the DAAD\" — Nodira",
+  "2:40 · Qadam-baqadam tajriba": "2:40 · Step-by-step Experience",
+  "\"DAAD'ni qanday yutdim\"": "\"How I Won the DAAD\"",
+  "\"Chevening tajribam\"": "\"My Chevening Experience\"",
+  "\"Fulbright yo'lim\"": "\"My Fulbright Journey\"",
+  "Nodira · Germaniya": "Nodira · Germany",
+  "Malika · AQSH": "Malika · USA",
+  /* === Grants expert lessons === */
+  "Mutaxassis darslari 🎥": "Expert Lessons 🎥",
+  "Motivatsion xat yozish": "Writing a Motivation Letter",
+  "Motivatsion xat": "Motivation Letter",
+  "Ekspert · Qadam-baqadam": "Expert · Step by Step",
+  "Ekspert · Checklist": "Expert · Checklist",
+  "Ekspert": "Expert",
+  "Hujjatlar to'plami": "Document Package",
+  /* === Grants listings === */
+  "Siz uchun grantlar": "Grants for You",
+  "Magistratura · To'liq moliyalashtirilgan": "Master's · Fully Funded",
+  "Bakalavr/Magistr · O'zbekiston": "Bachelor's / Master's · Uzbekistan",
+  "⏳ Muddat: 15-dekabr": "⏳ Deadline: Dec 15",
+  "⏳ Muddat: 7-noyabr": "⏳ Deadline: Nov 7",
+  "⏳ Doimiy ochiq": "⏳ Always open",
+  "Muddat": "Deadline",
+  /* === Grants eligibility & actions === */
+  "Talablarga mosligingiz": "Your Eligibility",
+  "Bakalavr diplomi (yoki bitiruvchi kurs)": "Bachelor's degree (or final year)",
+  "Ingliz tili B2 daraja": "English B2 level",
+  "IT / Muhandislik sohasi": "IT / Engineering field",
+  "Motivatsion xat (hali yuklanmagan)": "Motivation letter (not yet uploaded)",
+  "🧑‍🏫 Maslahat olish — bepul": "🧑‍🏫 Get Consultation — Free",
+  "Ariza topshirish": "Submit Application",
+  "Mutaxassis bilan 1:1 bepul konsultatsiya": "Free 1:1 Consultation with an Expert",
+  /* === Jobs page === */
+  "Ishlar & amaliyot": "Jobs & Internships",
+  "6 oylik to'liq amaliyot. Mentor, real loyiha va yakunda ishga taklif imkoni. YPIP shartnomasi asosida kafolatlangan o'rin.": "6-month full internship. Mentor, real project, and a job offer at the end. YPIP guaranteed placement.",
+  "Kompaniyalar bilan rasmiy shartnoma asosida — kafolatlangan amaliyot o'rni": "Official agreements — guaranteed internship placement",
+  "Frontend amaliyot · 6 oy · YPIP": "Frontend Internship · 6 months · YPIP",
+  "Data Analyst amaliyot · 3 oy · YPIP": "Data Analyst Internship · 3 months · YPIP",
+  "YPIP amaliyot dasturi": "YPIP Internship Programme",
+  "Uzum · To'liq stavka · Toshkent": "Uzum · Full-time · Tashkent",
+  "Ziyo Forum · Mahalla o'quv markazi": "Ziyo Forum · Community Learning Centre",
+  "To'liq stavka": "Full-time",
+  "Ko'nikmalaringizga mos": "Matching your skills",
+  "1 ta ko'nikma yetishmaydi — kursni ko'ring": "1 skill missing — see the course",
+  /* === Leaderboard tabs === */
+  "Umumiy": "All Time",
+  "Hafta": "Week",
+  "Oy": "Month",
+  /* === Leaderboard rank indicators === */
+  "Tadbirlarda qatnashing va skaner qiling — har bir ZiyoCoin sizni yuqoriga ko'taradi!": "Attend events and scan QR codes — every ZiyoCoin takes you higher!",
+  "Top 3 gacha 290 🪙 qoldi": "290 🪙 left to Top 3",
+  "Sizning o'rningiz": "Your Ranking",
+  "▲ 3 o'rin": "▲ 3 places",
+  "▼ 2 o'rin": "▼ 2 places",
+  "▲ 2 o'rin": "▲ 2 places",
+  "▲ 1 o'rin": "▲ 1 place",
+  "▼ 1 o'rin": "▼ 1 place",
+  "— o'zgarishsiz": "— no change",
+  /* === Onboarding === */
+  "Profilni to'ldirish": "Complete Your Profile",
+  "Qaysi sohalar sizni qiziqtiradi?": "Which areas interest you?",
+  "Bir nechtasini tanlang": "Select one or more",
+  "Bittasini tanlang": "Select one",
+  "Qanday ko'nikmalaringiz bor?": "What are your skills?",
+  "Bilganlaringizni belgilang": "Check all that apply",
+  "Hozirgi bosqichingiz?": "Your current stage?",
+  "Asosiy maqsadingiz nima?": "What is your main goal?",
+  "💻 IT & Dasturlash": "💻 IT & Programming",
+  "🎨 Dizayn & Ijod": "🎨 Design & Creativity",
+  "📈 Biznes & Marketing": "📈 Business & Marketing",
+  "🗣️ Til o'rganish": "🗣️ Language Learning",
+  "⚙️ Muhandislik": "⚙️ Engineering",
+  "🔬 Fan & Tadqiqot": "🔬 Science & Research",
+  "🌱 Boshlang'ich (A1–A2)": "🌱 Beginner (A1–A2)",
+  "🌿 O'rta (B1–B2)": "🌿 Intermediate (B1–B2)",
+  "🌳 Yuqori (C1–C2)": "🌳 Advanced (C1–C2)",
+  "🎒 Maktab o'quvchisi": "🎒 School student",
+  "🎓 Grant / stipendiya yutish": "🎓 Win a grant / scholarship",
+  "🎓 Talaba": "🎓 University student",
+  "🧑‍🎓 Bitiruvchi kurs": "🧑‍🎓 Final year student",
+  "💼 Amaliyot / ish topish": "💼 Find an internship / job",
+  "💼 1–2 yil tajriba": "💼 1–2 years experience",
+  "✈️ Chet elda o'qish": "✈️ Study abroad",
+  "🚀 Ko'nikma oshirish": "🚀 Improve my skills",
+  "Rasm chizish": "Drawing",
+  /* === Chat === */
+  "Aziz: Kim ertaga stendga boradi?": "Aziz: Who's going to the booth tomorrow?",
+  "Dilnoza: Jamoaga dizayner kerak 🎨": "Dilnoza: Team needs a designer 🎨",
+  "Rahmat! Juda foydali bo'ldi 🙏": "Thanks! Very helpful 🙏",
+  "CV'ingizni ko'rib chiqdim, ajoyib!": "Checked your CV, amazing!",
+  "320 a'zo · 42 online": "320 members · 42 online",
+  "Dush": "Mon",
+  /* === Shop === */
+  "Sizning balansingiz": "Your balance",
+  "Qanday ishlaydi?": "How does it work?",
+  "Gadjetlar": "Gadgets",
+  "Aksessuarlar": "Accessories",
+  "Simsiz quloqchin": "Wireless Headphones",
+  "Simsiz sichqoncha": "Wireless Mouse",
+  "Ergonomik": "Ergonomic",
+  "Sayohat sumkasi": "Travel Bag",
+  "Ziyo kepkasi": "Ziyo Cap",
+  /* === Notifications === */
+  "Reytingda ko'tarildingiz! 🎉": "You've moved up the leaderboard! 🎉",
+  "Barchasini o'qi": "Mark all as read",
+  "Bahoni tanlang": "Select a rating",
+  /* === Featured success story card === */
+  "Muvaffaqiyat tarixi 🦉 Ziyo tavsiya qiladi": "Success Story 🦉 Ziyo Recommends",
+  "\"Germaniyaga qanday bordim\"": "\"How I Made It to Germany\"",
+  "\"Boshida imkonsiz tuyuldi. Ziyo menga yo'l ko'rsatdi — hujjatlardan suhbatgacha.\"": "\"It seemed impossible at first. Ziyo guided me — from documents to the interview.\"",
+  "Sherzod · TU Munich · DAAD g'olibi": "Sherzod · TU Munich · DAAD Winner",
+  "— Sherzod, 24 yosh, Toshkent → Myunxen": "— Sherzod, 24, Tashkent → Munich",
+  "4:35 · O'zbek tilida": "4:35 · In Uzbek",
+  "Ziyo Forum · Muvaffaqiyat hikoyalari": "Ziyo Forum · Success Stories",
+  /* === Mock Tests === */
+  "Mock Tests 📝": "Mock Tests 📝",
+  "Qiziqishlaringizga mos testlar": "Matched to your interests",
+  "Barcha testlar": "All available tests",
+  "Har bir test uchun": "Each test has",
+  "Har bir test uchun <b>3 urinish</b> — keyin qayta tiklanadi. Gaming oldini olish uchun.": "Each test has <b>3 attempts</b> — then resets. Attempt limit prevents gaming.",
+  "BOSHQA MAVZULAR": "OTHER TOPICS",
+  "Siz uchun tanlangan · 3 urinish": "Matched to you · 3 attempts",
+  "Mock testlar": "Mock Tests",
+  "Ko'nikmalar va CV 🧠": "Skills & CV 🧠",
+  "Ko'nikmalar va CV": "Skills & CV",
+  "Ko'nikmalar va CV card": "Skills & CV",
+  "Ko'nikmalar va CV": "Skills & CV",
+  "Ko'nikmalar": "Skills",
+  "Ko'nikma qo'shing · CV biriktiring": "Add skills · Attach CV",
+  "Ko'nikma qo'shing — AI siz uchun tavsiya beradi": "Add skills — AI will suggest improvements",
+  "CV / Rezyume": "CV / Resume",
+  "CV yuklanmagan": "No CV uploaded",
+  "Yuklash": "Upload",
+  "Almashtirish": "Replace",
+  "Ko'nikma nomini kiriting yoki tanlang:": "Enter or choose a skill:",
+  "Masalan: Python, Figma...": "E.g. Python, Figma...",
+  "Qo'shish": "Add",
+  "AI tahlili": "AI Analysis",
+  "Ko'nikmalaringizga asoslanib tavsiyalar tayyorlanmoqda…": "Preparing suggestions based on your skills…",
+  "CV muvaffaqiyatli yuklandi": "CV uploaded successfully",
+  "📎 CV yuklandi! AI tahlil qilmoqda…": "📎 CV uploaded! AI is analysing…",
+  "CV tahlil qilindi — kamchiliklarni aniqlandi": "CV analysed — skill gaps identified",
+};
+
+/* ---- English mascot tips ---- */
+const EN_MASCOT_TIPS = {
+  home:    "Hi! I'm <b>Ziyo</b> 🦉 Complete your profile — I'll be with you every step 💚",
+  grants:  "Watch Sherzod's journey from Tashkent to TU Munich 🦉 Find YOUR grant! 🎬",
+  jobs:    "YPIP internships come with an official company agreement 🚀",
+  profile: "Add your skills — your match score will go up 📈",
+  events:  "Attend events and scan the QR code to earn ZiyoCoin 🪙",
+  courses: "Finish a course — get a certificate and coins 🎓",
+};
+
+/* ---- English star labels ---- */
+const EN_STAR_LBL = ['','Bad 😕','Average','Good 🙂','Great 😃','Amazing! 🤩'];
+
+/* ---- English quiz questions ---- */
+const EN_QUIZ = [
+  {d:'Easy',   r:10, q:'Which keyword declares a variable in JavaScript?',             o:['let','loop','make','var-set'],         a:0},
+  {d:'Easy',   r:10, q:'Which symbol starts a comment?',                               o:['<!--','//','##','**'],                  a:1},
+  {d:'Medium', r:20, q:'How do you get the length of an array?',                       o:['arr.size()','arr.count','arr.length','len(arr)'], a:2},
+  {d:'Medium', r:20, q:'What does the `===` operator check?',                          o:['Value only','Value and type','Type only','Address'], a:1},
+  {d:'Hard',   r:30, q:'What does `[1,2,3].map(x=>x*2)` return?',                     o:['[1,2,3]','[2,4,6]','6','[1,4,9]'],     a:1},
+];
+
+/* ---- Apply English translation ---- */
+function applyEnglish(){
+  /* 1. Walk all text nodes inside #screen */
+  function walkNode(node){
+    if(node.nodeType===3){
+      let t=node.textContent;
+      for(const [uz,en] of Object.entries(EN_DICT).sort((a,b)=>b[0].length-a[0].length)){
+        if(t.includes(uz)) t=t.split(uz).join(en);
+      }
+      node.textContent=t;
+    } else if(node.nodeType===1 && node.tagName!=='SCRIPT' && node.tagName!=='STYLE'){
+      for(const c of [...node.childNodes]) walkNode(c);
+    }
+  }
+  walkNode(document.getElementById('screen'));
+
+  /* 2. Swap JS strings */
+  window.STAR_LBL = EN_STAR_LBL;
+  Object.assign(MASCOT_TIPS, EN_MASCOT_TIPS);
+  for(let i=0;i<QUIZ.length;i++) Object.assign(QUIZ[i], EN_QUIZ[i]);
+
+  /* 3. Mark language seg */
+  document.getElementById('lang-uz')?.classList.remove('on');
+  document.getElementById('lang-en')?.classList.add('on');
+}
+
+function setLang(lang){
+  if(lang === _lang){ closeSheet('sheet-settings'); return; }
+  localStorage.setItem('ziyoLang', lang);
+  location.reload();
+}
+
+/* Override toast so dynamic messages get translated too */
+(function(){
+  const _origToast = toast;
+  window.toast = function(msg){
+    const m = (_lang==='en' && EN_DICT[msg]) ? EN_DICT[msg] : msg;
+    _origToast(m);
+  };
+})();
+
+/* On load: apply language */
+if(_lang==='en') applyEnglish();
+
+/* Keep lang-seg in sync after every openSheet call */
+(function(){
+  const _open = openSheet;
+  window.openSheet = function(id){
+    _open(id);
+    if(id==='sheet-settings'){
+      document.getElementById('lang-uz')?.classList.toggle('on', _lang==='uz');
+      document.getElementById('lang-en')?.classList.toggle('on', _lang==='en');
+    }
+  };
+})();
+
+/* ============================= */
+
+renderCoins(); mascotUpdate('home');
 
 </script>
 </body>
