@@ -443,30 +443,48 @@
           </div>
         </div>
 
-        <!-- featured event -->
-        <div class="px mt24 row sb mb12"><div class="h-sec">Tavsiya etilgan</div><div class="link" onclick="go('events')">Barchasi</div></div>
-        <div class="px" onclick="go('event')">
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;">
-            <div style="position:relative;">
-              <div class="ev-img" style="height:170px;background:linear-gradient(135deg,#1b3a2e,#17C41E);display:flex;align-items:flex-end;padding:14px;">
-                <span class="pill hot" style="position:absolute;top:14px;left:14px;">🔥 Mashhur</span>
-                <div style="color:#fff;font-size:19px;font-weight:800;text-shadow:0 1px 8px rgba(0,0,0,.4);">IT Career Day 2026</div>
-              </div>
+        <!-- news section -->
+        <div class="px mt24 row sb mb12"><div class="h-sec">Ta'lim yangiliklari 📰</div><div class="link">Ko'proq</div></div>
+        <div class="px" style="display:flex;flex-direction:column;gap:12px;">
+          <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
+            <div class="row sb">
+              <span style="font-size:11px;font-weight:700;color:var(--green);background:var(--green-l);padding:3px 8px;border-radius:8px;">Avlod Media</span>
+              <span class="xs muted">2 soat oldin</span>
             </div>
-            <div style="padding:14px 16px;">
-              <div class="row gap12 sm muted">
-                <span>📅 12-noyabr</span><span>📍 Tashkent IT Park</span>
-              </div>
-              <div class="row sb mt12">
-                <div class="row" style="gap:-8px;">
-                  <div class="avatar xs" style="width:26px;height:26px;font-size:10px;">A</div>
-                  <div class="avatar xs" style="width:26px;height:26px;font-size:10px;margin-left:-8px;background:#D9F5DA;">B</div>
-                  <div class="avatar xs" style="width:26px;height:26px;font-size:10px;margin-left:-8px;background:#C9F0CB;">+</div>
-                  <span class="sm muted" style="margin-left:8px;">320 ketyapti</span>
-                </div>
-                <span class="pill free">Bepul</span>
-              </div>
+            <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Xorijda tahsil olish imkoniyatlari kengaymoqda</div>
+            <div class="xs muted mt4">2026 yilda 3 000 dan ortiq grant o'rinlari e'lon qilindi</div>
+          </div>
+          <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
+            <div class="row sb">
+              <span style="font-size:11px;font-weight:700;color:#2E7CF6;background:#EBF3FB;padding:3px 8px;border-radius:8px;">Ta'lim vazirligi</span>
+              <span class="xs muted">5 soat oldin</span>
             </div>
+            <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">50 000 ta yangi o'qituvchi ish o'rinlari yaratiladi</div>
+            <div class="xs muted mt4">Respublika bo'ylab maktab ta'limini rivojlantirish dasturi</div>
+          </div>
+          <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
+            <div class="row sb">
+              <span style="font-size:11px;font-weight:700;color:var(--green);background:var(--green-l);padding:3px 8px;border-radius:8px;">Avlod Media</span>
+              <span class="xs muted">1 kun oldin</span>
+            </div>
+            <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">IT Park: Yosh dasturchilar uchun bepul kurslar boshlandi</div>
+            <div class="xs muted mt4">Toshkent, Samarqand va Namanganda bir vaqtda ishga tushirildi</div>
+          </div>
+          <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
+            <div class="row sb">
+              <span style="font-size:11px;font-weight:700;color:#8B5CF6;background:#F5F0FF;padding:3px 8px;border-radius:8px;">Hukumat</span>
+              <span class="xs muted">1 kun oldin</span>
+            </div>
+            <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Maktab o'quvchilariga 500 000 ta planshet bepul beriladigan bo'ldi</div>
+            <div class="xs muted mt4">Prezidentlik dasturi doirasida raqamli qurilmalar ajratiladi</div>
+          </div>
+          <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
+            <div class="row sb">
+              <span style="font-size:11px;font-weight:700;color:var(--green);background:var(--green-l);padding:3px 8px;border-radius:8px;">Avlod Media</span>
+              <span class="xs muted">2 kun oldin</span>
+            </div>
+            <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Ingliz tili o'qituvchilari uchun yangi malaka standarti joriy etildi</div>
+            <div class="xs muted mt4">IELTS 6.5 ball minimal talab sifatida belgilandi</div>
           </div>
         </div>
 
@@ -3053,6 +3071,23 @@ const EN_DICT = {
   "10 savol · 🪙 gacha +120": "10 questions · 🪙 up to +120",
   "Tavsiya etilgan": "Recommended",
   "Barchasi": "See all",
+  "Ta'lim yangiliklari 📰": "Education News 📰",
+  "2 soat oldin": "2 hours ago",
+  "5 soat oldin": "5 hours ago",
+  "1 kun oldin": "1 day ago",
+  "2 kun oldin": "2 days ago",
+  "Ta'lim vazirligi": "Ministry of Education",
+  "Hukumat": "Government",
+  "Xorijda tahsil olish imkoniyatlari kengaymoqda": "Opportunities to study abroad are expanding",
+  "2026 yilda 3 000 dan ortiq grant o'rinlari e'lon qilindi": "Over 3,000 grant places announced for 2026",
+  "50 000 ta yangi o'qituvchi ish o'rinlari yaratiladi": "50,000 new teacher positions to be created",
+  "Respublika bo'ylab maktab ta'limini rivojlantirish dasturi": "Programme to develop school education across the country",
+  "IT Park: Yosh dasturchilar uchun bepul kurslar boshlandi": "IT Park: Free courses for young developers launched",
+  "Toshkent, Samarqand va Namanganda bir vaqtda ishga tushirildi": "Launched simultaneously in Tashkent, Samarkand and Namangan",
+  "Maktab o'quvchilariga 500 000 ta planshet bepul beriladigan bo'ldi": "500,000 tablets to be distributed free to school students",
+  "Prezidentlik dasturi doirasida raqamli qurilmalar ajratiladi": "Digital devices allocated under the presidential programme",
+  "Ingliz tili o'qituvchilari uchun yangi malaka standarti joriy etildi": "New qualification standard introduced for English language teachers",
+  "IELTS 6.5 ball minimal talab sifatida belgilandi": "IELTS 6.5 set as the minimum requirement",
   "🔥 Mashhur": "🔥 Popular",
   "320 ketyapti": "320 attending",
   "150 ketyapti": "150 attending",
