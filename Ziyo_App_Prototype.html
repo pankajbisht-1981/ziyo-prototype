@@ -1977,23 +1977,23 @@
 
     <!-- ============ SKILL TEST (Duolingo-style) ============ -->
     <div class="view" id="v-skilltest" data-notab="1" data-light="1">
-      <div class="scroll no-tab" style="padding-top:0;background:#0B140D;">
-        <div style="min-height:844px;display:flex;flex-direction:column;color:#fff;padding:60px 20px 30px;">
+      <div class="scroll no-tab" style="padding-top:0;background:var(--bg);">
+        <div style="min-height:844px;display:flex;flex-direction:column;color:#1A2B1C;padding:60px 20px 30px;">
           <!-- top bar -->
           <div class="row gap12" style="align-items:center;">
-            <div onclick="back()" style="font-size:24px;cursor:pointer;flex-shrink:0;">✕</div>
+            <div onclick="back()" style="font-size:24px;cursor:pointer;flex-shrink:0;color:#1A2B1C;">✕</div>
             <div class="q-prog"><i id="q-bar" style="width:10%;"></i></div>
             <div class="heart-row" id="q-hearts">❤️❤️</div>
           </div>
           <div class="row sb mt16" style="align-items:center;">
-            <span class="pill" id="q-test-label" style="background:rgba(255,255,255,.15);color:#fff;">JavaScript testi</span>
-            <span class="xs" style="opacity:.8;" id="q-reward">Bu savol: +10 🪙</span>
+            <span class="pill" id="q-test-label" style="background:var(--green-l);color:var(--green-d);">JavaScript testi</span>
+            <span class="xs muted" id="q-reward">Bu savol: +10 🪙</span>
           </div>
 
           <!-- question -->
           <div style="margin-top:30px;">
-            <div class="xs" style="opacity:.7;text-transform:uppercase;letter-spacing:1px;" id="q-diff">Oson</div>
-            <div style="font-size:21px;font-weight:800;line-height:1.4;margin-top:8px;" id="q-text">Yuklanmoqda…</div>
+            <div class="xs muted" style="text-transform:uppercase;letter-spacing:1px;" id="q-diff">Oson</div>
+            <div style="font-size:21px;font-weight:800;line-height:1.4;margin-top:8px;color:#1A2B1C;" id="q-text">Yuklanmoqda…</div>
           </div>
 
           <!-- options -->
