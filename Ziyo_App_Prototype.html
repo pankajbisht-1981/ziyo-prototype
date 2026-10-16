@@ -363,9 +363,9 @@
 
         <!-- categories -->
         <div class="px mt20 row" style="gap:10px;">
-          <div onclick="go('events')" style="flex:1;text-align:center;cursor:pointer;">
-            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">🎟️</div></div>
-            <div class="xs mt8" style="font-weight:600;">Tadbirlar</div>
+          <div onclick="document.getElementById('home-news').scrollIntoView({behavior:'smooth'})" style="flex:1;text-align:center;cursor:pointer;">
+            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">📰</div></div>
+            <div class="xs mt8" style="font-weight:600;">Yangiliklar</div>
           </div>
           <div onclick="go('courses')" style="flex:1;text-align:center;cursor:pointer;">
             <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">📚</div></div>
@@ -444,7 +444,7 @@
         </div>
 
         <!-- news section -->
-        <div class="px mt24 row sb mb12"><div class="h-sec">Ta'lim yangiliklari 📰</div><div class="link">Ko'proq</div></div>
+        <div id="home-news" class="px mt24 row sb mb12"><div class="h-sec">Ta'lim yangiliklari 📰</div><div class="link">Ko'proq</div></div>
         <div class="px" style="display:flex;flex-direction:column;gap:12px;">
           <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
             <div class="row sb">
@@ -3072,6 +3072,7 @@ const EN_DICT = {
   "Tavsiya etilgan": "Recommended",
   "Barchasi": "See all",
   "Ta'lim yangiliklari 📰": "Education News 📰",
+  "Yangiliklar": "News",
   "2 soat oldin": "2 hours ago",
   "5 soat oldin": "5 hours ago",
   "1 kun oldin": "1 day ago",
