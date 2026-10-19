@@ -22,22 +22,150 @@
     --bg:#F4F6F4; --card:#FFFFFF; --coral:#FF4D4F; --gold:#F7B500; --blue:#2E7CF6;
     --radius:18px; --tab-h:78px;
   }
-  /* ─── Professional / Mono theme ───────────────────────────── */
+  /* ══════════════════════════════════════════════════════════
+     PROFESSIONAL — Deep Space Indigo
+     60% #0A0B1E  |  30% #161936 + #E2E4F9  |  10% #A259FF
+     ══════════════════════════════════════════════════════════ */
   [data-theme="mono"] {
-    --green:#1F1F1F;   /* charcoal replaces brand green */
-    --green-d:#111111;
-    --green-l:#EBEBEB;
-    --green-ll:#F5F5F5;
-    --ink:#111111;
-    --ink2:#444444;
-    --muted:#909090;
-    --line:#E0E0E0;
-    --bg:#F5F5F5;
-    --card:#FFFFFF;
-    --coral:#E03535;   /* keep semantic red */
-    --gold:#888888;
-    --blue:#2A2A2A;
+    --green:  #A259FF;   /* Electric Purple — primary accent       */
+    --green-d:#8240E0;   /* Deeper purple                          */
+    --green-l:#1D1545;   /* Accent-tinted dark surface             */
+    --green-ll:#13102E;  /* Deepest accent bg                      */
+    --ink:    #E2E4F9;   /* Ice Lavender — primary text            */
+    --ink2:   #AEB2D8;   /* Secondary text                         */
+    --muted:  #6B6F96;   /* Muted / placeholder text               */
+    --line:   #252847;   /* Borders & dividers                     */
+    --bg:     #0A0B1E;   /* Deep Space Indigo — page bg            */
+    --card:   #161936;   /* Card surfaces                          */
+    --coral:  #FF6B8A;   /* Error / danger (visible on dark)       */
+    --gold:   #FFD166;   /* Warm gold on dark                      */
+    --blue:   #00BFA6;   /* Vivid Teal — secondary accent          */
   }
+
+  /* ── Overrides for hardcoded #fff / light backgrounds in CSS ── */
+  [data-theme="mono"] .tabbar{
+    background:rgba(13,14,37,.96);backdrop-filter:blur(20px);
+    border-top-color:var(--line);
+  }
+  [data-theme="mono"] .nav.ghost .back{
+    background:rgba(22,25,54,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
+  }
+  [data-theme="mono"] .tab.fab .fabc{
+    box-shadow:0 10px 22px rgba(162,89,255,.4);
+  }
+  [data-theme="mono"] .btn.ghost{
+    background:#1E213C;color:var(--ink2);
+  }
+  [data-theme="mono"] .btn.sec{
+    background:#1D1545;color:var(--green);
+  }
+  [data-theme="mono"] .seg{background:#0D0E25;}
+  [data-theme="mono"] .seg div.on{
+    background:#1E213C;color:var(--ink);
+    box-shadow:0 2px 6px rgba(0,0,0,.5);
+  }
+  [data-theme="mono"] .searchbar{
+    background:var(--card);border-color:var(--line);color:var(--muted);
+  }
+  [data-theme="mono"] .sheet{background:#161936;}
+  [data-theme="mono"] .grab{background:#252847;}
+  [data-theme="mono"] .react{
+    background:#1A1D3A;border-color:#252847;color:var(--ink2);
+  }
+  [data-theme="mono"] .react.on{
+    background:#1D1545;border-color:var(--green);color:var(--green);
+  }
+  [data-theme="mono"] .react-pick,
+  [data-theme="mono"] .msg-react{
+    background:var(--card);border-color:var(--line);
+    box-shadow:0 4px 16px rgba(0,0,0,.5);
+  }
+  [data-theme="mono"] .lb-row{
+    background:var(--card);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+  }
+  [data-theme="mono"] .lb-row.you{
+    border-color:var(--green);background:var(--green-l);
+  }
+  [data-theme="mono"] .notif-item{background:var(--card);}
+  [data-theme="mono"] .vthumb .vmeta{background:var(--card);}
+  [data-theme="mono"] .review{
+    background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.35);
+  }
+  [data-theme="mono"] .quiz-opt{
+    background:var(--card);border-color:var(--line);color:var(--ink);
+  }
+  [data-theme="mono"] .quiz-opt .qkey{
+    background:#0D0E25;color:var(--ink2);
+  }
+  [data-theme="mono"] .quiz-opt.correct{
+    border-color:var(--green);background:var(--green-l);color:var(--green);
+  }
+  [data-theme="mono"] .quiz-opt.wrong{
+    border-color:var(--coral);background:rgba(255,107,138,.12);color:var(--coral);
+  }
+  [data-theme="mono"] .opt-tile{background:var(--card);border-color:var(--line);}
+  [data-theme="mono"] .opt-tile.on{
+    border-color:var(--green);background:var(--green-l);
+  }
+  [data-theme="mono"] .opt-tile.on .obx{
+    background:var(--green);border-color:var(--green);
+  }
+  [data-theme="mono"] .mbar,
+  [data-theme="mono"] .q-prog,
+  [data-theme="mono"] .ob-prog{background:#0D0E25;}
+  [data-theme="mono"] .mbar>i{
+    background:linear-gradient(90deg,var(--green),var(--green-d));
+  }
+  [data-theme="mono"] .ev-img{background:#0D0E25;}
+  [data-theme="mono"] .shadow{box-shadow:0 6px 20px rgba(0,0,0,.45);}
+  [data-theme="mono"] .mascot-bubble{
+    background:var(--card);
+    box-shadow:0 10px 30px rgba(0,0,0,.55);
+  }
+  [data-theme="mono"] .mascot-bubble b{color:var(--green);}
+  [data-theme="mono"] .pill.hot{
+    background:rgba(255,138,76,.15);color:#FF8A4C;
+  }
+  [data-theme="mono"] .pill.soon{
+    background:rgba(255,209,102,.12);color:#FFD166;
+  }
+  [data-theme="mono"] .match{
+    background:var(--green-l);color:var(--green);
+  }
+  [data-theme="mono"] .match.mid{
+    background:rgba(255,209,102,.12);color:#FFD166;
+  }
+  [data-theme="mono"] .match.low{
+    background:rgba(255,107,138,.12);color:var(--coral);
+  }
+  [data-theme="mono"] .match-ring .mr-txt{color:var(--green);}
+  [data-theme="mono"] .scan-line{
+    box-shadow:0 0 14px 2px rgba(162,89,255,.7);
+  }
+
+  /* ── Force text-color inheritance so hardcoded dark text becomes readable ── */
+  [data-theme="mono"] .screen{color:var(--ink);}
+
+  /* ── Inline hardcoded light-bg badges / pills ── */
+  [data-theme="mono"] [style*="background:#EBF3FB"],
+  [data-theme="mono"] [style*="background:#E8F0FF"],
+  [data-theme="mono"] [style*="background:#EEF2FF"],
+  [data-theme="mono"] [style*="background:#E8EDFF"],
+  [data-theme="mono"] [style*="background:rgba(94,120,246,.1)"],
+  [data-theme="mono"] [style*="background:linear-gradient(135deg,#EEF2FF"],
+  [data-theme="mono"] [style*="background:rgba(94,120,246,.12)"]
+  {
+    background:var(--green-l) !important;
+    color:var(--green) !important;
+    border-color:var(--green) !important;
+  }
+
+  /* ── Hardcoded dark-on-dark text (quiz screen, AI badge) ── */
+  [data-theme="mono"] [style*="color:#1A2B1C"],
+  [data-theme="mono"] [style*="color:#2E3A8C"],
+  [data-theme="mono"] [style*="color:#2E7CF6"]
+  {color:var(--ink) !important;}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   body{
     font-family:'Inter',-apple-system,sans-serif;
