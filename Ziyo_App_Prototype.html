@@ -28,21 +28,21 @@
      60% #0A0B1E  |  30% #161936 + #E2E4F9  |  10% #A259FF
      ══════════════════════════════════════════════════════════ */
   [data-theme="mono"] {
-    --green:  #A259FF;   /* Electric Purple — primary accent       */
-    --green-m:#7030D0;   /* Gradient shade                         */
-    --green-dk:#1D0D45;  /* Dark gradient start                    */
-    --green-d:#8240E0;   /* Deeper purple                          */
-    --green-l:#1D1545;   /* Accent-tinted dark surface             */
-    --green-ll:#13102E;  /* Deepest accent bg                      */
-    --ink:    #E2E4F9;   /* Ice Lavender — primary text            */
-    --ink2:   #AEB2D8;   /* Secondary text                         */
-    --muted:  #6B6F96;   /* Muted / placeholder text               */
-    --line:   #252847;   /* Borders & dividers                     */
+    --green:  #8492C8;   /* Muted periwinkle — low-key accent      */
+    --green-m:#6878B0;   /* Slightly deeper                        */
+    --green-dk:#181B38;  /* Near-black accent dark                 */
+    --green-d:#7080B8;   /* Mid accent                             */
+    --green-l:#1C2040;   /* Accent-tinted dark surface             */
+    --green-ll:#141830;  /* Deepest accent bg                      */
+    --ink:    #DDDFF0;   /* Near-white — primary text              */
+    --ink2:   #8A90B8;   /* Secondary text                         */
+    --muted:  #50557A;   /* Muted / placeholder text               */
+    --line:   #1E2240;   /* Borders & dividers                     */
     --bg:     #0A0B1E;   /* Deep Space Indigo — page bg            */
-    --card:   #161936;   /* Card surfaces                          */
-    --coral:  #FF6B8A;   /* Error / danger (visible on dark)       */
-    --gold:   #FFD166;   /* Warm gold on dark                      */
-    --blue:   #00BFA6;   /* Vivid Teal — secondary accent          */
+    --card:   #131528;   /* Card surfaces                          */
+    --coral:  #A06070;   /* Muted rose — error                     */
+    --gold:   #9A9060;   /* Muted sand — secondary                 */
+    --blue:   #607098;   /* Muted slate — secondary                */
   }
 
   /* ── Overrides for hardcoded #fff / light backgrounds in CSS ── */
@@ -54,7 +54,7 @@
     background:rgba(22,25,54,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
   }
   [data-theme="mono"] .tab.fab .fabc{
-    box-shadow:0 10px 22px rgba(162,89,255,.4);
+    box-shadow:0 8px 18px rgba(132,146,200,.25);
   }
   [data-theme="mono"] .btn.ghost{
     background:#1E213C;color:var(--ink2);
@@ -128,36 +128,36 @@
   }
   [data-theme="mono"] .mascot-bubble b{color:var(--green);}
   [data-theme="mono"] .pill.hot{
-    background:rgba(255,138,76,.15);color:#FF8A4C;
+    background:rgba(140,100,80,.18);color:#A08060;
   }
   [data-theme="mono"] .pill.soon{
-    background:rgba(255,209,102,.12);color:#FFD166;
+    background:rgba(120,120,100,.15);color:#909080;
   }
   [data-theme="mono"] .match{
     background:var(--green-l);color:var(--green);
   }
   [data-theme="mono"] .match.mid{
-    background:rgba(255,209,102,.12);color:#FFD166;
+    background:rgba(110,110,90,.15);color:#909078;
   }
   [data-theme="mono"] .match.low{
-    background:rgba(255,107,138,.12);color:var(--coral);
+    background:rgba(140,80,90,.15);color:var(--coral);
   }
-  [data-theme="mono"] .match-ring .mr-txt{color:var(--green);}
+  [data-theme="mono"] .match-ring .mr-txt{color:var(--ink2);}
   [data-theme="mono"] .scan-line{
-    box-shadow:0 0 14px 2px rgba(162,89,255,.7);
+    box-shadow:0 0 10px 2px rgba(132,146,200,.4);
   }
 
 
   /* ── Glow/shadow CSS vars for mono theme ── */
-  [data-theme="mono"]{--glow-c:rgba(162,89,255,.7);--fab-glow:rgba(162,89,255,.4);}
+  [data-theme="mono"]{--glow-c:rgba(132,146,200,.35);--fab-glow:rgba(132,146,200,.25);}
 
   /* ── SVG ring circles (presentation attrs can't use CSS vars) ── */
   [data-theme="mono"] #profile-pct-circle,
   [data-theme="mono"] .match-ring svg circle:last-child{stroke:var(--green);}
 
-  /* ── Profile picture gradient ── */
+  /* ── Profile picture gradient — monochromatic ── */
   [data-theme="mono"] .profile-pic{
-    background:linear-gradient(135deg,var(--green-d),var(--green));
+    background:linear-gradient(135deg,#1C2040,var(--green));
   }
 
   /* ── Force text-color inheritance so hardcoded dark text becomes readable ── */
