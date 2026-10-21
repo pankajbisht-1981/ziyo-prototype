@@ -1367,8 +1367,25 @@
           </div>
         </div>
 
+        <!-- referral promo -->
+        <div class="px mt16">
+          <div class="card shadow" onclick="go('referral')" style="padding:16px;cursor:pointer;background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;position:relative;overflow:hidden;">
+            <div style="position:absolute;right:-18px;top:-18px;font-size:92px;opacity:.16;">🎁</div>
+            <div class="row sb" style="align-items:center;position:relative;">
+              <div class="row gap12" style="align-items:center;">
+                <div style="width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🤝</div>
+                <div>
+                  <div style="font-weight:800;" data-ref-i18n="title">Do'st taklif qiling</div>
+                  <div class="xs mt4" style="opacity:.92;" data-ref-i18n="sub">Har bir faol do'st uchun <b>+100 🪙</b></div>
+                </div>
+              </div>
+              <span style="font-weight:800;font-size:18px;">›</span>
+            </div>
+          </div>
+        </div>
+
         <!-- quick links -->
-        <div class="px mt20 row gap12">
+        <div class="px mt16 row gap12">
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="go('ticket')"><div style="font-size:22px;">🎟️</div><div class="xs mt8" style="font-weight:600;">Chiptalarim</div></div>
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="go('shop')"><div style="font-size:22px;">🎁</div><div class="xs mt8" style="font-weight:600;">Mukofotlar</div></div>
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="toast('Saqlanganlar')"><div style="font-size:22px;">🔖</div><div class="xs mt8" style="font-weight:600;">Saqlangan</div></div>
@@ -1430,6 +1447,80 @@
           </div>
         </div>
         <div style="height:10px;"></div>
+      </div>
+    </div>
+
+    <!-- ============ REFERRAL ============ -->
+    <div class="view" id="v-referral" data-tab="profile">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title" data-ref-i18n="nav">Do'st taklif qilish</div></div>
+      <div class="scroll no-tab" style="padding-top:104px;padding-bottom:40px;">
+
+        <!-- hero: invite code -->
+        <div class="px">
+          <div class="card shadow" style="padding:20px 18px;background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;position:relative;overflow:hidden;">
+            <div style="position:absolute;right:-24px;top:-24px;font-size:120px;opacity:.14;">🎁</div>
+            <div style="font-size:16px;font-weight:800;position:relative;" data-ref-i18n="hero-t">Do'stingizni taklif qiling, birga yuting</div>
+            <div class="sm mt8" style="opacity:.92;position:relative;" data-ref-i18n="hero-s">Do'stingiz ilovaga qo'shilib, ro'yxatdan o'tsa — ikkalangiz ham ZiyoCoin olasiz.</div>
+            <div class="mt16" style="position:relative;">
+              <div class="xs" style="opacity:.85;text-transform:uppercase;letter-spacing:1px;font-weight:700;" data-ref-i18n="code-lbl">Sizning taklif kodingiz</div>
+              <div class="row gap8 mt8" style="align-items:center;">
+                <div style="flex:1;background:rgba(255,255,255,.2);border:1px dashed rgba(255,255,255,.55);border-radius:12px;padding:12px 14px;font-size:22px;font-weight:800;letter-spacing:2px;" id="ref-code">DOSTON-7K2A</div>
+                <button class="btn" style="width:auto;flex:0 0 auto;height:48px;padding:0 16px;background:#fff;color:var(--green-d);font-weight:800;" onclick="copyRef()" data-ref-i18n="copy">Nusxa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- stats -->
+        <div class="px mt16 row gap12">
+          <div class="card shadow" style="flex:1;padding:14px;text-align:center;">
+            <div style="font-size:24px;font-weight:800;" id="ref-invited">3</div>
+            <div class="xs muted mt4" data-ref-i18n="st-invited">Taklif qilindi</div>
+          </div>
+          <div class="card shadow" style="flex:1;padding:14px;text-align:center;">
+            <div style="font-size:24px;font-weight:800;color:var(--green-d);" id="ref-joined">1</div>
+            <div class="xs muted mt4" data-ref-i18n="st-joined">Qo'shildi</div>
+          </div>
+          <div class="card shadow" style="flex:1;padding:14px;text-align:center;">
+            <div style="font-size:24px;font-weight:800;">🪙 <span id="ref-earned">100</span></div>
+            <div class="xs muted mt4" data-ref-i18n="st-earned">Ishlangan</div>
+          </div>
+        </div>
+
+        <!-- how it works -->
+        <div class="px mt24"><div class="h-sec" data-ref-i18n="how">Qanday ishlaydi</div></div>
+        <div class="px mt12" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="card shadow row gap12" style="padding:13px;align-items:center;">
+            <div style="width:38px;height:38px;border-radius:11px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">📤</div>
+            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s1-t">1. Taklif yuboring</div><div class="xs muted mt4" data-ref-i18n="s1-s">Kod yoki havolani do'stingizga ulashing</div></div>
+          </div>
+          <div class="card shadow row gap12" style="padding:13px;align-items:center;">
+            <div style="width:38px;height:38px;border-radius:11px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">📲</div>
+            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s2-t">2. Do'st qo'shiladi</div><div class="xs muted mt4" data-ref-i18n="s2-s">Ilovani o'rnatib, ro'yxatdan o'tadi — <b>+50 🪙</b></div></div>
+          </div>
+          <div class="card shadow row gap12" style="padding:13px;align-items:center;">
+            <div style="width:38px;height:38px;border-radius:11px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">🎓</div>
+            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s3-t">3. Faol bo'ladi</div><div class="xs muted mt4" data-ref-i18n="s3-s">Onboardingni tugatib, birinchi amalni bajaradi — <b>+100 🪙</b></div></div>
+          </div>
+        </div>
+
+        <!-- invited friends -->
+        <div class="px mt24"><div class="h-sec" data-ref-i18n="friends">Taklif qilinganlar</div></div>
+        <div class="px mt12" id="ref-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+
+        <!-- demo -->
+        <div class="px mt16">
+          <div class="xs muted" style="text-align:center;" data-ref-i18n="demo-hint">Demo: do'st qo'shilishini sinab ko'ring</div>
+          <button class="btn ghost mt8" onclick="simulateReferral()" data-ref-i18n="demo-btn">👤 Do'st qo'shildi (demo)</button>
+        </div>
+
+      </div>
+      <!-- sticky share bar -->
+      <div style="position:absolute;bottom:0;left:0;right:0;background:var(--card);padding:14px 18px 26px;border-top:1px solid var(--line);">
+        <div class="row gap10">
+          <button class="btn" style="flex:1;background:#229ED9;" onclick="shareRef('telegram')">✈️ Telegram</button>
+          <button class="btn sec" style="flex:1;" onclick="shareRef('link')" data-ref-i18n="share-link">🔗 Havola</button>
+        </div>
       </div>
     </div>
 
@@ -2474,6 +2565,7 @@ function go(id, push=true){
   if(id==='onboarding'){ obStep=1; obShow(); }
   if(id==='mocktests') showMockTests();
   if(id==='skills') showSkillsView();
+  if(id==='referral') renderReferral();
 
   if(push){ if(histStack[histStack.length-1]!==id) histStack.push(id); }
 }
@@ -2614,6 +2706,84 @@ function buyItem(name,price){
 function simulateScan(){
   toast('Skanerlanmoqda…');
   setTimeout(()=>{ earnCoins(50,'IT Career Day 2026'); go('home'); }, 1300);
+}
+
+/* ============ REFERRAL ============ */
+const REF_CODE='DOSTON-7K2A';
+const REF_LINK='https://ziyo.app/r/DOSTON-7K2A';
+let refFriends=[
+  {init:'AB',name:'Aziz Boboyev',status:'active'},
+  {init:'MX',name:'Madina Xolova',status:'joined'},
+  {init:'RT',name:'Rustam Tursunov',status:'invited'}
+];
+const REF_TXT={
+  uz:{
+    nav:"Do'st taklif qilish", title:"Do'st taklif qiling", sub:"Har bir faol do'st uchun <b>+100 🪙</b>",
+    'hero-t':"Do'stingizni taklif qiling, birga yuting", 'hero-s':"Do'stingiz ilovaga qo'shilib, ro'yxatdan o'tsa — ikkalangiz ham ZiyoCoin olasiz.",
+    'code-lbl':"Sizning taklif kodingiz", copy:"Nusxa",
+    'st-invited':"Taklif qilindi", 'st-joined':"Qo'shildi", 'st-earned':"Ishlangan",
+    how:"Qanday ishlaydi",
+    's1-t':"1. Taklif yuboring", 's1-s':"Kod yoki havolani do'stingizga ulashing",
+    's2-t':"2. Do'st qo'shiladi", 's2-s':"Ilovani o'rnatib, ro'yxatdan o'tadi — <b>+50 🪙</b>",
+    's3-t':"3. Faol bo'ladi", 's3-s':"Onboardingni tugatib, birinchi amalni bajaradi — <b>+100 🪙</b>",
+    friends:"Taklif qilinganlar", 'demo-hint':"Demo: do'st qo'shilishini sinab ko'ring", 'demo-btn':"👤 Do'st qo'shildi (demo)",
+    'share-link':"🔗 Havola",
+    s_active:"Faol · +100 🪙 olindi", s_joined:"Qo'shildi · +50 🪙", s_invited:"Taklif yuborildi · kutilmoqda",
+    copied:"Kod nusxalandi: ", linkcopied:"Havola nusxalandi 🔗", tg:"Telegram orqali ulashildi ✈️",
+    joined_toast:"qo'shildi!", active_toast:"endi faol!", allactive:"Barcha do'stlar allaqachon faol 🎉"
+  },
+  en:{
+    nav:"Invite a friend", title:"Invite a friend", sub:"<b>+100 🪙</b> for every active friend",
+    'hero-t':"Invite a friend, win together", 'hero-s':"When your friend joins and signs up — you both earn ZiyoCoin.",
+    'code-lbl':"Your referral code", copy:"Copy",
+    'st-invited':"Invited", 'st-joined':"Joined", 'st-earned':"Earned",
+    how:"How it works",
+    's1-t':"1. Send an invite", 's1-s':"Share your code or link with a friend",
+    's2-t':"2. Friend joins", 's2-s':"They install the app and sign up — <b>+50 🪙</b>",
+    's3-t':"3. They become active", 's3-s':"They finish onboarding and take their first action — <b>+100 🪙</b>",
+    friends:"Invited friends", 'demo-hint':"Demo: try a friend joining", 'demo-btn':"👤 Friend joined (demo)",
+    'share-link':"🔗 Link",
+    s_active:"Active · +100 🪙 earned", s_joined:"Joined · +50 🪙", s_invited:"Invite sent · pending",
+    copied:"Code copied: ", linkcopied:"Link copied 🔗", tg:"Shared via Telegram ✈️",
+    joined_toast:"joined!", active_toast:"is now active!", allactive:"All friends are already active 🎉"
+  }
+};
+function refLang(){ return ((typeof _lang!=='undefined'&&_lang==='en')||localStorage.getItem('ziyoLang')==='en')?'en':'uz'; }
+function renderReferral(){
+  const L=REF_TXT[refLang()];
+  document.querySelectorAll('[data-ref-i18n]').forEach(el=>{ const k=el.dataset.refI18n; if(L[k]!=null) el.innerHTML=L[k]; });
+  // stats
+  const invited=refFriends.length;
+  const joined=refFriends.filter(f=>f.status==='joined'||f.status==='active').length;
+  const earned=refFriends.reduce((s,f)=>s+(f.status==='active'?100:f.status==='joined'?50:0),0);
+  document.getElementById('ref-invited').textContent=invited;
+  document.getElementById('ref-joined').textContent=joined;
+  document.getElementById('ref-earned').textContent=earned;
+  // list
+  const map={active:{cls:'free',ico:'🎓',txt:L.s_active,color:'var(--green-d)'},joined:{cls:'free',ico:'📲',txt:L.s_joined,color:'var(--green-d)'},invited:{cls:'',ico:'⏳',txt:L.s_invited,color:'var(--muted)'}};
+  document.getElementById('ref-list').innerHTML=refFriends.map(f=>{
+    const m=map[f.status];
+    return `<div class="card shadow row gap12" style="padding:12px;align-items:center;"><div class="avatar xs">${f.init}</div><div style="flex:1;"><div style="font-weight:700;">${f.name}</div><div class="xs mt4" style="color:${m.color};font-weight:600;">${m.ico} ${m.txt}</div></div></div>`;
+  }).join('');
+}
+function copyRef(){
+  const L=REF_TXT[refLang()];
+  if(navigator.clipboard) navigator.clipboard.writeText(REF_CODE).catch(()=>{});
+  toast(L.copied+REF_CODE);
+}
+function shareRef(how){
+  const L=REF_TXT[refLang()];
+  if(how==='telegram'){ toast(L.tg); }
+  else{ if(navigator.clipboard) navigator.clipboard.writeText(REF_LINK).catch(()=>{}); toast(L.linkcopied); }
+}
+function simulateReferral(){
+  const L=REF_TXT[refLang()];
+  // promote the first "invited" → joined (+50), or a "joined" → active (+100)
+  let f=refFriends.find(x=>x.status==='invited');
+  if(f){ f.status='joined'; renderReferral(); earnCoins(50,f.name+' '+L.joined_toast); return; }
+  f=refFriends.find(x=>x.status==='joined');
+  if(f){ f.status='active'; renderReferral(); earnCoins(100,f.name+' '+L.active_toast); return; }
+  toast(L.allactive);
 }
 /* === NOTIFICATIONS === */
 function markRead(el){
@@ -4015,6 +4185,8 @@ function setLang(lang){
 
 /* On load: apply language */
 if(_lang==='en') applyEnglish();
+/* Referral static text + state on load (profile card is always in DOM) */
+if(typeof renderReferral==='function') renderReferral();
 
 /* Keep lang-seg in sync after every openSheet call */
 (function(){

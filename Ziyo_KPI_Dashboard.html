@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!--
+  Ziyo — Impact KPI Dashboard  (prototype)
+  ───────────────────────────────────────────────────────────────────────────
+  PORTABLE BY DESIGN: single self-contained file, vanilla JS, inline SVG charts,
+  zero external dependencies / network calls. Works offline (open the file) and
+  deploys to any free static host with no build step:
+
+    • GitHub Pages : commit this file, enable Pages → done.
+    • Netlify/Vercel: drag-and-drop this file onto the dashboard → instant URL.
+    • Cloudflare Pages / Surge / any CDN: upload as-is.
+
+  WIRING REAL DATA LATER: all metrics live in the single `DATA` object below.
+  Replace its values (or fetch JSON and assign to DATA, then call render()) to
+  connect a real backend. Nothing else needs to change.
+
+  Framework: the three-layer model from Ziyo's KPI Framework —
+    REACH (growth) → ENGAGEMENT (behaviour) → OUTCOME (impact).
+  Only the OUTCOME layer counts as mission delivery / is reported to donors.
+-->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziyo — Impact KPI Dashboard</title>
+<style>
+  :root{
+    color-scheme: light;
+    --page:#f4f6f4; --surface:#ffffff; --surface-2:#f9faf9;
+    --ink:#0d1b12; --ink-2:#51605a; --muted:#8a968f;
+    --line:#e6ebe7; --line-2:#eef2ef;
+    --brand:#0E9E14; --brand-d:#0a7d10; --brand-l:#e7f6e8; --brand-ll:#f1faf1;
+    --good:#0ca30c; --warning:#d98400; --critical:#d03b3b;
+    --good-bg:#e7f6e7; --warning-bg:#fcf0dd; --critical-bg:#fbe6e6;
+    --ring:rgba(13,27,18,.08);
+    --shadow:0 1px 2px rgba(13,27,18,.04),0 6px 20px rgba(13,27,18,.06);
+    /* ordinal layer ramp — "increasing value" */
+    --reach:#8fd49a; --reach-bg:#f0faf1;
+    --engage:#3cae55; --engage-bg:#eaf7ec;
+    --outcome:#0E9E14; --outcome-bg:#e7f6e8;
+  }
+  html[data-theme="dark"]{
+    color-scheme: dark;
+    --page:#0b0f0c; --surface:#131a15; --surface-2:#0f1511;
+    --ink:#eaf2ec; --ink-2:#a9b7af; --muted:#76837b;
+    --line:#223027; --line-2:#1a251d;
+    --brand:#30c23a; --brand-d:#28a832; --brand-l:#16271a; --brand-ll:#101b13;
+    --good:#2cbf2c; --warning:#f0a52a; --critical:#e66767;
+    --good-bg:#122b14; --warning-bg:#2e2410; --critical-bg:#301616;
+    --ring:rgba(255,255,255,.10);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.35);
+    --reach:#2f6e3a; --reach-bg:#122015;
+    --engage:#249a39; --engage-bg:#122717;
+    --outcome:#30c23a; --outcome-bg:#13271a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--page); color:var(--ink);
+    -webkit-font-smoothing:antialiased; line-height:1.45;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+
+  /* ── header ── */
+  header{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;justify-content:space-between;margin-bottom:8px}
+  .brand-row{display:flex;align-items:center;gap:12px}
+  .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand-d),var(--brand));
+    display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;box-shadow:var(--shadow)}
+  h1{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .sub{color:var(--ink-2);font-size:14px;margin-top:2px}
+  .head-actions{display:flex;align-items:center;gap:10px}
+  .theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;
+    padding:9px 13px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px}
+  .theme-btn:hover{border-color:var(--brand)}
+
+  .meta-note{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);
+    margin:14px 0 20px;padding:9px 13px;background:var(--surface-2);border:1px dashed var(--line);border-radius:10px}
+  .meta-note b{color:var(--ink-2)}
+
+  /* ── filter tabs ── */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .filter{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;
+    padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:.12s;display:flex;align-items:center;gap:7px}
+  .filter:hover{border-color:var(--brand)}
+  .filter.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .filter .dot{width:9px;height:9px;border-radius:50%}
+
+  /* ── north star hero ── */
+  .hero{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+    padding:24px;margin-bottom:26px;display:grid;grid-template-columns:minmax(260px,1fr) 1.4fr;gap:26px;align-items:center}
+  .hero-label{font-size:11.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--brand);
+    display:flex;align-items:center;gap:8px}
+  .hero-num{font-size:58px;font-weight:800;letter-spacing:-1.5px;line-height:1;margin-top:10px}
+  .hero-delta{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--good);
+    background:var(--good-bg);padding:4px 10px;border-radius:999px;margin-top:12px}
+  .hero-def{color:var(--ink-2);font-size:13.5px;margin-top:14px;max-width:340px}
+  .hero-tags{display:flex;gap:7px;margin-top:14px;flex-wrap:wrap}
+  .tag{font-size:11.5px;font-weight:700;color:var(--brand-d);background:var(--brand-l);padding:4px 10px;border-radius:7px}
+  .hero-chart{min-width:0}
+  .chart-cap{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+
+  /* ── layer section ── */
+  .layer{margin-bottom:26px}
+  .layer-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;margin-bottom:14px;position:relative;overflow:hidden}
+  .layer-head .lh-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    font-size:20px;background:rgba(255,255,255,.55);flex-shrink:0}
+  html[data-theme="dark"] .layer-head .lh-icon{background:rgba(0,0,0,.25)}
+  .lh-txt{flex:1;min-width:0}
+  .lh-name{font-size:16px;font-weight:800;letter-spacing:.2px}
+  .lh-q{font-size:13px;opacity:.82;margin-top:1px}
+  .lh-badge{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+    background:var(--ink);color:var(--surface);flex-shrink:0}
+  .lh-badge.report{background:var(--brand-d);color:#fff}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
+
+  /* ── kpi card ── */
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;min-height:150px}
+  .kpi-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .kpi-name{font-size:13px;font-weight:700;color:var(--ink-2);line-height:1.3}
+  .status{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0}
+  .status.good{color:var(--good);background:var(--good-bg)}
+  .status.warning{color:var(--warning);background:var(--warning-bg)}
+  .status.critical{color:var(--critical);background:var(--critical-bg)}
+  .kpi-val{font-size:32px;font-weight:800;letter-spacing:-.8px;margin-top:10px;line-height:1}
+  .kpi-val .unit{font-size:16px;font-weight:700;color:var(--ink-2);margin-left:2px}
+  .kpi-target{font-size:12px;color:var(--muted);margin-top:6px;font-weight:600}
+  .kpi-foot{margin-top:auto;padding-top:12px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+  .kpi-def{font-size:11.5px;color:var(--muted);line-height:1.35;flex:1}
+  .spark{flex-shrink:0}
+
+  /* ── outcome bar chart card ── */
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:26px}
+  .panel-h{font-size:15px;font-weight:800;margin-bottom:3px}
+  .panel-s{font-size:12.5px;color:var(--ink-2);margin-bottom:18px}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 54px;align-items:center;gap:12px;margin-bottom:13px}
+  .bar-lbl{font-size:12.5px;font-weight:600;color:var(--ink-2);text-align:right}
+  .bar-track{position:relative;height:22px;background:var(--line-2);border-radius:7px;overflow:visible}
+  .bar-fill{height:100%;border-radius:7px;position:relative}
+  .bar-target{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55}
+  .bar-target::after{content:"";position:absolute;top:-4px;left:-3px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--ink);opacity:.9}
+  .bar-val{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .lg-swatch{width:14px;height:9px;border-radius:3px}
+  .lg-tick{width:2px;height:12px;background:var(--ink);opacity:.6;display:inline-block}
+
+  .footer{margin-top:34px;text-align:center;color:var(--muted);font-size:12px;line-height:1.7}
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr}
+    .hero-num{font-size:46px}
+    .bar-row{grid-template-columns:104px 1fr 46px;gap:8px}
+    .bar-lbl{font-size:11px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand-row">
+      <div class="logo">🌱</div>
+      <div>
+        <h1>Ziyo — Impact KPI Dashboard</h1>
+        <div class="sub">Measuring mission impact — not just activity</div>
+      </div>
+    </div>
+    <div class="head-actions">
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark</button>
+    </div>
+  </header>
+
+  <div class="meta-note">
+    <span>ⓘ</span><span><b>Prototype · sample data.</b> All metrics live in one <b>DATA</b> object in this file — swap values or fetch JSON to connect a live backend. Single self-contained file; deploys to GitHub Pages / Netlify with no build step.</span>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <!-- North Star hero -->
+  <div class="hero" id="hero"></div>
+
+  <!-- Layer sections -->
+  <div id="layers"></div>
+
+  <!-- Outcome comparison panel -->
+  <div class="panel" id="outcomePanel"></div>
+
+  <div class="footer">
+    Ziyo · Impact KPI Framework · Only the <b style="color:var(--brand-d)">Outcome</b> layer counts as mission delivery.<br>
+    North Star: <b>Active Beneficiaries</b> — honest · auditable · grant-defensible.
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   DATA — the single source of truth. Replace values / fetch JSON here.
+   status is derived from value vs target in deriveStatus(); you can also
+   hardcode it per KPI. trend = last 8 periods (for sparklines).
+   ═══════════════════════════════════════════════════════════════════════════ */
+const DATA = {
+  northStar: {
+    name: "Active Beneficiaries",
+    value: 1284,
+    deltaPct: 18,
+    def: "Users who completed at least one outcome-linked action and shared a success story.",
+    tags: ["Honest", "Auditable", "Grant-defensible"],
+    // 12-month trend
+    trend: [310, 360, 420, 505, 560, 640, 720, 815, 910, 1040, 1150, 1284]
+  },
+  layers: [
+    {
+      key: "reach", name: "Reach", sub: "Growth KPIs",
+      q: "Are we reaching the right people?", icon: "📣",
+      report: false, color: "var(--reach)", bg: "var(--reach-bg)",
+      kpis: [
+        { name:"Total registered users", value:24500, target:20000, unit:"", fmt:"int", higher:true,
+          def:"Cumulative sign-ups since launch.", trend:[9,11,13,15,18,20,22,24.5] },
+        { name:"Organic referral rate", value:22, target:25, unit:"%", fmt:"pct", higher:true,
+          def:"New users via invite/share ÷ total new. Word-of-mouth trust signal.", trend:[12,14,15,17,18,19,21,22] },
+        { name:"Activation rate", value:41, target:45, unit:"%", fmt:"pct", higher:true,
+          def:"Onboarding complete + ≥1 meaningful action. Quality of entry.", trend:[30,33,34,36,38,39,40,41] }
+      ]
+    },
+    {
+      key: "engage", name: "Engagement", sub: "Behaviour KPIs",
+      q: "Are they using the platform purposefully?", icon: "🔁",
+      report: false, color: "var(--engage)", bg: "var(--engage-bg)",
+      kpis: [
+        { name:"Stickiness (DAU/MAU)", value:28, target:30, unit:"%", fmt:"pct", higher:true,
+          def:"Daily-habit strength. Below 15% signals low stickiness.", trend:[19,21,22,24,25,26,27,28] },
+        { name:"7-day return", value:52, target:50, unit:"%", fmt:"pct", higher:true,
+          def:"% who return within 7 days of signup. Leading retention indicator.", trend:[40,43,45,47,48,50,51,52] },
+        { name:"30-day retention", value:34, target:35, unit:"%", fmt:"pct", higher:true,
+          def:"Active in week 4 ÷ signed up in week 1. Cohort health.", trend:[26,28,29,30,31,32,33,34] },
+        { name:"Leaderboard participation", value:61, target:50, unit:"%", fmt:"pct", higher:true,
+          def:"% of users with ≥1 point transaction. Gamification working.", trend:[42,46,50,53,56,58,60,61] },
+        { name:"User satisfaction", value:4.4, target:4.3, unit:"/5", fmt:"dec", higher:true,
+          def:"In-app survey + App Store / Play Store ratings.", trend:[4.0,4.1,4.1,4.2,4.2,4.3,4.3,4.4] }
+      ]
+    },
+    {
+      key: "outcome", name: "Outcome", sub: "Impact KPIs",
+      q: "Did anything change in their lives?", icon: "🎯",
+      report: true, color: "var(--outcome)", bg: "var(--outcome-bg)",
+      kpis: [
+        { name:"Job placement rate", value:12, target:10, unit:"%", fmt:"pct", higher:true,
+          def:"Users placed in jobs/internships via the platform.", trend:[6,7,8,9,10,11,11,12] },
+        { name:"Grant conversion rate", value:8, target:12, unit:"%", fmt:"pct", higher:true,
+          def:"Grants awarded ÷ applications submitted. Real uplift, not clicks.", trend:[5,6,6,7,7,8,8,8] },
+        { name:"Course completion rate", value:47, target:50, unit:"%", fmt:"pct", higher:true,
+          def:"Courses finished ÷ courses started. Learning actually happened.", trend:[35,38,40,42,44,45,46,47] },
+        { name:"Skills progression", value:23, target:20, unit:"%", fmt:"pct", higher:true,
+          def:"Average quiz-score improvement over time. Measurable knowledge gain.", trend:[12,14,16,18,19,21,22,23] },
+        { name:"Event-to-action rate", value:31, target:30, unit:"%", fmt:"pct", higher:true,
+          def:"Attendees who then applied for a job or grant. Event quality.", trend:[20,22,24,26,27,29,30,31] },
+        { name:"Certificates issued", value:3120, target:2500, unit:"", fmt:"int", higher:true,
+          def:"Verified certificates earned by beneficiaries.", trend:[1.2,1.5,1.8,2.1,2.4,2.7,2.9,3.12] }
+      ]
+    }
+  ]
+};
+
+/* ── helpers ── */
+function fmtNum(v, fmt){
+  if(fmt==="int") return Math.round(v).toLocaleString("en-US");
+  if(fmt==="dec") return v.toFixed(1);
+  return v; // pct → shown with unit
+}
+function deriveStatus(k){
+  // ratio of value to target (all current KPIs are "higher is better")
+  const r = k.value / k.target;
+  if(r >= 1) return "good";
+  if(r >= 0.9) return "warning";
+  return "critical";
+}
+const STATUS_ICON = { good:"●", warning:"▲", critical:"✕" };
+const STATUS_WORD = { good:"On track", warning:"At risk", critical:"Behind" };
+
+/* ── sparkline (inline SVG, single series) ── */
+function sparkline(vals, color, w=72, h=28){
+  const min=Math.min(...vals), max=Math.max(...vals), rng=(max-min)||1;
+  const pts=vals.map((v,i)=>{
+    const x=(i/(vals.length-1))*(w-4)+2;
+    const y=h-2-((v-min)/rng)*(h-6);
+    return [x,y];
+  });
+  const d=pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+  const last=pts[pts.length-1];
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">
+    <path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2.6" fill="${color}"/>
+  </svg>`;
+}
+
+/* ── north star line chart (inline SVG, single series + crosshair tooltip) ── */
+function northStarChart(vals){
+  const W=560, H=190, pad={l:8,r:14,t:16,b:26};
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const min=0, max=Math.max(...vals)*1.08, rng=(max-min)||1;
+  const months=["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"];
+  const pts=vals.map((v,i)=>{
+    const x=pad.l+(i/(vals.length-1))*iw;
+    const y=pad.t+ih-((v-min)/rng)*ih;
+    return [x,y,v,months[i]||""];
+  });
+  const line=pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+  const area=line+` L ${pts[pts.length-1][0].toFixed(1)} ${pad.t+ih} L ${pts[0][0].toFixed(1)} ${pad.t+ih} Z`;
+  // gridlines (3)
+  let grid="";
+  for(let g=0; g<=2; g++){
+    const y=pad.t+(g/2)*ih;
+    const val=Math.round(max-(g/2)*rng);
+    grid+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${pad.l}" y="${y-4}" font-size="10" fill="var(--muted)">${val.toLocaleString("en-US")}</text>`;
+  }
+  const xlabels=pts.map((p,i)=> (i%2===0)?`<text x="${p[0].toFixed(1)}" y="${H-8}" font-size="10" fill="var(--muted)" text-anchor="middle">${p[3]}</text>`:"").join("");
+  const dots=pts.map((p,i)=>`<circle class="ns-dot" data-i="${i}" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="9" fill="transparent"/>`).join("");
+  return `<svg id="nsSvg" width="100%" viewBox="0 0 ${W} ${H}" role="img" aria-label="Active Beneficiaries, 12-month trend" style="overflow:visible">
+    <defs><linearGradient id="nsg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--brand)" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs>
+    ${grid}
+    <path d="${area}" fill="url(#nsg)"/>
+    <path d="${line}" fill="none" stroke="var(--brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.4" fill="var(--brand)"/>`).join("")}
+    ${xlabels}
+    <line id="nsCross" x1="0" y1="${pad.t}" x2="0" y2="${pad.t+ih}" stroke="var(--brand)" stroke-width="1" opacity="0"/>
+    ${dots}
+  </svg>
+  <div id="nsTip" style="position:absolute;pointer-events:none;opacity:0;transform:transl(-50%,-110%);
+    background:var(--ink);color:var(--surface);font-size:12px;font-weight:700;padding:5px 9px;border-radius:7px;white-space:nowrap;transition:opacity .08s;transform:translate(-50%,-120%)">
+  </div>`;
+}
+
+/* ── render ── */
+let activeFilter = "all";
+
+function render(){
+  // filters
+  const fEl=document.getElementById("filters");
+  const chips=[{key:"all",name:"All layers",dot:"var(--ink-2)"}].concat(
+    DATA.layers.map(l=>({key:l.key,name:l.name,dot:l.color})));
+  fEl.innerHTML=chips.map(c=>
+    `<div class="filter ${activeFilter===c.key?'on':''}" onclick="setFilter('${c.key}')">
+       <span class="dot" style="background:${c.key==='all'?'var(--ink-2)':c.dot}"></span>${c.name}</div>`).join("");
+
+  // hero
+  const ns=DATA.northStar;
+  document.getElementById("hero").innerHTML=`
+    <div>
+      <div class="hero-label">★ North Star Metric</div>
+      <div class="hero-num">${ns.value.toLocaleString("en-US")}</div>
+      <div class="hero-delta">▲ ${ns.deltaPct}% <span style="opacity:.7;font-weight:600">vs last month</span></div>
+      <div class="hero-def">${ns.name} — ${ns.def}</div>
+      <div class="hero-tags">${ns.tags.map(t=>`<span class="tag">✓ ${t}</span>`).join("")}</div>
+    </div>
+    <div class="hero-chart" style="position:relative">
+      <div class="chart-cap"><span>${ns.name} · last 12 months</span><span>now ${ns.value.toLocaleString("en-US")}</span></div>
+      ${northStarChart(ns.trend)}
+    </div>`;
+  wireNorthStarTooltip(ns.trend);
+
+  // layers
+  const lEl=document.getElementById("layers");
+  lEl.innerHTML=DATA.layers.filter(l=>activeFilter==="all"||activeFilter===l.key).map(l=>{
+    const cards=l.kpis.map(k=>{
+      const st=k.status||deriveStatus(k);
+      const valStr = k.fmt==="pct" ? k.value+'<span class="unit">%</span>'
+                    : k.fmt==="dec" ? fmtNum(k.value,"dec")+`<span class="unit">${k.unit}</span>`
+                    : fmtNum(k.value,"int")+(k.unit?`<span class="unit">${k.unit}</span>`:"");
+      const tgtStr = k.fmt==="int" ? fmtNum(k.target,"int") : (k.fmt==="dec"? k.target.toFixed(1):k.target+"%");
+      return `<div class="kpi">
+        <div class="kpi-top">
+          <div class="kpi-name">${k.name}</div>
+          <div class="status ${st}">${STATUS_ICON[st]} ${STATUS_WORD[st]}</div>
+        </div>
+        <div class="kpi-val">${valStr}</div>
+        <div class="kpi-target">Target ${k.higher?'≥':'≤'} ${tgtStr}</div>
+        <div class="kpi-foot">
+          <div class="kpi-def">${k.def}</div>
+          ${sparkline(k.trend, l.color)}
+        </div>
+      </div>`;
+    }).join("");
+    return `<div class="layer">
+      <div class="layer-head" style="background:${l.bg}">
+        <div class="lh-icon">${l.icon}</div>
+        <div class="lh-txt">
+          <div class="lh-name">${l.name} <span style="font-weight:600;opacity:.7;font-size:13px">· ${l.sub}</span></div>
+          <div class="lh-q">${l.q}</div>
+        </div>
+        <div class="lh-badge ${l.report?'report':''}">${l.report?'Reported to donors':'Internal health'}</div>
+      </div>
+      <div class="grid">${cards}</div>
+    </div>`;
+  }).join("");
+
+  // outcome comparison panel
+  renderOutcomePanel();
+}
+
+function renderOutcomePanel(){
+  const p=document.getElementById("outcomePanel");
+  const show = activeFilter==="all" || activeFilter==="outcome";
+  p.style.display = show ? "block" : "none";
+  if(!show) return;
+  const outcome=DATA.layers.find(l=>l.key==="outcome");
+  // compare % KPIs only (comparable scale)
+  const rows=outcome.kpis.filter(k=>k.fmt==="pct");
+  const maxScale=Math.max(...rows.map(k=>Math.max(k.value,k.target)))*1.15;
+  const bars=rows.map(k=>{
+    const st=k.status||deriveStatus(k);
+    const col=st==="good"?"var(--good)":st==="warning"?"var(--warning)":"var(--critical)";
+    const wv=(k.value/maxScale)*100, wt=(k.target/maxScale)*100;
+    return `<div class="bar-row">
+      <div class="bar-lbl">${k.name}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${wv.toFixed(1)}%;background:${col}"></div>
+        <div class="bar-target" style="left:${wt.toFixed(1)}%" title="Target ${k.target}%"></div>
+      </div>
+      <div class="bar-val" style="color:${col}">${k.value}%</div>
+    </div>`;
+  }).join("");
+  p.innerHTML=`<div class="panel-h">🎯 Outcome KPIs vs Target</div>
+    <div class="panel-s">Mission-linked results reported to board & donors. The tick marks the target; bar colour shows status.</div>
+    ${bars}
+    <div class="legend">
+      <span><span class="lg-swatch" style="background:var(--good)"></span>On track</span>
+      <span><span class="lg-swatch" style="background:var(--warning)"></span>At risk</span>
+      <span><span class="lg-swatch" style="background:var(--critical)"></span>Behind</span>
+      <span><span class="lg-tick"></span>Target</span>
+    </div>`;
+}
+
+function setFilter(k){ activeFilter=k; render(); }
+
+/* north star hover tooltip */
+function wireNorthStarTooltip(vals){
+  const svg=document.getElementById("nsSvg");
+  const tip=document.getElementById("nsTip");
+  const cross=document.getElementById("nsCross");
+  if(!svg) return;
+  const months=["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"];
+  svg.querySelectorAll(".ns-dot").forEach(dot=>{
+    dot.style.cursor="pointer";
+    dot.addEventListener("mouseenter",()=>{
+      const i=+dot.dataset.i;
+      const cx=+dot.getAttribute("cx"), cy=+dot.getAttribute("cy");
+      cross.setAttribute("x1",cx); cross.setAttribute("x2",cx); cross.setAttribute("opacity","0.4");
+      const rect=svg.getBoundingClientRect();
+      const px=(cx/560)*rect.width, py=(cy/190)*rect.height;
+      tip.style.left=px+"px"; tip.style.top=py+"px"; tip.style.opacity="1";
+      tip.textContent=`${months[i]}: ${vals[i].toLocaleString("en-US")}`;
+    });
+    dot.addEventListener("mouseleave",()=>{ tip.style.opacity="0"; cross.setAttribute("opacity","0"); });
+  });
+}
+
+/* theme toggle */
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute("data-theme");
+  const next=cur==="dark"?"light":"dark";
+  document.documentElement.setAttribute("data-theme",next);
+  document.getElementById("themeBtn").textContent=next==="dark"?"☀️ Light":"🌙 Dark";
+  try{ localStorage.setItem("ziyoKpiTheme",next); }catch(e){}
+  render(); // re-draw charts so CSS-var colours resolve in SVG
+}
+(function initTheme(){
+  let t="light"; try{ t=localStorage.getItem("ziyoKpiTheme")||"light"; }catch(e){}
+  document.documentElement.setAttribute("data-theme",t);
+})();
+
+render();
+document.getElementById("themeBtn").textContent=
+  document.documentElement.getAttribute("data-theme")==="dark"?"☀️ Light":"🌙 Dark";
+</script>
+</body>
+</html>
