@@ -729,7 +729,7 @@
       <div class="nav"><div class="title" style="font-size:22px;">Tadbirlar</div></div>
       <div class="scroll" style="padding-top:98px;">
         <div class="px">
-          <div class="searchbar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Qidirish…</div>
+          <div class="searchbar" style="padding:0 14px;"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="eventsSearch" type="text" placeholder="Qidirish…" oninput="filterEvents(this.value)" style="border:none;outline:none;background:transparent;flex:1;font-size:14px;color:var(--ink);width:100%;"></div>
         </div>
         <div class="hscroll mt16">
           <div class="chip on">Barchasi</div>
@@ -739,9 +739,9 @@
           <div class="chip" onclick="this.closest('.hscroll').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')">Volontyorlik</div>
         </div>
 
-        <div class="px mt20" style="display:flex;flex-direction:column;gap:14px;">
+        <div id="eventsGrid" class="px mt20" style="display:flex;flex-direction:column;gap:14px;">
           <!-- card 1 -->
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
+          <div class="card shadow event-card" data-title="IT Career Day 2026" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
             <div class="ev-img" style="background:linear-gradient(135deg,var(--green-dk),var(--green));height:140px;position:relative;">
               <span class="pill hot" style="position:absolute;top:12px;left:12px;">🔥 Mashhur</span>
               <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.3);color:#fff;border-radius:12px;padding:5px 9px;font-size:11px;font-weight:700;">NOV 12</span>
@@ -753,7 +753,7 @@
             </div>
           </div>
           <!-- card 2 -->
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
+          <div class="card shadow event-card" data-title="Startup Weekend Tashkent" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
             <div class="ev-img" style="background:linear-gradient(135deg,#2E3A8C,#2E7CF6);height:140px;position:relative;">
               <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.3);color:#fff;border-radius:12px;padding:5px 9px;font-size:11px;font-weight:700;">NOV 18</span>
             </div>
@@ -764,7 +764,7 @@
             </div>
           </div>
           <!-- card 3 -->
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
+          <div class="card shadow event-card" data-title="Design Thinking Workshop" style="overflow:hidden;cursor:pointer;" onclick="go('event')">
             <div class="ev-img" style="background:linear-gradient(135deg,#7A2E8C,#C44FD6);height:140px;position:relative;">
               <span style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.3);color:#fff;border-radius:12px;padding:5px 9px;font-size:11px;font-weight:700;">NOV 25</span>
             </div>
@@ -774,6 +774,10 @@
               <div class="row sb mt12"><span class="sm muted">88 ketyapti</span><span class="pill free">Bepul</span></div>
             </div>
           </div>
+        </div>
+        <div id="eventsEmpty" style="display:none;text-align:center;padding:40px 20px;color:var(--ink2);">
+          <div style="font-size:40px;">🔍</div>
+          <div class="sm mt12">Tadbir topilmadi</div>
         </div>
         <div style="height:10px;"></div>
       </div>
@@ -881,7 +885,7 @@
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);z-index:30;">
         <div class="row sb gap12">
           <div><div class="xs muted">Mukofot</div><div style="font-size:18px;font-weight:800;color:var(--green);">🪙 +200</div></div>
-          <button class="btn" style="flex:1;" onclick="toast('Kursga yozildingiz! 🎓');setTimeout(()=>go('scan'),1000)">Kursga yozilish</button>
+          <button class="btn" style="flex:1;" onclick="toast('Kursga yozildingiz! 🎓');setTimeout(()=>go('ticket'),1000)">Kursga yozilish</button>
         </div>
       </div>
     </div>
@@ -1138,6 +1142,11 @@
 
     <!-- ============ QUICK BYTES (short video feed) ============ -->
     <div class="view" id="v-bytes" data-tab="bytes" data-light="1">
+      <!-- Back button overlay -->
+      <div style="position:absolute;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;padding:52px 16px 12px;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 100%);pointer-events:none;">
+        <div onclick="back()" style="pointer-events:auto;cursor:pointer;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;backdrop-filter:blur(4px);">‹</div>
+        <div style="flex:1;text-align:center;color:#fff;font-weight:800;font-size:16px;margin-right:40px;">Quick Bytes ⚡</div>
+      </div>
       <div class="scroll" id="bytesScroll" style="padding-top:0;padding-bottom:var(--tab-h);scroll-snap-type:y mandatory;">
         <!-- byte 1 -->
         <div class="byte" style="scroll-snap-align:start;height:calc(844px - 24px - var(--tab-h));position:relative;background:linear-gradient(160deg,var(--blue),var(--green));display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;">
@@ -1207,18 +1216,64 @@
         </div>
 
         <div class="px mt24 h-sec mb12">Barcha qismlar</div>
+
+        <!-- Category: Karyera -->
+        <div class="px mb8" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;font-weight:700;color:var(--green);">💼 Karyera</span>
+          <div style="flex:1;height:1px;background:var(--line);"></div>
+        </div>
         <div class="px" style="display:flex;flex-direction:column;gap:10px;">
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--green));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">2-qism · Grantlar olami</div><div class="xs muted mt4">Xalqaro stipendiyalar bo'yicha qo'llanma</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 31 daqiqa</div></div>
           </div>
+        </div>
+
+        <!-- Category: Texnologiya -->
+        <div class="px mt20 mb8" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;font-weight:700;color:#2E7CF6;">💻 Texnologiya</span>
+          <div style="flex:1;height:1px;background:var(--line);"></div>
+        </div>
+        <div class="px" style="display:flex;flex-direction:column;gap:10px;">
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#F7B500,#FF4D4F);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">3-qism · Startap boshlash</div><div class="xs muted mt4">Nol'dan birinchi mahsulotgacha</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 27 daqiqa</div></div>
           </div>
+        </div>
+
+        <!-- Category: Tadbirkorlik -->
+        <div class="px mt20 mb8" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;font-weight:700;color:#B47A00;">🚀 Tadbirkorlik</span>
+          <div style="flex:1;height:1px;background:var(--line);"></div>
+        </div>
+        <div class="px" style="display:flex;flex-direction:column;gap:10px;">
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#8B5CF6,#2E7CF6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">4-qism · Networking san'ati</div><div class="xs muted mt4">Professional aloqalar qanday quriladi</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 19 daqiqa</div></div>
+          </div>
+        </div>
+
+        <!-- Category: Shaxsiy rivojlanish -->
+        <div class="px mt20 mb8" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;font-weight:700;color:#8B5CF6;">🌟 Shaxsiy rivojlanish</span>
+          <div style="flex:1;height:1px;background:var(--line);"></div>
+        </div>
+        <div class="px" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
+            <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,var(--green),#0a5c0e);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
+            <div style="flex:1;"><div style="font-weight:700;">5-qism · Motivatsiya sirlari</div><div class="xs muted mt4">Maqsadga erishish psixologiyasi</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 22 daqiqa</div></div>
+          </div>
+        </div>
+
+        <!-- Category: Fan -->
+        <div class="px mt20 mb8" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;font-weight:700;color:#FF4D4F;">🔬 Fan &amp; Tadqiqot</span>
+          <div style="flex:1;height:1px;background:var(--line);"></div>
+        </div>
+        <div class="px" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
+            <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#FF4D4F,#B47A00);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
+            <div style="flex:1;"><div style="font-weight:700;">6-qism · Ilm-fan yo'li</div><div class="xs muted mt4">Tadqiqotchi bo'lishning qiyinchiliklari</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 35 daqiqa</div></div>
           </div>
         </div>
         <div style="height:10px;"></div>
@@ -1594,8 +1649,27 @@
           </div>
         </div>
 
+        <!-- channels -->
+        <div class="px mt20 h-sec mb12" style="font-size:15px;">Kanallar</div>
+        <div class="px" style="display:flex;flex-direction:column;gap:4px;">
+          <div class="row gap12" style="padding:10px 0;cursor:pointer;align-items:center;" onclick="go('chatroom')">
+            <div class="avatar" style="width:50px;height:50px;background:linear-gradient(135deg,#E8340A,#FF6B35);color:#fff;font-size:20px;">🛡️</div>
+            <div style="flex:1;border-bottom:1px solid var(--line);padding-bottom:10px;">
+              <div class="row sb"><div style="font-weight:700;">Adminga murojaat</div><div class="xs muted">10:15</div></div>
+              <div class="row sb mt4"><div class="xs muted" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Admin: Savollaringizni yuboring</div><span style="background:var(--green);color:#fff;border-radius:20px;font-size:10px;font-weight:700;padding:2px 7px;">1</span></div>
+            </div>
+          </div>
+          <div class="row gap12" style="padding:10px 0;cursor:pointer;align-items:center;" onclick="go('chatroom')">
+            <div class="avatar" style="width:50px;height:50px;background:linear-gradient(135deg,#7B2FBE,#A855F7);color:#fff;font-size:20px;">🤝</div>
+            <div style="flex:1;border-bottom:1px solid var(--line);padding-bottom:10px;">
+              <div class="row sb"><div style="font-weight:700;">Hamkorlik</div><div class="xs muted">Kecha</div></div>
+              <div class="xs muted mt4">Kompaniyalar uchun hamkorlik takliflari</div>
+            </div>
+          </div>
+        </div>
+
         <!-- direct -->
-        <div class="px mt16 h-sec mb12" style="font-size:15px;">Shaxsiy</div>
+        <div class="px mt20 h-sec mb12" style="font-size:15px;">Shaxsiy</div>
         <div class="px" style="display:flex;flex-direction:column;gap:4px;">
           <div class="row gap12" style="padding:10px 0;cursor:pointer;align-items:center;" onclick="go('chatroom')">
             <div class="avatar" style="width:50px;height:50px;position:relative;">AX<span style="position:absolute;bottom:1px;right:1px;width:12px;height:12px;background:var(--green);border-radius:50%;border:2px solid #fff;"></span></div>
@@ -1620,7 +1694,8 @@
     <div class="view" id="v-chatroom" data-notab="1">
       <div class="nav"><div class="back" onclick="back()">‹</div>
         <div class="avatar" style="width:38px;height:38px;background:linear-gradient(135deg,var(--green),var(--green-m));color:#fff;font-size:13px;">IT</div>
-        <div><div class="title" style="font-size:16px;">IT Career Day 2026</div><div class="xs muted">320 a'zo · 42 online</div></div>
+        <div style="flex:1;"><div class="title" style="font-size:16px;">IT Career Day 2026</div><div class="xs muted">320 a'zo · 42 online</div></div>
+        <div onclick="go('groupmembers')" style="cursor:pointer;padding:6px 12px;border:1px solid var(--line);border-radius:20px;font-size:12px;font-weight:600;color:var(--green);white-space:nowrap;">👥 A'zolar</div>
       </div>
       <div class="scroll no-tab" style="padding-top:106px;padding-bottom:88px;background:var(--bg);">
         <div class="px" style="display:flex;flex-direction:column;gap:12px;">
@@ -1653,6 +1728,88 @@
         <div style="font-size:22px;cursor:pointer;">＋</div>
         <input id="chatInput" class="searchbar" style="flex:1;border-radius:22px;border:none;outline:none;background:#F4F6F4;font-size:14px;color:var(--ink);" placeholder="Xabar yozing…" onkeydown="if(event.key==='Enter')sendMsg()">
         <div onclick="sendMsg()" style="width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">➤</div>
+      </div>
+    </div>
+
+    <!-- ============ GROUP MEMBERS ============ -->
+    <div class="view" id="v-groupmembers" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Guruh a'zolari</div></div>
+      <div class="scroll no-tab" style="padding-top:98px;padding-bottom:24px;">
+        <div class="px mb12">
+          <div class="searchbar" style="width:100%;box-sizing:border-box;"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>A'zo qidirish…</div>
+        </div>
+        <div class="hscroll" style="padding-left:16px;padding-right:16px;gap:8px;margin-bottom:16px;">
+          <div class="chip on">Barchasi (320)</div>
+          <div class="chip" onclick="this.classList.toggle('on')">🟢 Online (42)</div>
+          <div class="chip" onclick="this.classList.toggle('on')">👑 Admin</div>
+          <div class="chip" onclick="this.classList.toggle('on')">🎓 Talaba</div>
+          <div class="chip" onclick="this.classList.toggle('on')">💼 Mutaxassis</div>
+        </div>
+        <div class="px" style="display:flex;flex-direction:column;gap:4px;">
+          <!-- Admin -->
+          <div class="xs muted mb8" style="font-weight:700;letter-spacing:.5px;text-transform:uppercase;font-size:10px;">ADMINLAR</div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;background:linear-gradient(135deg,var(--green),var(--green-m));color:#fff;position:relative;">ZF<span style="position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:#22C55E;border-radius:50%;border:2px solid #fff;"></span></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Ziyo Forum 👑</div>
+              <div class="xs muted">Admin · Toshkent</div>
+            </div>
+            <button class="btn sec" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulashildi!')">Ulashish</button>
+          </div>
+          <!-- Members -->
+          <div class="xs muted mt12 mb8" style="font-weight:700;letter-spacing:.5px;text-transform:uppercase;font-size:10px;">A'ZOLAR</div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;position:relative;">AX<span style="position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:#22C55E;border-radius:50%;border:2px solid #fff;"></span></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Aziz Xolmatov</div>
+              <div class="xs muted">Frontend dev · Toshkent</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;background:#E8F0FF;color:#2E7CF6;">DR</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Dilnoza Rahimova</div>
+              <div class="xs muted">UX dizayner · Samarqand</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;background:#FFF6DB;color:#B87300;">SM</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Sherzod Mirzaev</div>
+              <div class="xs muted">Data Analyst · Toshkent</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;background:#F0E8FF;color:#7B2FBE;">NK</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Nilufar Karimova</div>
+              <div class="xs muted">Talaba · TATU</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;background:#E8FFF0;color:#12A150;">JY</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Jasur Yusupov</div>
+              <div class="xs muted">Backend dev · Namangan</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12" style="padding:10px 0;border-bottom:1px solid var(--line);align-items:center;">
+            <div class="avatar" style="width:46px;height:46px;">MT</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;">Malika Tursunova</div>
+              <div class="xs muted">Marketing · Buxoro</div>
+            </div>
+            <button class="btn" style="height:34px;font-size:12px;padding:0 14px;" onclick="toast('Ulanish so'rovi yuborildi!')">Ulashish</button>
+          </div>
+          <div class="row gap12 mt8" style="padding:10px 0;justify-content:center;">
+            <button class="btn ghost" style="height:42px;font-size:14px;width:100%;" onclick="toast('Ko'proq a'zolar yuklanmoqda…')">Ko'proq ko'rish (313 ta)</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1895,6 +2052,10 @@
               <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🎓 Talaba</span></div>
               <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🧑‍🎓 Bitiruvchi kurs</span></div>
               <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>💼 1–2 yil tajriba</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>📈 O'rta daraja mutaxassis (3–7 yil)</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🏆 Yuqori daraja mutaxassis (7+ yil)</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🔄 Kasbni o'zgartirmoqchi</span></div>
+              <div class="opt-tile" onclick="obPick(this)"><div class="obx" style="border-radius:50%;">✓</div><span>🌱 Mehnat faoliyatini qayta boshlash</span></div>
             </div>
           </div>
           <!-- step 5: goal -->
@@ -1937,7 +2098,22 @@
         </div>
 
         <!-- success story videos -->
-        <div class="px mt24 row sb mb12"><div class="h-sec" style="font-size:16px;">Muvaffaqiyat tarixi 🎬</div></div>
+        <div class="px mt24 row sb mb12" style="align-items:center;">
+          <div class="h-sec" style="font-size:16px;">Muvaffaqiyat tarixi 🎬</div>
+          <button class="btn sec" style="height:30px;font-size:12px;padding:0 12px;" onclick="toast('Barcha muvaffaqiyat tarixi')">Hammasi ›</button>
+        </div>
+        <!-- Sort & filter for success stories -->
+        <div class="hscroll" style="padding-left:16px;padding-right:16px;gap:8px;">
+          <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+            <option>📅 Sanasi bo'yicha</option>
+            <option>⭐ Reyting bo'yicha</option>
+          </select>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Germaniya')" style="white-space:nowrap;">🇩🇪 Germaniya</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: UK')" style="white-space:nowrap;">🇬🇧 UK</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: AQSH')" style="white-space:nowrap;">🇺🇸 AQSH</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Sherzod')" style="white-space:nowrap;">👤 Sherzod</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Nodira')" style="white-space:nowrap;">👤 Nodira</div>
+        </div>
 
         <!-- featured hero card -->
         <div class="px mb16">
@@ -1984,7 +2160,20 @@
         </div>
 
         <!-- expert tutorials -->
-        <div class="px mt24 row sb mb12"><div class="h-sec" style="font-size:16px;">Mutaxassis darslari 🎥</div></div>
+        <div class="px mt24 row sb mb8" style="align-items:center;">
+          <div class="h-sec" style="font-size:16px;">Mutaxassis darslari 🎥</div>
+          <button class="btn sec" style="height:30px;font-size:12px;padding:0 12px;" onclick="toast('Barcha mutaxassis darslari')">Hammasi ›</button>
+        </div>
+        <!-- Sort & filter for expert lessons -->
+        <div class="hscroll" style="padding-left:16px;padding-right:16px;gap:8px;margin-bottom:8px;">
+          <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+            <option>📅 Sanasi bo'yicha</option>
+            <option>⭐ Reyting bo'yicha</option>
+          </select>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Motivatsiya xat')" style="white-space:nowrap;">✍️ Motivatsion xat</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Hujjatlar')" style="white-space:nowrap;">📑 Hujjatlar</div>
+          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Suhbat')" style="white-space:nowrap;">🎤 Suhbat</div>
+        </div>
         <div class="hscroll">
           <div class="vthumb shadow" onclick="toast('Dars: Motivatsion xat yozish')">
             <div class="vcover" style="background:linear-gradient(135deg,var(--green-d),var(--green));">✍️<div class="vplay">▶</div><div class="vdur">8:20</div></div>
@@ -1997,7 +2186,24 @@
         </div>
 
         <!-- grant cards -->
-        <div class="px mt24 h-sec mb12" style="font-size:16px;">Siz uchun grantlar</div>
+        <div class="px mt24 row sb mb8" style="align-items:center;">
+          <div class="h-sec" style="font-size:16px;">Siz uchun grantlar</div>
+          <button class="btn sec" style="height:30px;font-size:12px;padding:0 12px;" onclick="toast('Barcha grantlar')">Hammasi ›</button>
+        </div>
+        <!-- Sort & filter for grants -->
+        <div class="hscroll" style="padding-left:16px;padding-right:16px;gap:8px;margin-bottom:12px;">
+          <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+            <option>⏳ Muddati bo'yicha</option>
+            <option>📊 Moslik % bo'yicha</option>
+          </select>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🇩🇪 Germaniya</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🇬🇧 UK</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🇺🇸 AQSH</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🎓 Magistratura</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">📚 Bakalavr</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 1 yillik</div>
+          <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 2 yillik</div>
+        </div>
         <div class="px" style="display:flex;flex-direction:column;gap:14px;">
           <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('grant')">
             <div style="padding:14px 15px;">
@@ -2114,79 +2320,187 @@
         </div></div>
 
         <!-- INTERNSHIPS -->
-        <div id="jobs-intern" class="px mt16" style="display:flex;flex-direction:column;gap:14px;">
-          <!-- YPIP banner -->
-          <div class="card shadow" style="background:linear-gradient(135deg,var(--green-d),var(--green-m));color:#fff;padding:15px 17px;">
-            <div class="row gap12" style="align-items:center;">
-              <div style="font-size:28px;">🚀</div>
-              <div style="flex:1;"><div style="font-weight:800;font-size:15px;">YPIP amaliyot dasturi</div><div class="xs mt4" style="opacity:.9;">Kompaniyalar bilan rasmiy shartnoma asosida — kafolatlangan amaliyot o'rni</div></div>
-            </div>
+        <div id="jobs-intern" style="display:flex;flex-direction:column;gap:0;">
+          <!-- Sort & filter row -->
+          <div class="hscroll" style="padding:12px 16px 0;gap:8px;">
+            <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;white-space:nowrap;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+              <option>⏳ Muddati bo'yicha</option>
+              <option>🏢 Kompaniya (A-Z)</option>
+              <option>📅 Davomiyligi</option>
+              <option>⭐ Reyting</option>
+              <option>🎯 Moslik %</option>
+            </select>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">💰 To'lovli</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🎓 Haq to'lanmaydi</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">💻 IT</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">📊 Moliya</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 3 oy</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 6 oy</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🐍 Python</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⚛️ React</div>
           </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏢</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">EPAM Systems</span><span class="match">94%</span></div>
-                <div class="xs muted mt4">Frontend amaliyot · 6 oy · YPIP</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 36 sharh</span></div>
+          <div class="px mt16" style="display:flex;flex-direction:column;gap:14px;">
+            <!-- YPIP banner -->
+            <div class="card shadow" style="background:linear-gradient(135deg,var(--green-d),var(--green-m));color:#fff;padding:15px 17px;">
+              <div class="row gap12" style="align-items:center;">
+                <div style="font-size:28px;">🚀</div>
+                <div style="flex:1;"><div style="font-weight:800;font-size:15px;">YPIP amaliyot dasturi</div><div class="xs mt4" style="opacity:.9;">Kompaniyalar bilan rasmiy shartnoma asosida — kafolatlangan amaliyot o'rni</div></div>
               </div>
             </div>
-          </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏦</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">TBC Bank UZ</span><span class="match mid">70%</span></div>
-                <div class="xs muted mt4">Data Analyst amaliyot · 3 oy · YPIP</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.3 · 21 sharh</span></div>
+            <!-- EPAM — PAID -->
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏢</div>
+                  <div style="flex:1;">
+                    <div class="row sb" style="align-items:flex-start;">
+                      <div>
+                        <span style="font-weight:700;font-size:15px;">EPAM Systems</span>
+                        <span style="display:inline-block;margin-left:6px;background:#FFF4D4;color:#B87300;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;vertical-align:middle;">💰 TO'LOVLI</span>
+                      </div>
+                      <span class="match">94%</span>
+                    </div>
+                    <div class="xs muted mt4">Frontend amaliyot · 6 oy · YPIP</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 36 sharh</span></div>
+                  </div>
+                </div>
+                <!-- skill tags -->
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">React</span>
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">TypeScript</span>
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Git</span>
+                </div>
+              </div>
+            </div>
+            <!-- TBC Bank — unpaid -->
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🏦</div>
+                  <div style="flex:1;">
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">TBC Bank UZ</span><span class="match mid">70%</span></div>
+                    <div class="xs muted mt4">Data Analyst amaliyot · 3 oy · YPIP</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.3 · 21 sharh</span></div>
+                  </div>
+                </div>
+                <!-- skill tags -->
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">SQL</span>
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Python</span>
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Excel</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- JOBS -->
-        <div id="jobs-job" class="px mt16" style="display:none;flex-direction:column;gap:14px;">
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">💻</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">Junior Frontend Dev</span><span class="match">90%</span></div>
-                <div class="xs muted mt4">Uzum · To'liq stavka · Toshkent</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.7 · 52 sharh</span></div>
+        <div id="jobs-job" style="display:none;flex-direction:column;gap:0;">
+          <!-- Sort & filter row -->
+          <div class="hscroll" style="padding:12px 16px 0;gap:8px;">
+            <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;white-space:nowrap;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+              <option>🎯 Moslik %</option>
+              <option>💰 Maosh (yuqoridan)</option>
+              <option>📅 Yangi e'lonlar</option>
+              <option>⭐ Reyting</option>
+            </select>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">💰 5M+ UZS</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">💰 10M+ UZS</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🕐 To'liq stavka</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🌐 Masofaviy</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">💻 IT</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">📣 Marketing</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⚛️ React</div>
+          </div>
+          <div class="px mt16" style="display:flex;flex-direction:column;gap:14px;">
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:#EDF4FF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">💻</div>
+                  <div style="flex:1;">
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Junior Frontend Dev</span><span class="match">90%</span></div>
+                    <div class="xs mt4"><strong>Uzum</strong> <span class="muted">· To'liq stavka · Toshkent</span></div>
+                    <div class="xs" style="color:var(--green);font-weight:700;margin-top:3px;">5 000 000 UZS dan</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.7 · 52 sharh</span></div>
+                  </div>
+                </div>
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">React</span>
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">JavaScript</span>
+                  <span style="background:#EDF4FF;color:#2E7CF6;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">CSS</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:#FFF6DB;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📊</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">SMM Menejer</span><span class="match mid">65%</span></div>
-                <div class="xs muted mt4">Click · Qisman stavka · Masofaviy</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.1 · 18 sharh</span></div>
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:#FFF6DB;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📊</div>
+                  <div style="flex:1;">
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">SMM Menejer</span><span class="match mid">65%</span></div>
+                    <div class="xs mt4"><strong>Click</strong> <span class="muted">· Qisman stavka · Masofaviy</span></div>
+                    <div class="xs" style="color:var(--green);font-weight:700;margin-top:3px;">2 500 000 UZS dan</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★☆</span><span class="xs muted">4.1 · 18 sharh</span></div>
+                  </div>
+                </div>
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#FFF6DB;color:#B87300;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Instagram</span>
+                  <span style="background:#FFF6DB;color:#B87300;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Copywriting</span>
+                  <span style="background:#FFF6DB;color:#B87300;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Canva</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- SOCIAL PROJECTS -->
-        <div id="jobs-social" class="px mt16" style="display:none;flex-direction:column;gap:14px;">
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🌱</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">Eco Volontyorlik</span><span class="pill free">+40 🪙</span></div>
-                <div class="xs muted mt4">Green Uzbekistan · Daraxt ekish aksiyasi</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.9 · 64 sharh</span></div>
+        <div id="jobs-social" style="display:none;flex-direction:column;gap:0;">
+          <!-- Sort & filter row -->
+          <div class="hscroll" style="padding:12px 16px 0;gap:8px;">
+            <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;white-space:nowrap;" onchange="toast('Saralash: '+this.options[this.selectedIndex].text)">
+              <option>🪙 Tangalar (ko'pdan)</option>
+              <option>📅 Yangi loyihalar</option>
+              <option>⭐ Reyting</option>
+            </select>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🌿 Ekologiya</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">📚 Ta'lim</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🏥 Sog'liq</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 1 oy</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">⏱️ 3 oy</div>
+            <div class="chip" onclick="this.classList.toggle('on')" style="white-space:nowrap;">🤝 Jamoa ishi</div>
+          </div>
+          <div class="px mt16" style="display:flex;flex-direction:column;gap:14px;">
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🌱</div>
+                  <div style="flex:1;">
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Eco Volontyorlik</span><span class="pill free">+40 🪙</span></div>
+                    <div class="xs muted mt4">Green Uzbekistan · Daraxt ekish aksiyasi</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.9 · 64 sharh</span></div>
+                  </div>
+                </div>
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Ekologiya</span>
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Tashkilotchilik</span>
+                  <span style="background:#E6F8EE;color:#12A150;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Jamoaviy ish</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
-            <div class="row gap12" style="padding:14px;align-items:center;">
-              <div style="width:52px;height:52px;border-radius:14px;background:#FFF0E8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📚</div>
-              <div style="flex:1;">
-                <div class="row sb"><span style="font-weight:700;font-size:15px;">Bolalarga ta'lim</span><span class="pill free">+30 🪙</span></div>
-                <div class="xs muted mt4">Ziyo Forum · Mahalla o'quv markazi</div>
-                <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 29 sharh</span></div>
+            <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('job')">
+              <div style="padding:14px;">
+                <div class="row gap12" style="align-items:center;">
+                  <div style="width:52px;height:52px;border-radius:14px;background:#FFF0E8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📚</div>
+                  <div style="flex:1;">
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Bolalarga ta'lim</span><span class="pill free">+30 🪙</span></div>
+                    <div class="xs muted mt4">Ziyo Forum · Mahalla o'quv markazi</div>
+                    <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 29 sharh</span></div>
+                  </div>
+                </div>
+                <div class="row gap6 mt10" style="flex-wrap:wrap;">
+                  <span style="background:#FFF0E8;color:#D4520A;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">O'qitish</span>
+                  <span style="background:#FFF0E8;color:#D4520A;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Sabr-toqat</span>
+                  <span style="background:#FFF0E8;color:#D4520A;font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;">Muloqot</span>
+                </div>
               </div>
             </div>
           </div>
@@ -2488,9 +2802,10 @@
 
         <!-- Language -->
         <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;" id="set-lang-lbl">🌐 Til</div>
-        <div class="seg" id="lang-seg">
-          <div id="lang-uz" class="on" onclick="setLang('uz')" style="cursor:pointer;">🇺🇿 O'zbek</div>
-          <div id="lang-en" onclick="setLang('en')" style="cursor:pointer;">🇬🇧 English</div>
+        <div class="seg" id="lang-seg" style="display:flex;gap:6px;">
+          <div id="lang-uz" class="on" onclick="setLang('uz')" style="cursor:pointer;flex:1;text-align:center;font-size:13px;">🇺🇿 O'zbek</div>
+          <div id="lang-en" onclick="setLang('en')" style="cursor:pointer;flex:1;text-align:center;font-size:13px;">🇬🇧 English</div>
+          <div id="lang-ru" onclick="setLang('ru')" style="cursor:pointer;flex:1;text-align:center;font-size:13px;">🇷🇺 Русский</div>
         </div>
 
         <div class="divider" style="margin-top:20px;"></div>
@@ -2548,12 +2863,26 @@ let histStack = ['home'];
 function setStatus(light){ document.getElementById('statusbar').className = 'status' + (light?' light':''); }
 function setTabbar(show){ document.getElementById('tabbar').style.display = show?'flex':'none'; }
 
+const _scrollPos = {};
 function go(id, push=true){
+  // Save scroll position of current active view before switching
+  const curActive = document.querySelector('.view.active');
+  if(curActive){
+    const curScroll = curActive.querySelector('.scroll');
+    if(curScroll) _scrollPos[curActive.id] = curScroll.scrollTop;
+  }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   const v = document.getElementById('v-'+id);
   if(!v){ console.warn('missing view',id); return; }
   v.classList.add('active');
-  v.querySelectorAll('.scroll').forEach(s=>s.scrollTop=0);
+  // Restore scroll position when going back (push=false), otherwise reset to top
+  v.querySelectorAll('.scroll').forEach(s=>{
+    if(!push && _scrollPos['v-'+id] !== undefined){
+      setTimeout(()=>{ s.scrollTop = _scrollPos['v-'+id]; }, 0);
+    } else {
+      s.scrollTop=0;
+    }
+  });
 
   // tab highlight
   const tabName = v.dataset.tab;
@@ -2586,6 +2915,21 @@ function toast(msg){
 function openSheet(id){ document.getElementById(id).classList.add('open'); }
 function closeSheet(id){ document.getElementById(id).classList.remove('open'); }
 function segPick(el){ [...el.parentNode.children].forEach(c=>c.classList.remove('on')); el.classList.add('on'); }
+function filterEvents(q){
+  const grid = document.getElementById('eventsGrid');
+  const empty = document.getElementById('eventsEmpty');
+  if(!grid) return;
+  const cards = grid.querySelectorAll('.event-card');
+  const term = q.trim().toLowerCase();
+  let visible = 0;
+  cards.forEach(c=>{
+    const title = (c.dataset.title||'').toLowerCase();
+    const show = !term || title.includes(term);
+    c.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  if(empty) empty.style.display = visible===0 ? 'block' : 'none';
+}
 function likeByte(el){ const h=el.querySelector('div'); const on=h.textContent==='❤️'; h.textContent=on?'🤍':'❤️'; }
 function toggleAudio(el){ const p=el.textContent.trim()==='▶'; el.textContent=p?'⏸':'▶'; toast(p?'Ijro etilmoqda':'Pauza'); }
 function segHist(el,which){ segPick(el); document.getElementById('hist-past').style.display = which==='past'?'flex':'none'; document.getElementById('hist-upcoming').style.display = which==='upcoming'?'flex':'none'; }
@@ -4166,6 +4510,76 @@ function applyEnglish(){
   /* 3. Mark language seg */
   document.getElementById('lang-uz')?.classList.remove('on');
   document.getElementById('lang-en')?.classList.add('on');
+  document.getElementById('lang-ru')?.classList.remove('on');
+}
+
+/* ---- Russian dictionary ---- */
+const RU_DICT = {
+  "Bosh sahifa": "Главная", "Tadbirlar": "Мероприятия", "Chat": "Чат", "Profil": "Профиль",
+  "Xabar yuborish…": "Написать сообщение…", "Qidirish…": "Поиск…",
+  "Kurslar va treninglar": "Курсы и тренинги", "Podkastlar": "Подкасты",
+  "Grantlar & stipendiyalar": "Гранты и стипендии", "Ishlar & amaliyot": "Работа и стажировка",
+  "Leaderboard": "Рейтинг", "Bildirishnomalar": "Уведомления",
+  "Keyingi": "Далее", "Yopish": "Закрыть", "Orqaga": "Назад",
+  "Hamma": "Все", "Barchasi": "Все", "Bepul": "Бесплатно",
+  "Amaliyot": "Стажировка", "Loyihalar": "Проекты",
+  "Ko'proq": "Больше", "Ko'rish": "Посмотреть",
+  "Sozlamalar": "Настройки", "🌐 Til": "🌐 Язык",
+  "Bildirishnomalar": "Уведомления", "Hisob ma'lumotlari": "Аккаунт",
+  "Ziyo App · v1.0 prototype": "Ziyo App · v1.0 прототип",
+  "Kursga yozilish": "Записаться на курс", "Tasdiqlash": "Подтвердить",
+  "Guruhga qo'shilish": "Вступить в группу", "Ulashish": "Поделиться",
+  "Saqlab qo'yish": "Сохранить", "Ariza berish": "Подать заявку",
+  "Barcha qismlar": "Все эпизоды", "Muvaffaqiyat tarixi": "Истории успеха",
+  "Mutaxassis darslari": "Уроки эксперта", "Siz uchun grantlar": "Гранты для вас",
+  "Tadbir guruhlari": "Группы мероприятий", "Shaxsiy": "Личные",
+  "Tez orada...": "Скоро...", "Izoh": "Комментарий",
+  "Profilni to'ldirish": "Заполнить профиль",
+  "Qaysi sohalar sizni qiziqtiradi?": "Какие области вас интересуют?",
+  "Bir nechtasini tanlang": "Выберите несколько",
+  "Qanday ko'nikmalaringiz bor?": "Какие навыки у вас есть?",
+  "Ingliz tili darajangiz?": "Ваш уровень английского?",
+  "Hozirgi bosqichingiz?": "Ваш текущий этап?",
+  "Asosiy maqsadingiz nima?": "Какова ваша главная цель?",
+  "Maktab o'quvchisi": "Школьник", "Talaba": "Студент",
+  "Bitiruvchi kurs": "Выпускной курс", "1–2 yil tajriba": "1–2 года опыта",
+  "Chet elda o'qish": "Учёба за рубежом",
+  "Grant / stipendiya yutish": "Выиграть грант / стипендию",
+  "Amaliyot / ish topish": "Найти стажировку / работу",
+  "Ko'nikma oshirish": "Повысить навыки",
+};
+
+function applyRussian(){
+  /* Walk text nodes */
+  function walkNode(node){
+    if(node.nodeType===3){
+      let t=node.textContent;
+      const ruVals=[];
+      for(const [uz,ru] of Object.entries(RU_DICT).sort((a,b)=>b[0].length-a[0].length)){
+        if(t.includes(uz)){
+          const ph='\x00'+(ruVals.length)+'\x00';
+          ruVals.push(ru);
+          t=t.split(uz).join(ph);
+        }
+      }
+      ruVals.forEach((ru,i)=>{ t=t.split('\x00'+i+'\x00').join(ru); });
+      node.textContent=t;
+    } else if(node.nodeType===1 && node.tagName!=='SCRIPT' && node.tagName!=='STYLE'){
+      for(const c of [...node.childNodes]) walkNode(c);
+    }
+  }
+  walkNode(document.getElementById('screen'));
+
+  /* Translate placeholders */
+  document.getElementById('screen').querySelectorAll('[placeholder]').forEach(function(el){
+    var ph=el.getAttribute('placeholder');
+    if(RU_DICT[ph]) el.setAttribute('placeholder',RU_DICT[ph]);
+  });
+
+  /* Mark language seg */
+  document.getElementById('lang-uz')?.classList.remove('on');
+  document.getElementById('lang-en')?.classList.remove('on');
+  document.getElementById('lang-ru')?.classList.add('on');
 }
 
 function setLang(lang){
@@ -4178,13 +4592,15 @@ function setLang(lang){
 (function(){
   const _origToast = toast;
   window.toast = function(msg){
-    const m = (_lang==='en' && EN_DICT[msg]) ? EN_DICT[msg] : msg;
+    const m = (_lang==='en' && EN_DICT[msg]) ? EN_DICT[msg] : (_lang==='ru' && RU_DICT[msg]) ? RU_DICT[msg] : msg;
     _origToast(m);
+  };
   };
 })();
 
 /* On load: apply language */
 if(_lang==='en') applyEnglish();
+else if(_lang==='ru') applyRussian();
 /* Referral static text + state on load (profile card is always in DOM) */
 if(typeof renderReferral==='function') renderReferral();
 
@@ -4196,6 +4612,7 @@ if(typeof renderReferral==='function') renderReferral();
     if(id==='sheet-settings'){
       document.getElementById('lang-uz')?.classList.toggle('on', _lang==='uz');
       document.getElementById('lang-en')?.classList.toggle('on', _lang==='en');
+      document.getElementById('lang-ru')?.classList.toggle('on', _lang==='ru');
     }
   };
 })();
