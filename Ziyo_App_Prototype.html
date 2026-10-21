@@ -1144,13 +1144,12 @@
     <div class="view" id="v-bytes" data-tab="bytes" data-light="1">
       <!-- Back button overlay -->
       <div style="position:absolute;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;padding:52px 16px 12px;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 100%);pointer-events:none;">
-        <div onclick="back()" style="pointer-events:auto;cursor:pointer;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;backdrop-filter:blur(4px);">‹</div>
-        <div style="flex:1;text-align:center;color:#fff;font-weight:800;font-size:16px;margin-right:40px;">Quick Bytes ⚡</div>
+        <div onclick="back()" style="pointer-events:auto;cursor:pointer;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;">‹</div>
+        <div style="flex:1;text-align:center;color:#fff;font-weight:800;font-size:16px;margin-right:40px;text-shadow:0 1px 3px rgba(0,0,0,.4);">Quick Bytes ⚡</div>
       </div>
       <div class="scroll" id="bytesScroll" style="padding-top:0;padding-bottom:var(--tab-h);scroll-snap-type:y mandatory;">
         <!-- byte 1 -->
         <div class="byte" style="scroll-snap-align:start;height:calc(844px - 24px - var(--tab-h));position:relative;background:linear-gradient(160deg,var(--blue),var(--green));display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;">
-          <div style="position:absolute;top:64px;left:0;right:0;text-align:center;font-weight:800;font-size:16px;">Quick Bytes ⚡</div>
           <div style="position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:28px;">▶</div>
           <!-- right actions -->
           <div style="position:absolute;right:14px;bottom:120px;display:flex;flex-direction:column;gap:20px;text-align:center;">
