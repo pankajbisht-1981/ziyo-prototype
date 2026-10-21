@@ -187,6 +187,51 @@
   [data-theme="mono"] [style*="color:#2E3A8C"],
   [data-theme="mono"] [style*="color:#2E7CF6"]
   {color:var(--ink) !important;}
+
+  /* ── Purple theme ── */
+  [data-theme="purple"]{
+    --green:    #6D28D9;
+    --green-d:  #5B21B6;
+    --green-m:  #7C3AED;
+    --green-dk: #3A105C;
+    --green-l:  #F5F3FF;
+    --green-ll: #FAF8FF;
+    --ink:      #1F2937;
+    --ink2:     #374151;
+    --muted:    #6B7280;
+    --line:     #E5E7EB;
+    --bg:       #FFFFFF;
+    --card:     #FFFFFF;
+  }
+  [data-theme="purple"]{--glow-c:rgba(109,40,217,.3);--fab-glow:rgba(109,40,217,.2);}
+  [data-theme="purple"] #profile-pct-circle,
+  [data-theme="purple"] .match-ring svg circle:last-child{stroke:var(--green);}
+  [data-theme="purple"] .profile-pic{
+    background:linear-gradient(135deg,#3A105C,var(--green));
+  }
+  [data-theme="purple"] .mascot img{
+    filter:hue-rotate(240deg) saturate(.8) brightness(.95);
+  }
+  [data-theme="purple"] .screen{color:var(--ink);}
+  [data-theme="purple"] [style*="background:#EBF3FB"],
+  [data-theme="purple"] [style*="background:#E8F0FF"],
+  [data-theme="purple"] [style*="background:#EEF2FF"],
+  [data-theme="purple"] [style*="background:#E8EDFF"],
+  [data-theme="purple"] [style*="background:rgba(94,120,246,.1)"],
+  [data-theme="purple"] [style*="background:linear-gradient(135deg,#EEF2FF"],
+  [data-theme="purple"] [style*="background:rgba(94,120,246,.12)"]
+  {
+    background:var(--green-l) !important;
+    color:var(--green) !important;
+    border-color:var(--green) !important;
+  }
+  [data-theme="purple"] [style*="color:#2E3A8C"],
+  [data-theme="purple"] [style*="color:#2E7CF6"]
+  {color:var(--green) !important;}
+  [data-theme="purple"] .scan-line{
+    box-shadow:0 0 10px 2px rgba(109,40,217,.4);
+  }
+
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   body{
     font-family:'Inter',-apple-system,sans-serif;
@@ -2811,9 +2856,10 @@
 
         <!-- Appearance / Theme -->
         <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;" id="set-theme-lbl">🎨 Appearance</div>
-        <div class="seg" id="theme-seg">
+        <div class="seg" id="theme-seg" style="flex-wrap:wrap;gap:6px;">
           <div id="theme-green" class="on" onclick="setAppTheme('green')" style="cursor:pointer;">🌿 Ziyo Green</div>
           <div id="theme-mono" onclick="setAppTheme('mono')" style="cursor:pointer;">◼ Professional</div>
+          <div id="theme-purple" onclick="setAppTheme('purple')" style="cursor:pointer;">💜 Purple</div>
         </div>
 
         <div class="divider" style="margin-top:20px;"></div>
@@ -2996,7 +3042,12 @@ function lbPeriod(el,period){
   const rows=DATA[period||'month'];
   // translate delta strings when in English
   const _isEn=(typeof _lang!=='undefined'&&_lang==='en')||localStorage.getItem('ziyoLang')==='en';
-  const _d=(s)=>{if(!_isEn)return s;return s.replace(/▲ (\d+) o'rin/,(_,n)=>`▲ ${n} ${n==='1'?'place':'places'}`).replace(/▼ (\d+) o'rin/,(_,n)=>`▼ ${n} ${n==='1'?'place':'places'}`).replace("— o'zgarishsiz","— no change");};
+  const _isRu=(typeof _lang!=='undefined'&&_lang==='ru')||localStorage.getItem('ziyoLang')==='ru';
+  const _d=(s)=>{
+    if(_isEn) return s.replace(/▲ (\d+) o'rin/,(_,n)=>`▲ ${n} ${n==='1'?'place':'places'}`).replace(/▼ (\d+) o'rin/,(_,n)=>`▼ ${n} ${n==='1'?'place':'places'}`).replace("— o'zgarishsiz","— no change");
+    if(_isRu) return s.replace(/▲ (\d+) o'rin/,(_,n)=>`▲ ${n} ${+n===1?'место':+n<5?'места':'мест'}`).replace(/▼ (\d+) o'rin/,(_,n)=>`▼ ${n} ${+n===1?'место':+n<5?'места':'мест'}`).replace("— o'zgarishsiz","— без изменений");
+    return s;
+  };
   rows.forEach(r=>{r.delta=_d(r.delta);});
   const panel=document.getElementById('lb-coins-panel');
   const card=panel.querySelector('.card');
@@ -3004,7 +3055,7 @@ function lbPeriod(el,period){
   let html='';
   rows.forEach(r=>{
     const youCls=r.you?' you':'';
-    const youBadge=r.you?' <span class="xs" style="color:var(--green-d);">· Siz</span>':'';
+    const youBadge=r.you?' <span class="xs" style="color:var(--green-d);">· '+(_isRu?'Вы':_isEn?'You':'Siz')+'</span>':'';
     const coinColor=r.green?' style="font-weight:800;color:var(--green-d);"':' style="font-weight:800;"';
     const rankBg=r.you?' style="background:var(--green);color:#fff;"':'';
     html+=`<div class="lb-row${youCls}"><div class="lb-rank"${rankBg}>${r.rank}</div><div class="avatar xs">${r.init}</div><div style="flex:1;"><div style="font-weight:700;">${r.name}${youBadge}</div><div class="xs ${r.cls}">${r.delta}</div></div><div${coinColor}>${r.coins}</div></div>`;
@@ -3040,11 +3091,11 @@ function fmtCoin(n){ return n.toLocaleString('en-US'); }
 function renderCoins(){ document.querySelectorAll('[data-coin]').forEach(e=>e.textContent=fmtCoin(coins)); }
 function earnCoins(n,label){ coins+=n; renderCoins(); toast('🪙 +'+n+' ZiyoCoin'+(label?' · '+label:'')); }
 function buyItem(name,price){
-  if(coins<price){ toast('🪙 ZiyoCoin yetarli emas'); return; }
+  const _bLang=(typeof _lang!=='undefined'&&_lang)||localStorage.getItem('ziyoLang')||'uz';
+  if(coins<price){ toast(_bLang==='ru'?'🪙 Недостаточно ZiyoCoin':_bLang==='en'?'🪙 Not enough ZiyoCoin':'🪙 ZiyoCoin yetarli emas'); return; }
   coins-=price; renderCoins();
-  const _bEn=(_lang==='en')||localStorage.getItem('ziyoLang')==='en';
-  const _bName=_bEn?(EN_DICT[name]||name):name;
-  toast('✅ '+_bName+(_bEn?' — purchased!':' — sotib olindi!'));
+  const _bName=_bLang==='en'?(EN_DICT[name]||name):_bLang==='ru'?(RU_DICT[name]||name):name;
+  toast('✅ '+_bName+(_bLang==='en'?' — purchased!':_bLang==='ru'?' — куплено!':' — sotib olindi!'));
 }
 function simulateScan(){
   toast('Skanerlanmoqda…');
@@ -3089,9 +3140,24 @@ const REF_TXT={
     s_active:"Active · +100 🪙 earned", s_joined:"Joined · +50 🪙", s_invited:"Invite sent · pending",
     copied:"Code copied: ", linkcopied:"Link copied 🔗", tg:"Shared via Telegram ✈️",
     joined_toast:"joined!", active_toast:"is now active!", allactive:"All friends are already active 🎉"
+  },
+  ru:{
+    nav:"Пригласить друга", title:"Пригласить друга", sub:"<b>+100 🪙</b> за каждого активного друга",
+    'hero-t':"Пригласите друга — выигрывайте вместе", 'hero-s':"Когда ваш друг присоединится и зарегистрируется — оба получите ZiyoCoin.",
+    'code-lbl':"Ваш реферальный код", copy:"Копировать",
+    'st-invited':"Приглашён", 'st-joined':"Вступил", 'st-earned':"Заработано",
+    how:"Как это работает",
+    's1-t':"1. Отправьте приглашение", 's1-s':"Поделитесь кодом или ссылкой с другом",
+    's2-t':"2. Друг присоединяется", 's2-s':"Устанавливает приложение и регистрируется — <b>+50 🪙</b>",
+    's3-t':"3. Становится активным", 's3-s':"Завершает онбординг и выполняет первое действие — <b>+100 🪙</b>",
+    friends:"Приглашённые друзья", 'demo-hint':"Демо: попробуйте добавить друга", 'demo-btn':"👤 Друг присоединился (демо)",
+    'share-link':"🔗 Ссылка",
+    s_active:"Активен · +100 🪙 получено", s_joined:"Вступил · +50 🪙", s_invited:"Приглашение отправлено · ожидание",
+    copied:"Код скопирован: ", linkcopied:"Ссылка скопирована 🔗", tg:"Отправлено через Telegram ✈️",
+    joined_toast:"присоединился!", active_toast:"теперь активен!", allactive:"Все друзья уже активны 🎉"
   }
 };
-function refLang(){ return ((typeof _lang!=='undefined'&&_lang==='en')||localStorage.getItem('ziyoLang')==='en')?'en':'uz'; }
+function refLang(){ const l=(typeof _lang!=='undefined'&&_lang)||localStorage.getItem('ziyoLang')||'uz'; return l==='en'?'en':l==='ru'?'ru':'uz'; }
 function renderReferral(){
   const L=REF_TXT[refLang()];
   document.querySelectorAll('[data-ref-i18n]').forEach(el=>{ const k=el.dataset.refI18n; if(L[k]!=null) el.innerHTML=L[k]; });
@@ -3181,7 +3247,8 @@ function obShow(){
   document.getElementById('ob-count').textContent = obStep+'/'+OB_TOTAL;
   document.getElementById('ob-back').style.display = obStep>1?'flex':'none';
   const _isEn2=(_lang==='en')||localStorage.getItem('ziyoLang')==='en';
-  document.getElementById('ob-next').textContent = obStep===OB_TOTAL?(_isEn2?'Finish ✨':'Yakunlash ✨'):(_isEn2?'Next':'Keyingi');
+  const _isRu2=(_lang==='ru')||localStorage.getItem('ziyoLang')==='ru';
+  document.getElementById('ob-next').textContent = obStep===OB_TOTAL?(_isEn2?'Finish ✨':_isRu2?'Завершить ✨':'Yakunlash ✨'):(_isEn2?'Next':_isRu2?'Далее':'Keyingi');
   document.querySelector('#v-onboarding .scroll').scrollTop=0;
 }
 function obNext(){
@@ -3236,7 +3303,7 @@ function getSelectedInterests(){
 /* === MOCK TESTS === */
 const MOCK_TESTS = {
   'python-basics':{
-    title:'Python Basics', titleUz:'Python asoslari',
+    title:'Python Basics', titleUz:'Python asoslari', titleRu:'Основы Python',
     interest:'it', icon:'🐍', maxReward:90,
     desc:'5 questions · Python fundamentals',
     questions:[
@@ -3248,7 +3315,7 @@ const MOCK_TESTS = {
     ]
   },
   'ui-design':{
-    title:'UI Design Principles', titleUz:'UI Dizayn asoslari',
+    title:'UI Design Principles', titleUz:'UI Dizayn asoslari', titleRu:'Основы UI-дизайна',
     interest:'design', icon:'🎨', maxReward:90,
     desc:'5 questions · Design fundamentals',
     questions:[
@@ -3260,7 +3327,7 @@ const MOCK_TESTS = {
     ]
   },
   'marketing':{
-    title:'Marketing Fundamentals', titleUz:'Marketing asoslari',
+    title:'Marketing Fundamentals', titleUz:'Marketing asoslari', titleRu:'Основы маркетинга',
     interest:'biz', icon:'📈', maxReward:90,
     desc:'5 questions · Strategy & metrics',
     questions:[
@@ -3272,7 +3339,7 @@ const MOCK_TESTS = {
     ]
   },
   'english-gram':{
-    title:'English Grammar B1', titleUz:'Ingliz tili grammatikasi',
+    title:'English Grammar B1', titleUz:'Ingliz tili grammatikasi', titleRu:'Грамматика английского',
     interest:'lang', icon:'🗣️', maxReward:90,
     desc:'5 questions · Grammar & usage',
     questions:[
@@ -3284,7 +3351,7 @@ const MOCK_TESTS = {
     ]
   },
   'math-eng':{
-    title:'Engineering Math', titleUz:'Muhandislik matematikasi',
+    title:'Engineering Math', titleUz:'Muhandislik matematikasi', titleRu:'Инженерная математика',
     interest:'eng', icon:'⚙️', maxReward:90,
     desc:'5 questions · Algebra & logic',
     questions:[
@@ -3296,7 +3363,7 @@ const MOCK_TESTS = {
     ]
   },
   'sci-method':{
-    title:'Scientific Method', titleUz:'Ilmiy usul asoslari',
+    title:'Scientific Method', titleUz:'Ilmiy usul asoslari', titleRu:'Научный метод',
     interest:'sci', icon:'🔬', maxReward:90,
     desc:'5 questions · Research fundamentals',
     questions:[
@@ -3314,7 +3381,10 @@ let mockAttempts = {};
 function startMockTest(testId){
   const used = mockAttempts[testId]||0;
   if(used >= MAX_ATTEMPTS){
-    toast('🔒 Limit tugadi. Ertaga qayta urinib ko\'ring!');
+    const _stLang=(typeof _lang!=='undefined'&&_lang)||localStorage.getItem('ziyoLang')||'uz';
+    if(_stLang==='ru') toast('🔒 Лимит исчерпан. Попробуйте завтра!');
+    else if(_stLang==='en') toast('🔒 Daily limit reached. Try again tomorrow!');
+    else toast('🔒 Limit tugadi. Ertaga qayta urinib ko\'ring!');
     return;
   }
   go('skilltest');
@@ -3327,6 +3397,7 @@ function showMockTests(){
   if(!grid) return;
   const sub = document.getElementById('mocktests-subtitle');
   const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+  const isLangRu = document.getElementById('lang-ru')?.classList.contains('on');
 
   const relevant = Object.entries(MOCK_TESTS).filter(([id, t])=>
     userInterests.size===0 || userInterests.has(t.interest)
@@ -3337,8 +3408,8 @@ function showMockTests(){
 
   const allTests = [...relevant, ...others];
   if(sub) sub.textContent = userInterests.size>0
-    ? (isLangEn ? 'Matched to your interests' : 'Qiziqishlaringizga mos testlar')
-    : (isLangEn ? 'All available tests' : 'Barcha testlar');
+    ? (isLangEn ? 'Matched to your interests' : isLangRu ? 'Подобрано по вашим интересам' : 'Qiziqishlaringizga mos testlar')
+    : (isLangEn ? 'All available tests' : isLangRu ? 'Все доступные тесты' : 'Barcha testlar');
 
   grid.innerHTML = '';
   let shownRelevant = false;
@@ -3347,7 +3418,7 @@ function showMockTests(){
     if(idx===relevant.length && others.length>0 && relevant.length>0){
       const sep=document.createElement('div');
       sep.style='margin-top:8px;padding-top:16px;border-top:1px solid var(--line);';
-      sep.innerHTML='<div class="xs muted" style="font-weight:700;letter-spacing:.5px;">'+(isLangEn?'OTHER TOPICS':'BOSHQA MAVZULAR')+'</div>';
+      sep.innerHTML='<div class="xs muted" style="font-weight:700;letter-spacing:.5px;">'+(isLangEn?'OTHER TOPICS':isLangRu?'ДРУГИЕ ТЕМЫ':'BOSHQA MAVZULAR')+'</div>';
       grid.appendChild(sep);
     }
     const used = mockAttempts[id]||0;
@@ -3365,7 +3436,7 @@ function showMockTests(){
     card.innerHTML=`
       <div style="width:48px;height:48px;border-radius:14px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${t.icon}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-weight:700;font-size:14px;">${isLangEn ? t.title : t.titleUz}</div>
+        <div style="font-weight:700;font-size:14px;">${isLangEn ? t.title : isLangRu ? t.titleRu : t.titleUz}</div>
         <div class="xs muted mt4">${t.desc}</div>
         <div class="xs mt6" style="font-weight:700;color:${attColor};">${attLabel} · 🪙 up to +${t.maxReward}</div>
       </div>
@@ -3469,10 +3540,11 @@ function renderSkillSuggestions(){
   const summaryTxt = document.getElementById('gap-summary-txt');
   if(!grid) return;
   const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+  const isLangRu = document.getElementById('lang-ru')?.classList.contains('on');
 
   if(userSkills.length===0 && !cvUploaded){
     grid.innerHTML='';
-    if(summaryTxt) summaryTxt.textContent = isLangEn ? 'Add skills or upload your CV to get personalised suggestions' : 'Ko\'nikma qo\'shing yoki CV yuklang — AI tavsiya beradi';
+    if(summaryTxt) summaryTxt.textContent = isLangEn ? 'Add skills or upload your CV to get personalised suggestions' : isLangRu ? 'Добавьте навыки или загрузите CV — AI даст советы' : 'Ko\'nikma qo\'shing yoki CV yuklang — AI tavsiya beradi';
     return;
   }
 
@@ -3497,14 +3569,16 @@ function renderSkillSuggestions(){
 
   if(summaryTxt) summaryTxt.textContent = isLangEn
     ? `${items.length} suggestion${items.length===1?'':'s'} based on your skills`
+    : isLangRu
+    ? `${items.length} ${items.length===1?'рекомендация':items.length<5?'рекомендации':'рекомендаций'} на основе ваших навыков`
     : `${items.length} ta tavsiya · ko\'nikmalaringizga asoslangan`;
 
   const typeLabel = {test:'TEST', course:'KURS', event:'TADBIR', test_en:'TEST', course_en:'COURSE', event_en:'EVENT'};
   const typeBg    = {test:'#5B7CF6', course:'var(--green)', event:'#F7B500'};
 
   grid.innerHTML = items.map(item=>{
-    const label = isLangEn ? (item.type==='test'?'TEST':item.type==='course'?'COURSE':'EVENT') : (item.type==='test'?'TEST':item.type==='course'?'KURS':'TADBIR');
-    const titleTxt = isLangEn ? item.title : item.titleUz;
+    const label = isLangEn ? (item.type==='test'?'TEST':item.type==='course'?'COURSE':'EVENT') : isLangRu ? (item.type==='test'?'ТЕСТ':item.type==='course'?'КУРС':'МЕРОП.') : (item.type==='test'?'TEST':item.type==='course'?'KURS':'TADBIR');
+    const titleTxt = isLangEn ? item.title : isLangRu ? (item.titleRu||item.title) : item.titleUz;
     const skillChip = item.skill ? `<span style="font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(94,120,246,.12);color:#2E3A8C;font-weight:600;">${item.skill}</span>` : '';
     return `<div class="card shadow" style="padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;" onclick="${item.action}(${item.arg ? "'"+item.arg+"'" : ''})">
       <div style="width:48px;height:48px;border-radius:14px;background:rgba(94,120,246,.12);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${item.icon}</div>
@@ -3524,12 +3598,13 @@ function updateSkillsSummary(){
   const txt = document.getElementById('skills-summary-txt');
   if(!txt) return;
   const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
+  const isLangRu = document.getElementById('lang-ru')?.classList.contains('on');
   if(userSkills.length===0 && !cvUploaded){
-    txt.textContent = isLangEn ? 'Add skills · Attach CV' : 'Ko\'nikma qo\'shing · CV biriktiring';
+    txt.textContent = isLangEn ? 'Add skills · Attach CV' : isLangRu ? 'Добавьте навыки · Прикрепите CV' : 'Ko\'nikma qo\'shing · CV biriktiring';
   } else {
     const parts = [];
-    if(userSkills.length>0) parts.push(isLangEn ? `${userSkills.length} skill${userSkills.length===1?'':'s'}` : `${userSkills.length} ta ko\'nikma`);
-    if(cvUploaded) parts.push(isLangEn ? 'CV uploaded' : 'CV yuklangan');
+    if(userSkills.length>0) parts.push(isLangEn ? `${userSkills.length} skill${userSkills.length===1?'':'s'}` : isLangRu ? `${userSkills.length} навык${userSkills.length===1?'':userSkills.length<5?'а':'ов'}` : `${userSkills.length} ta ko\'nikma`);
+    if(cvUploaded) parts.push(isLangEn ? 'CV uploaded' : isLangRu ? 'CV загружен' : 'CV yuklangan');
     txt.textContent = parts.join(' · ');
   }
 }
@@ -3540,17 +3615,20 @@ function uploadCV(){
   const statusTxt = document.getElementById('cv-status-txt');
   const btn = document.getElementById('cv-btn');
   const uploadedRow = document.getElementById('cv-uploaded-row');
-  if(statusTxt) statusTxt.textContent = document.getElementById('lang-en')?.classList.contains('on') ? 'CV uploaded successfully' : 'CV muvaffaqiyatli yuklandi';
-  if(btn){ btn.textContent=document.getElementById('lang-en')?.classList.contains('on')?'Replace':'Almashtirish'; }
+  const _cvEn=document.getElementById('lang-en')?.classList.contains('on');
+  const _cvRu=document.getElementById('lang-ru')?.classList.contains('on');
+  if(statusTxt) statusTxt.textContent = _cvEn ? 'CV uploaded successfully' : _cvRu ? 'CV успешно загружен' : 'CV muvaffaqiyatli yuklandi';
+  if(btn){ btn.textContent=_cvEn?'Replace':_cvRu?'Заменить':'Almashtirish'; }
   if(uploadedRow) uploadedRow.style.display='flex';
   if(banner) banner.style.borderStyle='solid';
   updateSkillsSummary();
   renderSkillSuggestions();
-  toast('📎 CV yuklandi! AI tahlil qilmoqda…');
+  toast(_cvRu?'📎 CV загружен! AI анализирует…':_cvEn?'📎 CV uploaded! AI analysing…':'📎 CV yuklandi! AI tahlil qilmoqda…');
   setTimeout(()=>{
     const gap = document.getElementById('gap-summary-txt');
-    const isLangEn = document.getElementById('lang-en')?.classList.contains('on');
-    if(gap) gap.textContent = isLangEn ? 'CV analysed — skill gaps identified' : 'CV tahlil qilindi — kamchiliklarni aniqlandi';
+    const isLangEn2 = document.getElementById('lang-en')?.classList.contains('on');
+    const isLangRu2 = document.getElementById('lang-ru')?.classList.contains('on');
+    if(gap) gap.textContent = isLangEn2 ? 'CV analysed — skill gaps identified' : isLangRu2 ? 'CV проанализирован — выявлены пробелы' : 'CV tahlil qilindi — kamchiliklarni aniqlandi';
   }, 1500);
 }
 
@@ -3560,8 +3638,10 @@ function removeCV(){
   const btn = document.getElementById('cv-btn');
   const uploadedRow = document.getElementById('cv-uploaded-row');
   const banner = document.getElementById('cv-banner');
-  if(statusTxt) statusTxt.textContent = document.getElementById('lang-en')?.classList.contains('on') ? 'No CV uploaded' : 'CV yuklanmagan';
-  if(btn){ btn.textContent=document.getElementById('lang-en')?.classList.contains('on')?'Upload':'Yuklash'; }
+  const _cvEn=document.getElementById('lang-en')?.classList.contains('on');
+  const _cvRu=document.getElementById('lang-ru')?.classList.contains('on');
+  if(statusTxt) statusTxt.textContent = _cvEn ? 'No CV uploaded' : _cvRu ? 'CV не загружен' : 'CV yuklanmagan';
+  if(btn){ btn.textContent=_cvEn?'Upload':_cvRu?'Загрузить':'Yuklash'; }
   if(uploadedRow) uploadedRow.style.display='none';
   if(banner) banner.style.borderStyle='dashed';
   updateSkillsSummary();
@@ -3591,7 +3671,10 @@ function quizStart(testId){
   currentQuizQuestions = testId ? MOCK_TESTS[testId].questions : QUIZ;
   qIdx=0; qAttempts=2; qEarned=0;
   const lbl = document.getElementById('q-test-label');
-  if(lbl) lbl.textContent = testId ? (MOCK_TESTS[testId].title) : 'JavaScript testi';
+  const _qLang=(typeof _lang!=='undefined'&&_lang)||localStorage.getItem('ziyoLang')||'uz';
+  if(lbl) lbl.textContent = testId
+    ? (_qLang==='ru'?MOCK_TESTS[testId].titleRu:_qLang==='en'?MOCK_TESTS[testId].title:MOCK_TESTS[testId].titleUz)
+    : (_qLang==='ru'?'Тест по JavaScript':_qLang==='en'?'JavaScript Test':'JavaScript testi');
   quizRender();
 }
 function quizRender(){
@@ -3603,7 +3686,7 @@ function quizRender(){
   document.getElementById('q-text').innerHTML=item.q;
   document.getElementById('q-reward').innerHTML='Bu savol: +'+item.r+' 🪙';
   const fb=document.getElementById('q-feedback'); fb.style.display='none';
-  const chk=document.getElementById('q-check'); chk.textContent=((_lang==='en')||localStorage.getItem('ziyoLang')==='en')?'Check':'Tekshirish'; chk.onclick=quizCheck; chk.style.background='var(--green)';
+  const chk=document.getElementById('q-check'); chk.textContent=((_lang==='en')||localStorage.getItem('ziyoLang')==='en')?'Check':((_lang==='ru')||localStorage.getItem('ziyoLang')==='ru')?'Проверить':'Tekshirish'; chk.onclick=quizCheck; chk.style.background='var(--green)';
   const box=document.getElementById('q-opts'); box.innerHTML='';
   const keys=['A','B','C','D'];
   item.o.forEach((opt,i)=>{
@@ -3613,16 +3696,17 @@ function quizRender(){
   });
 }
 function quizCheck(){
-  if(qChosen<0){ toast('Javobni tanlang'); return; }
+  if(qChosen<0){ toast(((_lang==='ru')||localStorage.getItem('ziyoLang')==='ru')?'Выберите ответ':'Javobni tanlang'); return; }
   const item=currentQuizQuestions[qIdx]; const box=document.getElementById('q-opts'); const fb=document.getElementById('q-feedback');
   const chk=document.getElementById('q-check');
   const _qEn=(_lang==='en')||localStorage.getItem('ziyoLang')==='en';
-  const _qNext=_qEn?'Next question':'Keyingi savol';
-  const _qFinish=_qEn?'Finish test':'Testni yakunlash';
+  const _qRu=(_lang==='ru')||localStorage.getItem('ziyoLang')==='ru';
+  const _qNext=_qEn?'Next question':_qRu?'Следующий вопрос':'Keyingi savol';
+  const _qFinish=_qEn?'Finish test':_qRu?'Завершить тест':'Testni yakunlash';
   if(qChosen===item.a){
     qLocked=true; box.children[qChosen].classList.add('correct');
     qEarned+=item.r;
-    fb.style.display='block'; fb.style.background='var(--green-ll)'; fb.style.color='var(--green-d)'; fb.innerHTML='✓ To\'g\'ri! +'+item.r+' 🪙';
+    fb.style.display='block'; fb.style.background='var(--green-ll)'; fb.style.color='var(--green-d)'; fb.innerHTML=_qEn?'✓ Correct! +'+item.r+' 🪙':_qRu?'✓ Верно! +'+item.r+' 🪙':'✓ To\'g\'ri! +'+item.r+' 🪙';
     chk.textContent = qIdx<currentQuizQuestions.length-1?_qNext:_qFinish; chk.onclick=quizNext;
   } else {
     qAttempts--;
@@ -3630,10 +3714,10 @@ function quizCheck(){
     document.getElementById('q-hearts').textContent='❤️'.repeat(Math.max(qAttempts,0))+'🤍'.repeat(2-Math.max(qAttempts,0));
     if(qAttempts<=0){
       qLocked=true; box.children[item.a].classList.add('correct');
-      fb.style.display='block'; fb.style.background='#FFECEC'; fb.style.color='#D23B3B'; fb.innerHTML='✗ Urinishlar tugadi. To\'g\'ri javob belgilandi.';
+      fb.style.display='block'; fb.style.background='#FFECEC'; fb.style.color='#D23B3B'; fb.innerHTML=_qEn?'✗ Out of attempts. Correct answer shown.':_qRu?'✗ Попытки исчерпаны. Верный ответ отмечен.':'✗ Urinishlar tugadi. To\'g\'ri javob belgilandi.';
       chk.textContent = qIdx<currentQuizQuestions.length-1?_qNext:_qFinish; chk.onclick=quizNext;
     } else {
-      fb.style.display='block'; fb.style.background='#FFF6DB'; fb.style.color='#9A7400'; fb.innerHTML='✗ Noto\'g\'ri. Yana 1 urinish qoldi — qayta urining.';
+      fb.style.display='block'; fb.style.background='#FFF6DB'; fb.style.color='#9A7400'; fb.innerHTML=_qEn?'✗ Wrong. 1 attempt left — try again.':_qRu?'✗ Неверно. Осталась 1 попытка — попробуйте снова.':'✗ Noto\'g\'ri. Yana 1 urinish qoldi — qayta urining.';
       box.children[qChosen].onclick=null;
       setTimeout(()=>{ fb.style.display='none'; box.children[qChosen].classList.remove('wrong'); },1200);
     }
@@ -3642,10 +3726,12 @@ function quizCheck(){
 function quizNext(){
   if(qIdx<currentQuizQuestions.length-1){ qIdx++; qAttempts=2; quizRender(); }
   else{
-    const label = currentMockTestId ? MOCK_TESTS[currentMockTestId].title : 'Bilim testi';
+    const _qzLang=(typeof _lang!=='undefined'&&_lang)||localStorage.getItem('ziyoLang')||'uz';
+    const label = currentMockTestId ? (_qzLang==='ru'?MOCK_TESTS[currentMockTestId].titleRu:_qzLang==='en'?MOCK_TESTS[currentMockTestId].title:MOCK_TESTS[currentMockTestId].titleUz) : (_qzLang==='ru'?'Тест знаний':_qzLang==='en'?'Knowledge Test':'Bilim testi');
     if(qEarned>0) earnCoins(qEarned, label);
-    const _qzEn=(_lang==='en')||localStorage.getItem('ziyoLang')==='en';
-    toast(_qzEn?'🎉 Test complete! Total +'+qEarned+' 🪙':'🎉 Test tugadi! Jami +'+qEarned+' 🪙');
+    const _qzEn=_qzLang==='en';
+    const _qzRu=_qzLang==='ru';
+    toast(_qzEn?'🎉 Test complete! Total +'+qEarned+' 🪙':_qzRu?'🎉 Тест пройден! Итого +'+qEarned+' 🪙':'🎉 Test tugadi! Jami +'+qEarned+' 🪙');
     if(currentMockTestId){
       mockAttempts[currentMockTestId] = (mockAttempts[currentMockTestId]||0)+1;
       histStack=['home','mocktests']; go('mocktests',false);
@@ -3664,6 +3750,15 @@ const MASCOT_TIPS={
   events:"Tadbirlarga borib QR skaner qiling, ZiyoCoin yig'ing 🪙",
   courses:"Kursni tugating — sertifikat va coin oling 🎓"
 };
+const RU_MASCOT_TIPS={
+  home:"Привет! Я <b>Ziyo</b> 🦉 Заполните профиль — буду рядом на каждом шагу 💚",
+  grants:"Помогу найти грант 🎬 Смотрите видео победителей!",
+  jobs:"Стажировки YPIP — официальный договор с компанией 🚀",
+  profile:"Укажите навыки — повышайте процент совпадения 📈",
+  events:"Посещайте мероприятия, сканируйте QR — собирайте ZiyoCoin 🪙",
+  courses:"Завершите курс — получите сертификат и монеты 🎓"
+};
+const RU_STAR_LBL=['','Плохо 😕','Нормально','Хорошо 🙂','Отлично 😃','Потрясающе! 🤩'];
 const MASCOT_VIEWS=['home','grants','jobs','profile','events','courses','podcasts'];
 const MASCOT_NOTAB=['grants','jobs'];
 let mascotSeen={};
@@ -4514,38 +4609,167 @@ function applyEnglish(){
 
 /* ---- Russian dictionary ---- */
 const RU_DICT = {
-  "Bosh sahifa": "Главная", "Tadbirlar": "Мероприятия", "Chat": "Чат", "Profil": "Профиль",
-  "Xabar yuborish…": "Написать сообщение…", "Qidirish…": "Поиск…",
-  "Kurslar va treninglar": "Курсы и тренинги", "Podkastlar": "Подкасты",
-  "Grantlar & stipendiyalar": "Гранты и стипендии", "Ishlar & amaliyot": "Работа и стажировка",
-  "Leaderboard": "Рейтинг", "Bildirishnomalar": "Уведомления",
-  "Keyingi": "Далее", "Yopish": "Закрыть", "Orqaga": "Назад",
-  "Hamma": "Все", "Barchasi": "Все", "Bepul": "Бесплатно",
-  "Amaliyot": "Стажировка", "Loyihalar": "Проекты",
-  "Ko'proq": "Больше", "Ko'rish": "Посмотреть",
-  "Sozlamalar": "Настройки", "🌐 Til": "🌐 Язык",
-  "Bildirishnomalar": "Уведомления", "Hisob ma'lumotlari": "Аккаунт",
-  "Ziyo App · v1.0 prototype": "Ziyo App · v1.0 прототип",
-  "Kursga yozilish": "Записаться на курс", "Tasdiqlash": "Подтвердить",
-  "Guruhga qo'shilish": "Вступить в группу", "Ulashish": "Поделиться",
-  "Saqlab qo'yish": "Сохранить", "Ariza berish": "Подать заявку",
-  "Barcha qismlar": "Все эпизоды", "Muvaffaqiyat tarixi": "Истории успеха",
-  "Mutaxassis darslari": "Уроки эксперта", "Siz uchun grantlar": "Гранты для вас",
-  "Tadbir guruhlari": "Группы мероприятий", "Shaxsiy": "Личные",
-  "Tez orada...": "Скоро...", "Izoh": "Комментарий",
-  "Profilni to'ldirish": "Заполнить профиль",
-  "Qaysi sohalar sizni qiziqtiradi?": "Какие области вас интересуют?",
-  "Bir nechtasini tanlang": "Выберите несколько",
-  "Qanday ko'nikmalaringiz bor?": "Какие навыки у вас есть?",
-  "Ingliz tili darajangiz?": "Ваш уровень английского?",
-  "Hozirgi bosqichingiz?": "Ваш текущий этап?",
-  "Asosiy maqsadingiz nima?": "Какова ваша главная цель?",
-  "Maktab o'quvchisi": "Школьник", "Talaba": "Студент",
-  "Bitiruvchi kurs": "Выпускной курс", "1–2 yil tajriba": "1–2 года опыта",
-  "Chet elda o'qish": "Учёба за рубежом",
-  "Grant / stipendiya yutish": "Выиграть грант / стипендию",
-  "Amaliyot / ish topish": "Найти стажировку / работу",
-  "Ko'nikma oshirish": "Повысить навыки",
+  /* Nav */
+  "Bosh sahifa":"Главная","Tadbirlar":"Мероприятия","Chat":"Чат","Profil":"Профиль",
+  "Sozlamalar":"Настройки","Bildirishnomalar":"Уведомления","Leaderboard":"Рейтинг",
+  /* Common actions */
+  "Keyingi":"Далее","Yopish":"Закрыть","Orqaga":"Назад","Ko'proq":"Больше","Ko'rish":"Посмотреть",
+  "Ulashish":"Поделиться","Saqlab qo'yish":"Сохранить","Ariza berish":"Подать заявку",
+  "Kursga yozilish":"Записаться на курс","Tasdiqlash":"Подтвердить",
+  "Guruhga qo'shilish":"Вступить в группу","Yuborish":"Отправить",
+  "Saqlash":"Сохранить","Bekor qilish":"Отмена","Tahrirlash":"Редактировать",
+  "Chiqish":"Выйти","Davom ettirish":"Продолжить","Kursni boshlash":"Начать курс",
+  "Qo'shish":"Добавить","Almashtirish":"Заменить","Yuklash":"Загрузить",
+  "O'chirib tashlash":"Удалить","Qidirish…":"Поиск…",
+  /* Chat */
+  "Xabar yozing…":"Напишите сообщение…","Xabar yuborish…":"Написать сообщение…",
+  "Yangi suhbat":"Новый чат","Guruhlar":"Группы","Mentorlar":"Менторы","Kecha":"Вчера",
+  /* Home */
+  "Hamma":"Все","Barchasi":"Все","Bepul":"Бесплатно","Tavsiya etilgan":"Рекомендовано",
+  "Siz uchun ✨":"Для вас ✨","Ta'lim yangiliklari 📰":"Новости образования 📰",
+  "Yangiliklar":"Новости","Kurslar va workshoplar 📚":"Курсы и воркшопы 📚",
+  "🔥 Mashhur":"🔥 Популярное","Sozlash":"Настроить",
+  "2 soat oldin":"2 часа назад","5 soat oldin":"5 часов назад",
+  "1 kun oldin":"1 день назад","2 kun oldin":"2 дня назад",
+  "320 ketyapti":"320 идут","150 ketyapti":"150 идут","88 ketyapti":"88 идут",
+  "Bugun":"Сегодня","Hafta reytingi":"Недельный рейтинг",
+  "Profilingizni to'ldiring ✨":"Заполните профиль ✨",
+  "Qiziqishlaringizni belgilang — sizga mos grant, ish va kurslarni topamiz.":"Укажите интересы — мы подберём гранты, вакансии и курсы.",
+  /* Courses */
+  "Kurslar va treninglar":"Курсы и тренинги","Podkastlar":"Подкасты",
+  "Workshoplar":"Воркшопы","Online":"Онлайн",
+  "Boshlang'ich":"Начинающий","Ilg'or":"Продвинутый","O'rta daraja":"Средний уровень",
+  "8 hafta · Boshlang'ich":"8 нед · Начинающий","6 hafta · O'rta":"6 нед · Средний",
+  "2 kun · Online":"2 дня · Онлайн","Darslar":"Уроки","Daraja":"Уровень",
+  "Davomiyligi":"Продолжительность","Tugatildi":"Завершено",
+  /* Grants */
+  "Grantlar & stipendiyalar":"Гранты и стипендии","Muvaffaqiyat tarixi":"Истории успеха",
+  "Mutaxassis darslari":"Уроки эксперта","Siz uchun grantlar":"Гранты для вас",
+  "Grant haqida":"О гранте","Talablar":"Требования","Ekspert maslahati":"Совет эксперта",
+  "Moslik":"Совпадение","Malakali":"Подходящий","Magistratura":"Магистратура",
+  "Doktorantura":"Докторантура","Bakalavr":"Бакалавриат",
+  "Hujjatlar tayyorlash":"Подготовка документов","Xat yozish":"Написание эссе",
+  "Suhbat":"Собеседование","Muddati":"Дедлайн","Muddat":"Дедлайн",
+  "⏳ Doimiy ochiq":"⏳ Всегда открыто","Ariza topshirish":"Подать заявку",
+  "Talablarga mosligingiz":"Ваше соответствие требованиям",
+  "🧑‍🏫 Maslahat olish — bepul":"🧑‍🏫 Получить консультацию — бесплатно",
+  "Mutaxassis bilan 1:1 bepul konsultatsiya":"Бесплатная консультация 1:1 с экспертом",
+  "Chet elda o'qishni orzu qilyapsizmi?":"Мечтаете учиться за рубежом?",
+  "Bepul konsultatsiya oling":"Получите бесплатную консультацию",
+  "Muvaffaqiyat hikoyalari 🏆":"Истории успеха 🏆","Ekspert darslar 🎬":"Уроки эксперта 🎬",
+  /* Jobs */
+  "Ishlar & amaliyot":"Работа и стажировка","Amaliyot":"Стажировка","Loyihalar":"Проекты",
+  "To'liq stavka":"Полная занятость","Qisman stavka":"Неполная занятость",
+  "Masofaviy":"Удалённо","Ko'nikmalar":"Навыки","Sharhlar":"Отзывы",
+  "Ish haqida":"О вакансии","Sharh qoldirish":"Оставить отзыв",
+  "Haftalik to'lov":"Еженедельная оплата","Kompaniya shartnomasi":"Контракт с компанией",
+  "Ko'nikmalaringizga mos":"Соответствует вашим навыкам",
+  "1 ta ko'nikma yetishmaydi — kursni ko'ring":"Не хватает 1 навыка — посмотрите курс",
+  "YPIP amaliyot stipendiyasi 🚀":"Стипендия YPIP 🚀",
+  "Kompaniyalar bilan rasmiy shartnoma asosida":"На основании официального договора с компаниями",
+  /* Events */
+  "Tadbir guruhlari":"Группы мероприятий","Shaxsiy":"Личные",
+  "Volontyorlik":"Волонтёрство","Biznes":"Бизнес",
+  "Qatnashuvchilar":"Участники","Eslatma":"Напоминание","🔔 Eslatma":"🔔 Напоминание",
+  "Ro'yxatdan o'tish · Bepul":"Зарегистрироваться · Бесплатно",
+  "Ro'yxatdan o'tdingiz":"Вы зарегистрированы",
+  "✅ Ro'yxatdan o'tdingiz!":"✅ Вы зарегистрированы!",
+  "Tadbir haqida":"О мероприятии","Tashkilotchi":"Организатор",
+  "Fikringizni bildiring":"Оставьте реакцию",
+  "ta reaksiya":"реакций","Event chati":"Чат мероприятия",
+  "Qatnashmoqchi emasman":"Не пойду","Ro'yxatdan o'tish":"Зарегистрироваться",
+  "Dastur":"Программа",
+  /* Leaderboard */
+  "Haftalik":"Еженедельный","Oylik":"Ежемесячный","Umumiy":"Общий",
+  "Hafta":"Неделя","Oy":"Месяц","🏆 ZiyoCoin reytingi":"🏆 Рейтинг ZiyoCoin",
+  "Eng faol foydalanuvchilar":"Самые активные пользователи",
+  "📊 Faollik":"📊 Активность","soat":"ч",
+  "Top 3 gacha 290 🪙 qoldi":"290 🪙 до Топ-3","Sizning o'rningiz":"Ваш рейтинг",
+  "Tadbirlarda qatnashing va skaner qiling...":"Посещайте мероприятия и сканируйте QR — каждый ZiyoCoin поднимает вас!",
+  /* Profile */
+  "Profilni to'ldirish":"Заполнить профиль","✏️ Profilni to'ldirish":"✏️ Заполнить профиль",
+  "ZiyoCoin hamyoni":"Кошелёк ZiyoCoin","ZiyoCoin reytingi":"Рейтинг ZiyoCoin",
+  "🎁 Do'konga o'tish":"🎁 Перейти в магазин","📷 QR skaner":"📷 QR-сканер",
+  "Chiptalarim":"Мои билеты","Mukofotlar":"Награды","Saqlangan":"Сохранённое",
+  "Qatnashgan":"Посещённые","Kelgusi":"Предстоящие",
+  "Profil to'ldirilgan":"Профиль заполнен",
+  "Ko'nikma qo'shing — moslikni oshiring":"Добавьте навыки — улучшите совпадение",
+  "coin · tadbir va kurslardan":"монет · из мероприятий и курсов",
+  "Siz #4-o'rindasiz · Top 3 gacha 290 🪙":"Вы на #4 месте · 290 🪙 до Топ-3",
+  "Sertifikatlar":"Сертификаты","Yutuqlar":"Достижения",
+  "Ko'nikmalari":"Навыки","Qatnashgan tadbirlar":"Посещённые мероприятия",
+  "Tugatilgan kurslar":"Завершённые курсы","CV yuklash":"Загрузить CV",
+  "Profil tahrirlash":"Редактировать профиль",
+  "✓ Qatnashildi":"✓ Посещено","⭐ Baho berish":"⭐ Оценить","📄 Sertifikat":"📄 Сертификат",
+  "Baholandi":"Оценено","Sertifikat":"Сертификат","Tadbir":"Мероприятие",
+  /* Notifications */
+  "Barchasi o'qildi":"Отметить всё прочитанным","O'qilgan":"Прочитанное",
+  "Barcha bildirishnomalar":"Все уведомления","O'qilmagan":"Непрочитанные",
+  "Reytingda ko'tarildingiz! 🎉":"Вы поднялись в рейтинге! 🎉",
+  /* Settings */
+  "🌐 Til":"🌐 Язык","Hisob ma'lumotlari":"Аккаунт","Ziyo App · v1.0 prototype":"Ziyo App · v1.0 прототип",
+  "Til":"Язык","Maxfiylik":"Конфиденциальность","Yordam":"Помощь",
+  "Ilovani baholash":"Оценить приложение","Hisob":"Аккаунт",
+  /* Shop */
+  "Do'kon":"Магазин","Barcha mahsulotlar":"Все товары","Elektronika":"Электроника",
+  "Kiyim":"Одежда","Kitoblar":"Книги","Gadjetlar":"Гаджеты",
+  "Aksessuarlar":"Аксессуары","Simsiz quloqchin":"Беспроводные наушники",
+  "Simsiz sichqoncha":"Беспроводная мышь","Ergonomik":"Эргономичная",
+  "Sayohat sumkasi":"Дорожная сумка","Ziyo kepkasi":"Кепка Ziyo",
+  "Sizning balansingiz":"Ваш баланс","Qanday ishlaydi?":"Как это работает?",
+  "Sotib olish":"Купить",
+  "🪙 ZiyoCoin yetarli emas":"🪙 Недостаточно ZiyoCoin",
+  /* Quiz */
+  "Tekshirish":"Проверить","Keyingi savol":"Следующий вопрос","Testni yakunlash":"Завершить тест",
+  "Javobni tanlang":"Выберите ответ","Bu savol: +":"Этот вопрос: +",
+  "Oson":"Лёгкий","O'rta":"Средний","Qiyin":"Сложный",
+  "Ko'nikma testi":"Тест навыков","Sinov testlari":"Пробные тесты",
+  "Yakunlash":"Завершить","Mock Tests 📝":"Mock Tests 📝",
+  "Barcha testlar":"Все тесты","BOSHQA MAVZULAR":"ДРУГИЕ ТЕМЫ",
+  "JavaScript testi":"JavaScript тест","Bilim testi":"Тест знаний",
+  /* Skills & CV */
+  "Ko'nikmalar va CV 🧠":"Навыки и CV 🧠","Ko'nikmalar va CV":"Навыки и CV",
+  "Ko'nikma qo'shing · CV biriktiring":"Добавьте навыки · Прикрепите CV",
+  "Ko'nikma qo'shing — AI siz uchun tavsiya beradi":"Добавьте навыки — AI даст рекомендации",
+  "CV / Rezyume":"CV / Резюме","CV yuklanmagan":"CV не загружен",
+  "CV muvaffaqiyatli yuklandi":"CV успешно загружен",
+  "Ko'nikma nomini kiriting yoki tanlang:":"Введите или выберите навык:",
+  "Masalan: Python, Figma...":"Например: Python, Figma...","AI tahlili":"AI-анализ",
+  /* Feedback */
+  "Baho berish":"Оценить мероприятие","Tadbir sizga qanday yoqdi?":"Как вам понравилось?",
+  "Izoh":"Комментарий","Tez orada...":"Скоро...",
+  "Yuborish · +10 🪙":"Отправить · +10 🪙",
+  /* Onboarding */
+  "Bir nechtasini tanlang":"Выберите несколько","Bittasini tanlang":"Выберите одно",
+  "Qaysi sohalar sizni qiziqtiradi?":"Какие области вас интересуют?",
+  "Qanday ko'nikmalaringiz bor?":"Какие навыки у вас есть?",
+  "Ingliz tili darajangiz?":"Ваш уровень английского?",
+  "Hozirgi bosqichingiz?":"Ваш текущий этап?",
+  "Asosiy maqsadingiz nima?":"Какова ваша главная цель?",
+  "Maktab o'quvchisi":"Школьник","Talaba":"Студент",
+  "Bitiruvchi kurs":"Выпускной курс","1–2 yil tajriba":"1–2 года опыта",
+  "Chet elda o'qish":"Учёба за рубежом",
+  "Grant / stipendiya yutish":"Выиграть грант / стипендию",
+  "Amaliyot / ish topish":"Найти стажировку / работу",
+  "Ko'nikma oshirish":"Повысить навыки",
+  "💻 IT & Dasturlash":"💻 IT & Программирование","🎨 Dizayn":"🎨 Дизайн",
+  "📊 Biznes & Moliya":"📊 Бизнес & Финансы",
+  "🌍 Xalqaro munosabatlar":"🌍 Международные отношения",
+  "🔬 Fan & Tadqiqot":"🔬 Наука & Исследования","📢 Marketing":"📢 Маркетинг",
+  "⚖️ Huquq":"⚖️ Юриспруденция","🎓 Ta'lim":"🎓 Образование",
+  "🌱 Boshlang'ich (A1–A2)":"🌱 Начальный (A1–A2)","🌿 O'rta (B1–B2)":"🌿 Средний (B1–B2)",
+  "🌳 Yuqori (C1–C2)":"🌳 Продвинутый (C1–C2)",
+  "🎒 Maktab o'quvchisi":"🎒 Школьник","🎓 Talaba":"🎓 Студент",
+  "🧑‍🎓 Bitiruvchi kurs":"🧑‍🎓 Выпускной курс","💼 Amaliyot / ish topish":"💼 Найти стажировку / работу",
+  "💼 1–2 yil tajriba":"💼 1–2 года опыта","✈️ Chet elda o'qish":"✈️ Учёба за рубежом",
+  "🚀 Ko'nikma oshirish":"🚀 Повысить навыки",
+  "🎓 Grant / stipendiya yutish":"🎓 Выиграть грант / стипендию",
+  "Yakunlash ✨":"Завершить ✨","Davom etish":"Продолжить","O'tkazib yuborish":"Пропустить",
+  /* Misc */
+  "Barcha qismlar":"Все эпизоды","Barcha ma'lumotlar":"Все данные",
+  "Do'st taklif qilish":"Пригласить друга","Referral":"Реферальная программа",
+  "✨ Profil to'ldirildi! Mosligingiz yangilandi":"✨ Профиль заполнен! Совпадение обновлено",
+  "Skanerlanmoqda…":"Сканирование…",
 };
 
 function applyRussian(){
@@ -4574,6 +4798,10 @@ function applyRussian(){
     var ph=el.getAttribute('placeholder');
     if(RU_DICT[ph]) el.setAttribute('placeholder',RU_DICT[ph]);
   });
+
+  /* Swap JS strings */
+  window.STAR_LBL = RU_STAR_LBL;
+  Object.assign(MASCOT_TIPS, RU_MASCOT_TIPS);
 
   /* Mark language seg */
   document.getElementById('lang-uz')?.classList.remove('on');
@@ -4619,13 +4847,16 @@ if(typeof renderReferral==='function') renderReferral();
 
 /* ── App theme switcher ── */
 function setAppTheme(t) {
+  const ids = ['theme-green','theme-mono','theme-purple'];
+  ids.forEach(id => document.getElementById(id)?.classList.remove('on'));
   if (t === 'mono') {
     document.documentElement.setAttribute('data-theme', 'mono');
-    document.getElementById('theme-green').classList.remove('on');
     document.getElementById('theme-mono').classList.add('on');
+  } else if (t === 'purple') {
+    document.documentElement.setAttribute('data-theme', 'purple');
+    document.getElementById('theme-purple').classList.add('on');
   } else {
     document.documentElement.removeAttribute('data-theme');
-    document.getElementById('theme-mono').classList.remove('on');
     document.getElementById('theme-green').classList.add('on');
   }
 }
