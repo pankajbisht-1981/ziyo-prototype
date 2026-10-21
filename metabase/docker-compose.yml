@@ -1,0 +1,49 @@
+#  Ziyo KPI dashboard on Metabase — one command, fully free.
+#
+#  Starts Postgres (auto-loaded with the KPI data) + Metabase, both free/OSS.
+#  Nothing to sign up for.
+#
+#    cd metabase
+#    docker compose up -d
+#    open http://localhost:3000        # first boot takes ~1 min
+#
+#  Then in Metabase: Admin → Databases → Add → PostgreSQL
+#    Host: db    Port: 5432    Database: ziyo_kpi    User: ziyo    Password: ziyo
+#
+#  Stop:    docker compose down
+#  Reset:   docker compose down -v     (wipes data + Metabase, reloads SQL on next up)
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ziyo
+      POSTGRES_PASSWORD: ziyo
+      POSTGRES_DB: ziyo_kpi
+    volumes:
+      # auto-runs once, on first boot, when the data volume is empty:
+      - ./ziyo_kpi_metabase.sql:/docker-entrypoint-initdb.d/01_ziyo.sql:ro
+      - ziyo_pgdata:/var/lib/postgresql/data
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ziyo -d ziyo_kpi"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  metabase:
+    image: metabase/metabase:latest
+    ports: ["3000:3000"]
+    environment:
+      # Metabase keeps its own app data in this H2 file (fine for handover).
+      # For production, give Metabase a dedicated Postgres instead.
+      MB_DB_FILE: /metabase-data/metabase.db
+    volumes:
+      - ziyo_mb:/metabase-data
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  ziyo_pgdata:
+  ziyo_mb:
