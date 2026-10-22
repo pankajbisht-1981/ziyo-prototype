@@ -1007,6 +1007,16 @@
               <div style="font-size:20px;color:var(--muted);">›</div>
             </div>
           </div>
+        <!-- volunteer for event -->
+        <div class="card" style="margin:14px 14px 0;border-radius:22px;padding:16px 18px;cursor:pointer;" onclick="volunteerForEvent()">
+          <div class="row gap12" style="align-items:center;">
+            <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#0070D2,#00A3FF);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🙋</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;">Tadbir uchun volontyor bo'lish</div>
+              <div class="xs muted mt4">Yordam berish, dekoratsiya, yo'naltirish va boshqalar</div>
+            </div>
+            <span style="color:var(--muted);font-size:20px;">›</span>
+          </div>
         </div>
       </div>
       <!-- sticky CTA -->
@@ -1519,7 +1529,7 @@
                   <div class="xs muted mt4" id="vol-sub">Tadbirlar va ijtimoiy loyihalarda yordam berish</div>
                 </div>
               </div>
-              <div onclick="const o=this.dataset.on==='1';this.dataset.on=o?'0':'1';this.style.background=o?'#D9D9D9':'#34C759';this.querySelector('div').style.transform=o?'':'translateX(20px)';toast(o?'Volontyor ro\'yxatidan chiqtingiz':'Volontyor sifatida qo\'shildingiz 🙋');" data-on="0" style="width:51px;height:31px;border-radius:31px;background:#D9D9D9;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">
+              <div onclick="toggleVolunteer(this)" data-on="0" style="width:51px;height:31px;border-radius:31px;background:#D9D9D9;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">
                 <div style="width:27px;height:27px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:transform .2s;box-shadow:0 2px 6px rgba(0,0,0,.2);"></div>
               </div>
             </div>
@@ -1971,7 +1981,7 @@
           </div>
         </div>
         <div class="px mt20">
-          <div class="xs muted" style="text-align:center;line-height:1.6;">Yoki to'g'ridan-to'g'ri yozing:<br><b style="color:var(--green-d);">hamkorlik@ziyoforum.uz</b></div>
+          <div class="xs muted" style="text-align:center;line-height:1.6;">Yoki to'g'ridan-to'g'ri yozing:<br><a href="mailto:hamkorlik@ziyoforum.uz" style="color:var(--green-d);font-weight:700;text-decoration:none;">hamkorlik@ziyoforum.uz</a></div>
         </div>
       </div>
     </div>
@@ -3321,10 +3331,24 @@ function submitPartner(){
 }
 /* ── Contact Admin: category picker + form ── */
 function openContactForm(type){
+  const isEn=_lang==='en', isRu=_lang==='ru';
   const cfg={
-    shikoyat:{icon:'🚨',label:'Shikoyat',bg:'#FFF0F0',color:'#D73131',title:'Shikoyat yuborish'},
-    muammo  :{icon:'⚠️',label:'Muammo',  bg:'#FFFBEB',color:'#B47A00',title:'Muammo bildirish'},
-    taklif  :{icon:'💡',label:'Taklif',   bg:'#F0FFF4',color:'var(--green-d)',title:'Taklif berish'},
+    shikoyat:{icon:'🚨',
+      label:    isEn?'Complaint':isRu?'Жалоба':'Shikoyat',
+      bg:'#FFF0F0',color:'#D73131',
+      title:    isEn?'Send Complaint':isRu?'Отправить жалобу':'Shikoyat yuborish'},
+    muammo:{icon:'⚠️',
+      label:    isEn?'Issue':isRu?'Проблема':'Muammo',
+      bg:'#FFFBEB',color:'#B47A00',
+      title:    isEn?'Report an Issue':isRu?'Сообщить о проблеме':'Muammo bildirish'},
+    taklif:{icon:'💡',
+      label:    isEn?'Suggestion':isRu?'Предложение':'Taklif',
+      bg:'#F0FFF4',color:'var(--green-d)',
+      title:    isEn?'Give Suggestion':isRu?'Дать предложение':'Taklif berish'},
+    volontyor:{icon:'🙋',
+      label:    isEn?'Volunteer':isRu?'Волонтёр':'Volontyor',
+      bg:'#E8F4FF',color:'#0070D2',
+      title:    isEn?'Volunteer for Event':isRu?'Стать волонтёром':'Tadbir uchun volontyor'},
   };
   const c=cfg[type]||cfg['taklif'];
   const badge=document.getElementById('cform-badge');
@@ -3336,16 +3360,29 @@ function openContactForm(type){
   const ttl=document.getElementById('cform-title');
   if(ttl) ttl.textContent=c.title;
   const msg=document.getElementById('cform-msg');
-  if(msg) msg.value='';
+  if(msg){ msg.value=''; msg.placeholder=isEn?'Write your message…':isRu?'Напишите ваше сообщение…':'Xabaringizni yozing…'; }
   const email=document.getElementById('cform-email');
   if(email) email.value='';
   go('contact-form');
 }
 function submitContact(){
+  const isEn=_lang==='en', isRu=_lang==='ru';
   const msg=(document.getElementById('cform-msg')||{}).value||'';
-  if(!msg.trim()){ toast('Xabarni kiriting ❗'); return; }
-  toast('Xabar yuborildi ✅ Tez orada javob beramiz');
+  if(!msg.trim()){ toast(isEn?'Enter a message ❗':isRu?'Введите сообщение ❗':'Xabarni kiriting ❗'); return; }
+  toast(isEn?'Message sent ✅ We\'ll reply soon':isRu?'Сообщение отправлено ✅ Мы ответим скоро':'Xabar yuborildi ✅ Tez orada javob beramiz');
   setTimeout(()=>{ back(); },1400);
+}
+function toggleVolunteer(el){
+  const o=el.dataset.on==='1';
+  el.dataset.on=o?'0':'1';
+  el.style.background=o?'#D9D9D9':'#34C759';
+  el.querySelector('div').style.transform=o?'':'translateX(20px)';
+  const isEn=_lang==='en', isRu=_lang==='ru';
+  toast(o?(isEn?'Removed from volunteers':isRu?'Удалены из волонтёров':'Volontyor ro\'yxatidan chiqtingiz')
+         :(isEn?'Added as a volunteer 🙋':isRu?'Добавлены как волонтёр 🙋':'Volontyor sifatida qo\'shildingiz 🙋'));
+}
+function volunteerForEvent(){
+  openContactForm('volontyor');
 }
 /* ── Grants & Scholarships: functional filter + sort ── */
 const GRANTS=[
@@ -5035,7 +5072,29 @@ const EN_DICT = {
   "📎 CV yuklandi! AI tahlil qilmoqda…": "📎 CV uploaded! AI is analysing…",
   "Javobni tanlang": "Please select an answer",
   "Power bank": "Power Bank",
-  "Ziyo futbolka": "Ziyo T-Shirt"
+  "Ziyo futbolka": "Ziyo T-Shirt",
+  // ── Volunteer & Contact Admin ────────────────────────────────────
+  "Volontyor bo'lish": "Become a Volunteer",
+  "Tadbirlar va ijtimoiy loyihalarda yordam berish": "Help at events and social projects",
+  "Volontyor ro'yxatidan chiqtingiz": "Removed from volunteers",
+  "Volontyor sifatida qo'shildingiz 🙋": "Added as a volunteer 🙋",
+  "Tadbir uchun volontyor bo'lish": "Volunteer for this Event",
+  "Yordam berish, dekoratsiya, yo'naltirish va boshqalar": "Assist, decorate, guide and more",
+  "Admin bilan bog'lanish": "Contact Admin",
+  "Savolingizni tanlang — biz tez orada javob beramiz": "Choose a category — we'll get back to you soon",
+  "Shikoyat": "Complaint",
+  "Noto'g'ri muomala, huquq buzilishi": "Misconduct or rights violation",
+  "Muammo": "Issue",
+  "Texnik nosozlik, tizim xatosi": "Technical bug or system error",
+  "Yangi g'oya, yaxshilash takliflari": "New idea or improvement suggestion",
+  "Xabar yuborish": "Send Message",
+  "Email (ixtiyoriy)": "Email (optional)",
+  "Xabaringizni yozing…": "Write your message…",
+  "Shikoyat yuborish": "Send Complaint",
+  "Muammo bildirish": "Report an Issue",
+  "Taklif berish": "Give Suggestion",
+  "Xabarni kiriting ❗": "Enter a message ❗",
+  "Xabar yuborildi ✅ Tez orada javob beramiz": "Message sent ✅ We'll reply soon"
 };
 
 /* ---- English mascot tips ---- */
@@ -5287,6 +5346,28 @@ const RU_DICT = {
   "Do'st taklif qilish":"Пригласить друга","Referral":"Реферальная программа",
   "✨ Profil to'ldirildi! Mosligingiz yangilandi":"✨ Профиль заполнен! Совпадение обновлено",
   "Skanerlanmoqda…":"Сканирование…",
+  // ── Volunteer & Contact Admin ────────────────────────────────────
+  "Volontyor bo'lish":"Стать волонтёром",
+  "Tadbirlar va ijtimoiy loyihalarda yordam berish":"Помогать на мероприятиях и социальных проектах",
+  "Volontyor ro'yxatidan chiqtingiz":"Удалены из волонтёров",
+  "Volontyor sifatida qo'shildingiz 🙋":"Добавлены как волонтёр 🙋",
+  "Tadbir uchun volontyor bo'lish":"Стать волонтёром мероприятия",
+  "Yordam berish, dekoratsiya, yo'naltirish va boshqalar":"Помогать, декорировать, направлять и другое",
+  "Admin bilan bog'lanish":"Связаться с админом",
+  "Savolingizni tanlang — biz tez orada javob beramiz":"Выберите категорию — мы ответим вам скоро",
+  "Shikoyat":"Жалоба",
+  "Noto'g'ri muomala, huquq buzilishi":"Нарушение прав, неправомерное обращение",
+  "Muammo":"Проблема",
+  "Texnik nosozlik, tizim xatosi":"Технический сбой, системная ошибка",
+  "Yangi g'oya, yaxshilash takliflari":"Новые идеи, предложения по улучшению",
+  "Xabar yuborish":"Отправить сообщение",
+  "Email (ixtiyoriy)":"Email (необязательно)",
+  "Xabaringizni yozing…":"Напишите ваше сообщение…",
+  "Shikoyat yuborish":"Отправить жалобу",
+  "Muammo bildirish":"Сообщить о проблеме",
+  "Taklif berish":"Дать предложение",
+  "Xabarni kiriting ❗":"Введите сообщение ❗",
+  "Xabar yuborildi ✅ Tez orada javob beramiz":"Сообщение отправлено ✅ Мы ответим скоро"
 };
 
 function applyRussian(){
