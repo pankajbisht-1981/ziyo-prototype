@@ -3285,7 +3285,23 @@ function goTab(id){
   histStack = [id];
   go(id, false);
 }
+function _tr(s){
+  if(_lang!=='en') return s;
+  const sorted=Object.keys(EN_DICT).sort((a,b)=>b.length-a.length);
+  const phs=[];
+  let t=s;
+  for(const uz of sorted){
+    if(t.includes(uz)){
+      const ph='\x00'+phs.length+'\x00';
+      phs.push(EN_DICT[uz]);
+      t=t.split(uz).join(ph);
+    }
+  }
+  phs.forEach((en,i)=>{t=t.split('\x00'+i+'\x00').join(en);});
+  return t;
+}
 function toast(msg){
+  if(!msg.includes('<')) msg=_tr(msg);
   const t=document.getElementById('toast'); t.innerHTML=msg; t.classList.add('show');
   clearTimeout(window._tt); window._tt=setTimeout(()=>t.classList.remove('show'),1900);
 }
@@ -4396,6 +4412,7 @@ function mascotUpdate(id){
 function toggleMascot(){ document.getElementById('mascot-bubble').classList.toggle('show'); }
 function hideMascot(){ document.getElementById('mascot-bubble').classList.remove('show'); }
 function showMascot(txt){
+  txt=_tr(txt);
   const m=document.getElementById('mascot'); if(!m) return; m.style.display='block';
   document.getElementById('mascot-text').innerHTML=txt;
   const b=document.getElementById('mascot-bubble'); b.classList.add('show');
@@ -5267,6 +5284,27 @@ const EN_DICT = {
   "Sabr-toqat": "Patience",
   "Muloqot": "Communication",
   "🇺🇿 O'zbekiston": "🇺🇿 Uzbekistan",
+  "Ko'proq a’zolar yuklanmoqda…": "Loading more members…",
+  "Ko'proq a'zolar yuklanmoqda…": "Loading more members…",
+  "Ulanish so'rovi yuborildi!": "Connection request sent!",
+  "Barcha grantlar": "All grants",
+  "Barcha mutaxassis darslari": "All expert lessons",
+  "Barcha muvaffaqiyat tarixi": "All success stories",
+  "Filtr: Hujjatlar": "Filter: Documents",
+  "Konsultatsiya band qilindi!": "Consultation booked!",
+  "Eslatma o'rnatildi!": "Reminder set!",
+  "Sherzod TU Munich DAAD — Germaniyaga kirdi! Siz ham qila olasiz 💚": "Sherzod entered TU Munich via DAAD! You can do it too 💚",
+  "Hujjatlar": "Documents",
+  "grantlar": "grants",
+  "Barcha": "All",
+  "mutaxassis": "Expert",
+  "darslari": "lessons",
+  "muvaffaqiyat tarixi": "success stories",
+  "muvaffaqiyat": "success",
+  "tarixi": "history",
+  "tarix": "history",
+  "darslar": "lessons",
+  "dars": "lesson",
 };
 
 /* ---- English mascot tips ---- */
