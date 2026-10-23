@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meeting Minutes — Sync with Bobur · 6 October 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11.5px;
+    color: #1a1a2e;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: #003366;
+    padding: 22px 36px 18px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .ph-left {}
+  .ph-tag {
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #1DCEAF; margin-bottom: 5px;
+  }
+  .ph-title {
+    font-size: 20px; font-weight: 800;
+    color: #fff; line-height: 1.15; margin-bottom: 3px;
+  }
+  .ph-sub {
+    font-size: 11px; color: rgba(255,255,255,0.65);
+  }
+  .ph-right {
+    text-align: right;
+  }
+  .ph-meta {
+    font-size: 10px; color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+  .gold-bar {
+    height: 4px;
+    background: linear-gradient(to right, #F0AB00 0%, #1DCEAF 100%);
+  }
+
+  /* ── PARTICIPANTS STRIP ── */
+  .participants {
+    background: #F2F4F7;
+    padding: 10px 36px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    border-bottom: 1px solid #dde1e8;
+  }
+  .part-label {
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #6B7785; flex-shrink: 0;
+  }
+  .part-pill {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #c8cdd8;
+    border-radius: 20px;
+    padding: 3px 11px;
+    font-size: 10.5px;
+    color: #003366;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .part-role {
+    font-size: 9px; color: #6B7785; font-weight: 400;
+  }
+
+  /* ── BODY ── */
+  .body {
+    padding: 24px 36px 32px 36px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 22px; }
+  .section-title {
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 5px;
+    margin-bottom: 12px;
+  }
+
+  /* ── CONTEXT BLOCK ── */
+  .context-grid {
+    display: flex; gap: 14px;
+  }
+  .context-card {
+    flex: 1;
+    background: #F2F4F7;
+    border-radius: 3px;
+    padding: 12px 14px;
+  }
+  .context-card .cc-label {
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: #6B7785; margin-bottom: 6px;
+  }
+  .context-card .cc-text {
+    font-size: 11px; color: #222; line-height: 1.6;
+  }
+
+  /* ── ENGAGEMENT TIMELINE ── */
+  .timeline { display: flex; gap: 0; margin-top: 2px; }
+  .tl-item {
+    flex: 1;
+    padding: 9px 12px;
+    border-right: 1px solid #dde1e8;
+    position: relative;
+  }
+  .tl-item:last-child { border-right: none; }
+  .tl-week {
+    font-size: 9px; font-weight: 700;
+    color: #003366; text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 3px;
+  }
+  .tl-desc { font-size: 10.5px; color: #444; line-height: 1.45; }
+  .tl-item:nth-child(1) { background: #e8f0fa; border-radius: 3px 0 0 3px; }
+  .tl-item:nth-child(4) { background: #e8faf6; border-radius: 0 3px 3px 0; }
+
+  /* ── BODY TEXT ── */
+  p { font-size: 11.5px; color: #333; line-height: 1.7; margin-bottom: 8px; }
+
+  /* ── BULLET LIST ── */
+  ul.blist { list-style: none; padding: 0; }
+  ul.blist li {
+    font-size: 11.5px; color: #333; line-height: 1.55;
+    padding: 5px 0 5px 15px; position: relative;
+    border-bottom: 1px solid #f2f4f7;
+  }
+  ul.blist li:last-child { border-bottom: none; }
+  ul.blist li::before {
+    content: '';
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #1DCEAF;
+    position: absolute; left: 0; top: 10px;
+  }
+
+  /* ── NUMBERED LIST ── */
+  ol.nlist { list-style: none; counter-reset: nlist; padding: 0; }
+  ol.nlist li {
+    font-size: 11.5px; color: #333; line-height: 1.55;
+    padding: 5px 0 5px 22px; position: relative;
+    border-bottom: 1px solid #f2f4f7;
+    counter-increment: nlist;
+  }
+  ol.nlist li:last-child { border-bottom: none; }
+  ol.nlist li::before {
+    content: counter(nlist);
+    position: absolute; left: 0; top: 5px;
+    width: 16px; height: 16px;
+    background: #003366; color: #fff;
+    font-size: 8.5px; font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 16px;
+  }
+
+  /* ── ISSUES TABLE ── */
+  table.issues {
+    width: 100%; border-collapse: collapse;
+  }
+  table.issues th {
+    background: #003366; color: #fff;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 7px 12px; text-align: left;
+  }
+  table.issues td {
+    font-size: 11px; padding: 8px 12px;
+    border-bottom: 1px solid #eaecef;
+    vertical-align: top; line-height: 1.55;
+    color: #333;
+  }
+  table.issues tr:last-child td { border-bottom: none; }
+  table.issues tr:nth-child(even) td { background: #fafbfc; }
+  .badge-critical {
+    display: inline-block;
+    background: #fde8e8; color: #b02020;
+    font-size: 8px; font-weight: 700;
+    padding: 2px 7px; border-radius: 2px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: #fffdf5;
+    border-left: 4px solid #F0AB00;
+    border-radius: 0 3px 3px 0;
+    padding: 12px 16px;
+    margin-bottom: 0;
+  }
+  .callout .cl-label {
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #9a6800; margin-bottom: 6px;
+  }
+  .callout .cl-text {
+    font-size: 11.5px; color: #3a2800;
+    line-height: 1.7; font-style: italic;
+  }
+
+  /* ── ACTIONS TABLE ── */
+  table.actions {
+    width: 100%; border-collapse: collapse;
+  }
+  table.actions th {
+    background: #1DCEAF; color: #003366;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 7px 12px; text-align: left;
+  }
+  table.actions td {
+    font-size: 11px; padding: 7px 12px;
+    border-bottom: 1px solid #eaecef;
+    vertical-align: top; line-height: 1.5;
+  }
+  table.actions tr:last-child td { border-bottom: none; }
+  table.actions tr:nth-child(even) td { background: #f7fffe; }
+  .owner { font-weight: 600; color: #003366; white-space: nowrap; }
+
+  /* ── TWO-COL ── */
+  .two-col { display: flex; gap: 14px; }
+  .col { flex: 1; }
+
+  /* ── VISION EXPAND ── */
+  .vision-phases { display: flex; flex-direction: column; gap: 6px; }
+  .vp-row { display: flex; align-items: flex-start; gap: 10px; }
+  .vp-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #003366; color: #fff;
+    font-size: 9px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .vp-text { font-size: 11.5px; color: #333; line-height: 1.55; }
+  .vp-text strong { color: #003366; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: #001A44;
+    padding: 12px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pf-left { font-size: 10px; color: rgba(255,255,255,0.5); }
+  .pf-right { font-size: 10px; color: rgba(255,255,255,0.35); text-align: right; }
+
+  strong { font-weight: 600; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="ph-left">
+    <div class="ph-tag">Meeting Minutes</div>
+    <div class="ph-title">Sync with Bobur</div>
+    <div class="ph-sub">Ziyo Forum — SAP Social Sabbatical · Kick-off Interview</div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-meta">
+      6 October 2026 &nbsp;·&nbsp; 12:04 pm<br>
+      Duration: 57 min 36 s<br>
+      Tashkent, Uzbekistan
+    </div>
+  </div>
+</div>
+<div class="gold-bar"></div>
+
+<!-- PARTICIPANTS -->
+<div class="participants">
+  <span class="part-label">Participants</span>
+  <span>
+    <span class="part-pill">SAP Team <span class="part-role">SAP · Social Sabbatical</span></span>
+    <span class="part-pill">Bobur <span class="part-role">Ziyo Forum · Founder &amp; CEO</span></span>
+    <span class="part-pill">Interpreter <span class="part-role">Ziyo Forum · Colleague</span></span>
+  </span>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- CONTEXT & ENGAGEMENT PLAN -->
+  <div class="section">
+    <div class="section-title">Context &amp; Engagement Plan</div>
+    <div class="context-grid" style="margin-bottom:12px;">
+      <div class="context-card">
+        <div class="cc-label">Purpose</div>
+        <div class="cc-text">Kick-off interview to capture the CEO's vision and priorities before the broader discovery series. Conducted in week 1 of a 4-week Social Sabbatical engagement in Tashkent.</div>
+      </div>
+      <div class="context-card">
+        <div class="cc-label">Confidentiality</div>
+        <div class="cc-text">Bobur confirmed all information can be shared freely — as an NGO, Ziyo Forum operates openly and has no confidentiality restrictions on their data or plans.</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-week">Week 1</div>
+        <div class="tl-desc">Discovery interviews across the organisation — CEO first, then functional leads</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 2–3</div>
+        <div class="tl-desc">Execution phase — working directly with teams on priority areas</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 4</div>
+        <div class="tl-desc">Final presentation back to Bobur and full team (~2 hrs, Thu or Fri)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Deliverable</div>
+        <div class="tl-desc">Proposal + prioritised next steps, validated with all stakeholders</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANISATION BACKGROUND -->
+  <div class="section">
+    <div class="section-title">Ziyo Forum — Organisation Background</div>
+    <div class="two-col">
+      <div class="col">
+        <ul class="blist">
+          <li>Founded 2019 with 2 people; now 100+ employees, growing year on year</li>
+          <li>Status: NGO — mission to bridge students and government/ministries</li>
+          <li>Partners include the UN and multiple international organisations</li>
+          <li>University partnerships: Les Roches, Lucerne, Ducas; Russian and now Chinese universities</li>
+          <li>Programmes: student exchange abroad, student initiative support, grants for startups</li>
+        </ul>
+        <div class="callout" style="margin-top:10px; background:#f0f7ff; border-left-color:#003366;">
+          <div class="cl-label" style="color:#003366;">Ministry Consolidation — Just Happened (4 Oct 2026)</div>
+          <div class="cl-text" style="color:#1a2a44;">Uzbekistan previously had three separate ministries: Ministry of Preschool Education, Ministry of School Education, and Ministry of Higher Education. <strong style="color:#003366;font-style:normal;">Two days before this meeting</strong>, all three were merged into a single unified Ministry of Education. This is a significant policy shift — Ziyo Forum's role as a bridge between students and the government now points to a single counterpart, which could simplify partnership and advocacy work considerably.</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="callout" style="height:100%;">
+          <div class="cl-label">Education Gap — Core Problem</div>
+          <div class="cl-text">1.6 million students graduate from high school in Uzbekistan each year. Only 600,000 go on to university — universities have capacity for just 425,000 places. The remaining ~1 million receive no structured further education. Ziyo Forum's mission is to reach this underserved majority with free, motivating educational content and opportunities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZIYO APP VISION -->
+  <div class="section">
+    <div class="section-title">Ziyo App — Vision &amp; Intended Direction</div>
+    <div class="two-col">
+      <div class="col">
+        <p><strong>Original intent (Bobur):</strong></p>
+        <ul class="blist" style="margin-bottom:12px;">
+          <li>Aggregate all Ziyo Forum offerings in one place and track what students engage with</li>
+          <li>Motivate participation through <strong>Zeocoin gamification</strong> — reward progress</li>
+          <li>Suggest personalised trajectories based on interests (recommendation engine)</li>
+          <li>Simplify registration — one app instead of multiple separate sign-ups</li>
+        </ul>
+        <p><strong>Key differentiator:</strong></p>
+        <p style="font-size:11px;color:#444;">No single education platform exists in Uzbekistan. Opportunities are scattered across Telegram channels, social media, and university pages. Ziyo aims to be the distraction-free, focused alternative to social media noise.</p>
+      </div>
+      <div class="col">
+        <p><strong>Expansion roadmap (priority order):</strong></p>
+        <div class="vision-phases">
+          <div class="vp-row"><div class="vp-num">1</div><div class="vp-text"><strong>Events</strong> — current focus; Ziyo Forum's own events first, then partner organisations</div></div>
+          <div class="vp-row"><div class="vp-num">2</div><div class="vp-text"><strong>Grants, scholarships &amp; news</strong> — consolidated education-relevant information</div></div>
+          <div class="vp-row"><div class="vp-num">3</div><div class="vp-text"><strong>Community</strong> — student clubs, group projects, peer networking within the app</div></div>
+          <div class="vp-row"><div class="vp-num">4</div><div class="vp-text"><strong>Gamification expansion</strong> — achievement layers to drive motivation and progression</div></div>
+          <div class="vp-row"><div class="vp-num">5</div><div class="vp-text"><strong>Media content</strong> — educational media in one trusted place</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRITICAL ISSUES -->
+  <div class="section">
+    <div class="section-title">Critical Issues Identified</div>
+    <table class="issues">
+      <thead>
+        <tr>
+          <th style="width:20%">Issue</th>
+          <th style="width:10%">Severity</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>No single product vision</strong></td>
+          <td><span class="badge-critical">Critical</span></td>
+          <td>IT team, working team, management, and users all hold different mental models of what the app should be. The product pivots toward whoever spoke last. Bobur acknowledged there is no concrete, agreed-upon end state that everyone can execute against.</td>
+        </tr>
+        <tr>
+          <td><strong>App still in demo state</strong></td>
+          <td><span class="badge-critical">Critical</span></td>
+          <td>Bobur explicitly described the app as a "demo version" — not ready for serious marketing. No marketing campaigns have been run. The lack of a defined vision is the direct cause; the product cannot be marketed until the direction is locked.</td>
+        </tr>
+        <tr>
+          <td><strong>No in-house development team</strong></td>
+          <td style="color:#9a6800;font-weight:700;font-size:9px;">HIGH</td>
+          <td>All development is outsourced. Outsource was chosen precisely because the vision was not finalised. Once the direction is clear, Ziyo intends to hire an internal development team — the resources exist, but the trigger is vision clarity.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="height:10px;"></div>
+    <div class="callout">
+      <div class="cl-label">Bobur's Explicit Ask to SAP Team</div>
+      <div class="cl-text">"Provide your personal and international experience on what the final version should look like — then we can take it in our own hands and work on it correctly. We need that one concrete vision. That's why we haven't been able to work on it correctly."</div>
+    </div>
+  </div>
+
+  <!-- GROWTH DRIVERS & SCALING -->
+  <div class="section">
+    <div class="section-title">Growth Drivers &amp; Scaling Plan</div>
+    <div class="two-col">
+      <div class="col">
+        <p style="margin-bottom:8px;"><strong>Bobur's priority order for growth:</strong></p>
+        <ol class="nlist">
+          <li>Fix the app and the content — nothing else works without this</li>
+          <li>Expand partnerships to other cities and organisations (Tashkent-centric today)</li>
+          <li>Marketing + showcase real student success stories through the app</li>
+        </ol>
+      </div>
+      <div class="col">
+        <p style="margin-bottom:8px;"><strong>Scaling plan:</strong></p>
+        <ul class="blist">
+          <li>Currently outsourced; once vision is finalised, invest significantly and hire in-house team</li>
+          <li>Resources to scale are available — the constraint is clarity, not funding</li>
+          <li>Long-term ambition: grow to national scale — "the way Facebook started as a student network"</li>
+          <li>Bobur cited Uzbekistan has no equivalent platform; Ziyo wants to be first</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section">
+    <div class="section-title">Actions &amp; Follow-ups</div>
+    <table class="actions">
+      <thead>
+        <tr>
+          <th style="width:42%">Action</th>
+          <th style="width:22%">Owner</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Review current app state and return with a concrete product vision recommendation</td>
+          <td><span class="owner">SAP Team</span></td>
+          <td>Week 4 final presentation</td>
+        </tr>
+        <tr>
+          <td>Follow-up interview: deep dive on partnerships and scaling model</td>
+          <td><span class="owner">SAP Team + Bobur</span></td>
+          <td>Later this week (Bobur confirmed available)</td>
+        </tr>
+        <tr>
+          <td>Interview: Acovir (role TBC) — capture technical/operational perspective</td>
+          <td><span class="owner">SAP Team</span></td>
+          <td>Week 1</td>
+        </tr>
+        <tr>
+          <td>Interview: Iskander Raka — Head of International Relations &amp; student engagement</td>
+          <td><span class="owner">SAP Team</span></td>
+          <td>Week 1</td>
+        </tr>
+        <tr>
+          <td>Interview: Serna Raka — Head of Event Managers, event production process</td>
+          <td><span class="owner">SAP Team</span></td>
+          <td>Week 1</td>
+        </tr>
+        <tr>
+          <td>Final presentation to Bobur + full team (~2 hrs)</td>
+          <td><span class="owner">SAP Team</span></td>
+          <td>Thu or Fri, Week 4</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /body -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div class="pf-left">Ziyo Forum &nbsp;·&nbsp; SAP Social Sabbatical &nbsp;·&nbsp; Tashkent, Uzbekistan &nbsp;·&nbsp; October 2026</div>
+  <div class="pf-right">Transcribed by SAP Team &nbsp;·&nbsp; 6 Oct 2026</div>
+</div>
+
+</body>
+</html>

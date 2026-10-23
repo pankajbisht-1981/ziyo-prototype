@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Persona — Kamola Ergasheva · Ziyo Forum</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #e8eaed;
+    color: #1a1a2e;
+    width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #003366;
+    padding: 18px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-block { display: flex; flex-direction: column; gap: 3px; }
+  .brand-name {
+    font-size: 17px; font-weight: 800; color: #fff;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .brand-sub {
+    font-size: 10.5px; color: #1DCEAF;
+    letter-spacing: 0.6px; font-weight: 400;
+  }
+  .header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+  .persona-badge {
+    display: inline-block;
+    background: #F0AB00; color: #003366;
+    font-size: 9.5px; font-weight: 800;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 2px;
+  }
+  .header-date { font-size: 10px; color: rgba(255,255,255,0.45); }
+
+  /* ── BODY LAYOUT ── */
+  .body-wrap { display: flex; background: #fff; }
+
+  /* ── LEFT SIDEBAR ── */
+  .left-sidebar {
+    width: 232px; flex-shrink: 0;
+    background: #F2F4F7;
+    padding: 26px 20px;
+    display: flex; flex-direction: column;
+  }
+
+  /* Avatar */
+  .avatar-wrap {
+    width: 86px; height: 86px; border-radius: 50%;
+    background: #003366;
+    margin: 0 auto 14px auto;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid #F0AB00;
+    flex-shrink: 0;
+  }
+  .avatar-initials {
+    font-size: 24px; font-weight: 700; color: #fff;
+    letter-spacing: 1px; line-height: 1;
+  }
+  .persona-name {
+    text-align: center; font-size: 19px; font-weight: 700;
+    color: #003366; line-height: 1.2; margin-bottom: 4px;
+  }
+  .persona-role {
+    text-align: center; font-size: 10.5px; color: #6B7785;
+    line-height: 1.55; margin-bottom: 20px;
+  }
+
+  /* Sidebar section labels */
+  .sb-title {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase;
+    color: #003366;
+    border-bottom: 1px solid #c8cdd8;
+    padding-bottom: 5px; margin-bottom: 10px; margin-top: 18px;
+  }
+
+  /* Demographics */
+  .demo-row { display: flex; gap: 7px; margin-bottom: 6px; align-items: flex-start; }
+  .demo-lbl { font-size: 9.5px; color: #6B7785; width: 68px; flex-shrink: 0; padding-top: 1px; }
+  .demo-val { font-size: 10.5px; color: #1a1a2e; font-weight: 500; line-height: 1.4; }
+
+  /* Tags */
+  .tags-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+  .tag {
+    font-size: 9px; font-weight: 600;
+    padding: 3px 8px; border-radius: 2px;
+    letter-spacing: 0.2px;
+  }
+  .tag-teal { background: #e0f7f3; color: #0b8c72; }
+  .tag-navy { background: #e4eaf5; color: #003366; }
+  .tag-gold { background: #fef5dd; color: #9a6800; }
+
+  /* Competency sliders */
+  .comp-row { margin-bottom: 10px; }
+  .comp-labels { display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .comp-l, .comp-r { font-size: 9px; color: #6B7785; }
+  .slider-track {
+    height: 5px; background: #d4d8e2;
+    border-radius: 3px; position: relative;
+  }
+  .slider-fill {
+    position: absolute; height: 5px; left: 0;
+    background: #003366; border-radius: 3px;
+    opacity: 0.25;
+  }
+  .slider-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff; border: 2.5px solid #003366;
+    position: absolute; top: -3.5px;
+    transform: translateX(-50%);
+  }
+
+  /* ── CENTER ── */
+  .center-col {
+    flex: 1;
+    padding: 26px 26px 22px 26px;
+    display: flex; flex-direction: column;
+    border-right: 1px solid #eaecef;
+  }
+
+  /* Quote */
+  .quote-block {
+    border-left: 4px solid #F0AB00;
+    padding: 12px 16px;
+    margin-bottom: 22px;
+    background: #fffdf5;
+    border-radius: 0 3px 3px 0;
+  }
+  .quote-text {
+    font-size: 14.5px; font-style: italic;
+    color: #003366; line-height: 1.65;
+    font-weight: 500;
+  }
+  .quote-attr {
+    font-size: 10px; color: #6B7785; margin-top: 7px;
+  }
+
+  /* Center section labels */
+  .ct-title {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase;
+    color: #003366;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 5px; margin-bottom: 12px; margin-top: 20px;
+  }
+  .ct-title:first-of-type { margin-top: 0; }
+
+  /* Scenario */
+  .scenario-text {
+    font-size: 12px; color: #333; line-height: 1.8;
+  }
+  .scenario-text strong { color: #003366; font-weight: 600; }
+
+  /* Behavior list */
+  .blist { list-style: none; padding: 0; }
+  .blist li {
+    font-size: 11.5px; color: #333;
+    padding: 5px 0 5px 14px;
+    border-bottom: 1px solid #f2f4f7;
+    line-height: 1.45;
+    position: relative;
+  }
+  .blist li:last-child { border-bottom: none; }
+  .blist li::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: #1DCEAF; border-radius: 50%;
+    position: absolute; left: 0; top: 10px;
+  }
+
+  /* Channels */
+  .channels-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; }
+  .chip {
+    display: flex; align-items: center; gap: 5px;
+    background: #f2f4f7; border: 1px solid #dde1e8;
+    border-radius: 3px; padding: 5px 10px;
+    font-size: 10.5px; color: #333; font-weight: 500;
+  }
+  .chip-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── RIGHT COLUMN ── */
+  .right-col {
+    width: 255px; flex-shrink: 0;
+    background: #fff;
+    padding: 26px 18px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  .card {
+    border-radius: 3px;
+    padding: 13px 13px 10px 13px;
+    flex-shrink: 0;
+  }
+  .card-navy { background: #003366; }
+  .card-teal { background: #e8faf6; border: 1px solid #b0ede2; }
+  .card-warm { background: #fff8ec; border: 1px solid #f5d87a; }
+  .card-rose { background: #fff3f3; border: 1px solid #f5baba; }
+
+  .card-label {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .lbl-white { color: rgba(255,255,255,0.9); }
+  .lbl-teal  { color: #0b8c72; }
+  .lbl-gold  { color: #9a6800; }
+  .lbl-rose  { color: #b02a2a; }
+
+  .card-list { list-style: none; padding: 0; }
+  .card-list li {
+    font-size: 10.5px; line-height: 1.5;
+    padding: 4px 0 4px 12px;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .card-list li:last-child { border-bottom: none; }
+  .card-list li::before {
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; position: absolute; left: 0; top: 9px;
+  }
+  .card-navy .card-list li { color: rgba(255,255,255,0.85); }
+  .card-navy .card-list li::before { background: #F0AB00; }
+  .card-teal .card-list li { color: #143830; }
+  .card-teal .card-list li::before { background: #1DCEAF; }
+  .card-warm .card-list li { color: #3a2800; }
+  .card-warm .card-list li::before { background: #F0AB00; }
+  .card-rose .card-list li { color: #3a0a0a; }
+  .card-rose .card-list li::before { background: #d94f4f; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #002244;
+    padding: 14px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-insight {
+    font-size: 11.5px; color: rgba(255,255,255,0.88);
+    font-style: italic; line-height: 1.55;
+    max-width: 700px;
+  }
+  .footer-insight strong { color: #F0AB00; font-style: normal; }
+  .footer-meta {
+    font-size: 10px; color: rgba(255,255,255,0.35);
+    text-align: right; white-space: nowrap; flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="header">
+  <div class="brand-block">
+    <div class="brand-name">Ziyo Forum</div>
+    <div class="brand-sub">Connecting Uzbek Youth with Opportunity</div>
+  </div>
+  <div class="header-right">
+    <div class="persona-badge">End User Persona</div>
+    <div class="header-date">Discovery Research &nbsp;·&nbsp; October 2026</div>
+  </div>
+</div>
+
+<!-- ══════════ BODY ══════════ -->
+<div class="body-wrap">
+
+  <!-- ════ LEFT SIDEBAR ════ -->
+  <div class="left-sidebar">
+
+    <div class="avatar-wrap">
+      <div class="avatar-initials">K E</div>
+    </div>
+    <div class="persona-name">Kamola<br>Ergasheva</div>
+    <div class="persona-role">3rd Year IT Student<br>Tashkent State Technical University</div>
+
+    <!-- Demographics -->
+    <div class="sb-title">Profile</div>
+    <div class="demo-row">
+      <span class="demo-lbl">Age</span>
+      <span class="demo-val">21 years old</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-lbl">Location</span>
+      <span class="demo-val">Tashkent, Uzbekistan</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-lbl">Education</span>
+      <span class="demo-val">BSc Computer Science<br>(Year 3 of 4)</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-lbl">Status</span>
+      <span class="demo-val">Single, lives with family</span>
+    </div>
+    <div class="demo-row">
+      <span class="demo-lbl">Experience</span>
+      <span class="demo-val">1 freelance project (3 months)</span>
+    </div>
+
+    <!-- Tags -->
+    <div class="sb-title">Interests</div>
+    <div class="tags-row">
+      <span class="tag tag-teal">Mobile Apps</span>
+      <span class="tag tag-navy">UI Design</span>
+      <span class="tag tag-teal">Telegram Bots</span>
+      <span class="tag tag-navy">Chess</span>
+      <span class="tag tag-gold">Hackathons</span>
+      <span class="tag tag-teal">Open Source</span>
+    </div>
+
+    <!-- Competencies -->
+    <div class="sb-title">Behaviour Profile</div>
+
+    <!-- Power User ←→ Casual  (25%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Power User</span>
+        <span class="comp-r">Casual</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:25%"></div>
+        <div class="slider-dot" style="left:25%"></div>
+      </div>
+    </div>
+
+    <!-- Pro-Active ←→ Reactive  (20%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Pro-Active</span>
+        <span class="comp-r">Reactive</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:20%"></div>
+        <div class="slider-dot" style="left:20%"></div>
+      </div>
+    </div>
+
+    <!-- Team-Oriented ←→ Independent  (45%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Team-Oriented</span>
+        <span class="comp-r">Independent</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:45%"></div>
+        <div class="slider-dot" style="left:45%"></div>
+      </div>
+    </div>
+
+    <!-- Global Mindset ←→ Local Focus  (35%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Global Mindset</span>
+        <span class="comp-r">Local Focus</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:35%"></div>
+        <div class="slider-dot" style="left:35%"></div>
+      </div>
+    </div>
+
+    <!-- Risk Taker ←→ Risk Averse  (30%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Risk Taker</span>
+        <span class="comp-r">Risk Averse</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:30%"></div>
+        <div class="slider-dot" style="left:30%"></div>
+      </div>
+    </div>
+
+    <!-- Early Adopter ←→ Wait & See  (22%) -->
+    <div class="comp-row">
+      <div class="comp-labels">
+        <span class="comp-l">Early Adopter</span>
+        <span class="comp-r">Wait &amp; See</span>
+      </div>
+      <div class="slider-track">
+        <div class="slider-fill" style="width:22%"></div>
+        <div class="slider-dot" style="left:22%"></div>
+      </div>
+    </div>
+
+  </div><!-- /left sidebar -->
+
+  <!-- ════ CENTER ════ -->
+  <div class="center-col">
+
+    <!-- Quote -->
+    <div class="quote-block">
+      <div class="quote-text">
+        &ldquo;I want to quickly and easily find relevant opportunities — in one place, in my language, built for someone like me.&rdquo;
+      </div>
+      <div class="quote-attr">— Kamola Ergasheva, 21 &nbsp;·&nbsp; CS Student, Tashkent</div>
+    </div>
+
+    <!-- Scenario -->
+    <div class="ct-title">A Day in Her Life</div>
+    <div class="scenario-text">
+      Kamola starts her morning by checking <strong>Telegram channels</strong> for job posts before her 9 am lecture.
+      She saves three listings but two require 2+ years of experience she does not yet have.
+      Between classes she opens <strong>LinkedIn</strong> — the interface is in English, the jobs are mostly abroad,
+      and the local opportunities are buried in a feed she hasn't learned to filter.
+      In the evening she works on a personal project for her GitHub portfolio,
+      aware that employers will ask for one but unsure exactly what they want to see.
+      She falls asleep with five browser tabs open: a Coursera course, a scholarship form in Russian,
+      a company career page, and two unanswered questions — <strong>who is hiring in Tashkent right now,
+      and how does someone like her get in front of them?</strong>
+    </div>
+
+    <!-- Behaviours -->
+    <div class="ct-title">Behaviours &amp; Habits</div>
+    <ul class="blist">
+      <li>Monitors multiple Telegram channels and job boards daily — but finds them scattered and unreliable</li>
+      <li>Builds skills through Coursera, YouTube tutorials, and personal GitHub projects alongside her degree</li>
+      <li>Participates in hackathons and coding competitions to build her portfolio and network</li>
+      <li>Shares opportunities with university peers via group chats before acting on them herself</li>
+      <li>Prefers Uzbek or Russian content but defaults to English-language tools because local options are limited</li>
+      <li>Looks for credibility signals (company logos, official-looking listings) before trusting a source</li>
+    </ul>
+
+    <!-- Preferred Channels -->
+    <div class="ct-title">Where She Looks for Opportunities</div>
+    <div class="channels-row">
+      <div class="chip">
+        <div class="chip-dot" style="background:#0088cc"></div>
+        Telegram Channels
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#0a66c2"></div>
+        LinkedIn
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#ff0000"></div>
+        YouTube
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#0056d3"></div>
+        Coursera
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#1a1a1a"></div>
+        GitHub
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#e1306c"></div>
+        Instagram
+      </div>
+      <div class="chip">
+        <div class="chip-dot" style="background:#25D366"></div>
+        WhatsApp Groups
+      </div>
+    </div>
+
+  </div><!-- /center -->
+
+  <!-- ════ RIGHT COLUMN ════ -->
+  <div class="right-col">
+
+    <!-- Goals -->
+    <div class="card card-navy">
+      <div class="card-label lbl-white">Goals</div>
+      <ul class="card-list">
+        <li>Land a meaningful internship or entry-level tech role in Uzbekistan</li>
+        <li>Build a portfolio of real projects that proves her skills to employers</li>
+        <li>Develop practical, in-demand skills (web, mobile, data) alongside her degree</li>
+        <li>Grow a professional network and connect with mentors who can guide her career</li>
+      </ul>
+    </div>
+
+    <!-- Needs -->
+    <div class="card card-teal">
+      <div class="card-label lbl-teal">What She Needs from Ziyo</div>
+      <ul class="card-list">
+        <li>One trusted platform that aggregates verified internship and job listings</li>
+        <li>Clear information on what skills and qualifications companies actually require</li>
+        <li>Guidance on CV writing and how to prepare for technical interviews</li>
+        <li>Access to scholarships, grants, and early-career development programmes</li>
+      </ul>
+    </div>
+
+    <!-- Challenges -->
+    <div class="card card-warm">
+      <div class="card-label lbl-gold">Challenges</div>
+      <ul class="card-list">
+        <li>Balancing university coursework with the time needed for job searching</li>
+        <li>Staying motivated when applications go unanswered for weeks</li>
+        <li>Knowing which skills to invest in when the market signal is unclear</li>
+        <li>Building credibility without industry experience to point to</li>
+      </ul>
+    </div>
+
+    <!-- Pain Points -->
+    <div class="card card-rose">
+      <div class="card-label lbl-rose">Pain Points Today</div>
+      <ul class="card-list">
+        <li>Opportunities fragmented across dozens of channels — no single reliable source</li>
+        <li>Most listings require experience she does not yet have, no clear path for graduates</li>
+        <li>Limited transparency on salaries, culture, or what the role actually involves</li>
+        <li>English or Russian often required, creating a barrier for native Uzbek speakers</li>
+      </ul>
+    </div>
+
+  </div><!-- /right -->
+
+</div><!-- /body-wrap -->
+
+<!-- ══════════ FOOTER ══════════ -->
+<div class="footer">
+  <div class="footer-insight">
+    <strong>Key Design Insight:</strong>
+    Kamola is not passive — she is actively searching every day. The problem is fragmentation, not motivation.
+    Ziyo Forum's opportunity is to become the single trusted source she currently has to build herself from dozens of scattered channels.
+  </div>
+  <div class="footer-meta">
+    Ziyo Forum &nbsp;·&nbsp; SAP Social Sabbatical<br>
+    Tashkent, Uzbekistan &nbsp;·&nbsp; 2026
+  </div>
+</div>
+
+</body>
+</html>

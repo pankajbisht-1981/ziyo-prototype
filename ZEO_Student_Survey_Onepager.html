@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talabalar So'rovnomasi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .page {
+    width: 794px;
+    height: 1123px;
+    margin: 24px auto;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #111;
+    padding: 14px 28px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .header h1 span { color: #17C41E; }
+  .header-h1-en {
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .header-sub {
+    font-size: 10.5px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .header-sub em {
+    font-style: normal;
+    color: #666;
+    font-size: 10px;
+  }
+  .time-badge {
+    display: inline-block;
+    background: #17C41E;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 13px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .time-badge-en {
+    display: block;
+    font-size: 9px;
+    color: #555;
+    margin-top: 4px;
+    text-align: right;
+    font-style: italic;
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: #f0fdf0;
+    border-left: 4px solid #17C41E;
+    padding: 8px 28px;
+    flex-shrink: 0;
+  }
+  .intro-strip p {
+    font-size: 10.5px;
+    color: #333;
+    line-height: 1.5;
+  }
+  .intro-strip p strong { color: #111; }
+  .intro-en {
+    font-size: 9.5px;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* ── QUESTIONS GRID ── */
+  .questions {
+    padding: 10px 28px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 18px;
+    flex: 1;
+    align-content: start;
+  }
+
+  .q-block {
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius: 7px;
+    padding: 8px 11px;
+  }
+  .q-block.full-width { grid-column: 1 / -1; }
+  .q-block.open-text {
+    background: #fff;
+    border: 1.5px dashed #17C41E;
+  }
+
+  .q-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    background: #17C41E;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 6px;
+    float: left;
+    margin-top: 1px;
+  }
+  .q-text { overflow: hidden; }
+  .q-uz {
+    font-size: 11px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.35;
+  }
+  .q-en {
+    font-size: 9.5px;
+    color: #888;
+    font-style: italic;
+    margin-top: 1px;
+    line-height: 1.3;
+  }
+  .q-note {
+    font-size: 8.5px;
+    color: #17C41E;
+    font-weight: 600;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── OPTIONS ── */
+  .options {
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    clear: both;
+  }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px 7px;
+    font-size: 9.5px;
+    color: #333;
+    white-space: nowrap;
+  }
+  .opt .check {
+    width: 11px;
+    height: 11px;
+    border: 1.5px solid #bbb;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .opt .check.round { border-radius: 50%; }
+  .opt-en {
+    font-size: 8px;
+    color: #aaa;
+    font-style: italic;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .open-box {
+    width: 100%;
+    margin-top: 7px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 10px;
+    color: #bbb;
+    font-style: italic;
+    background: #fafafa;
+    clear: both;
+    height: 36px;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; width: 100%; height: 100vh; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Platformamizni Birga <span>Quramiz</span></h1>
+      <div class="header-h1-en">Help Us Build Your Platform</div>
+      <div class="header-sub">
+        Talabalar uchun so'rovnoma &nbsp;|&nbsp; 8 ta savol &nbsp;|&nbsp; Anonim<br>
+        <em>Student Opportunity Survey &nbsp;|&nbsp; 8 questions &nbsp;|&nbsp; Anonymous</em>
+      </div>
+    </div>
+    <div>
+      <span class="time-badge">⏱ 2 daqiqa</span>
+      <span class="time-badge-en">2 minutes</span>
+    </div>
+  </div>
+
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <p>
+      <strong>Biz O'zbekistondagi yoshlarga stipendiyalar, amaliyot, tadbirlar va karera imkoniyatlarini bir joyda topishga yordam beradigan platforma yaratyapmiz.</strong>
+      Javoblaringiz bizning keyingi ishimizni belgilaydi. 2 daqiqa, anonim.<br>
+      <span class="intro-en">We're building a platform to help young people in Uzbekistan find scholarships, internships, events, and career opportunities — all in one place. Your answers shape what we build next.</span>
+    </p>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="questions">
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <span class="q-number">1</span>
+      <div class="q-text">
+        <div class="q-uz">Yoshingiz nechida?</div>
+        <div class="q-en">How old are you?</div>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check round"></div><div>16 yoshdan kichik<span class="opt-en">Under 16</span></div></div>
+        <div class="opt"><div class="check round"></div><div>16 – 18<span class="opt-en">16–18</span></div></div>
+        <div class="opt"><div class="check round"></div><div>19 – 22<span class="opt-en">19–22</span></div></div>
+        <div class="opt"><div class="check round"></div><div>23 – 26<span class="opt-en">23–26</span></div></div>
+        <div class="opt"><div class="check round"></div><div>27 va katta<span class="opt-en">27+</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block">
+      <span class="q-number">2</span>
+      <div class="q-text">
+        <div class="q-uz">O'zingizni qanday ta'riflaysiz?</div>
+        <div class="q-en">What best describes you?</div>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check round"></div><div>Maktab o'quvchisi<span class="opt-en">School student</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Talaba<span class="opt-en">University student</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Yaqinda bitirgan<span class="opt-en">Recent graduate</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Yosh mutaxassis<span class="opt-en">Young professional</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Ish izlovchi<span class="opt-en">Job seeker</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Boshqa<span class="opt-en">Other</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block full-width">
+      <span class="q-number">3</span>
+      <div class="q-text">
+        <div class="q-uz">Qaysi imkoniyatlar sizni ko'proq qiziqtiradi?</div>
+        <div class="q-en">Which opportunities interest you most?</div>
+        <span class="q-note">3 tagacha tanlang &nbsp;·&nbsp; Choose up to 3</span>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check"></div><div>Stipendiyalar<span class="opt-en">Scholarships</span></div></div>
+        <div class="opt"><div class="check"></div><div>Kurslar va o'qish<span class="opt-en">Courses &amp; learning</span></div></div>
+        <div class="opt"><div class="check"></div><div>Amaliyot<span class="opt-en">Internships</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ish o'rinlari<span class="opt-en">Jobs</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ta'lim tadbirlari<span class="opt-en">Educational events</span></div></div>
+        <div class="opt"><div class="check"></div><div>Madaniy tadbirlar<span class="opt-en">Cultural events</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ko'ngillilik<span class="opt-en">Volunteering</span></div></div>
+        <div class="opt"><div class="check"></div><div>Musobaqalar &amp; xakatonlar<span class="opt-en">Competitions &amp; hackathons</span></div></div>
+        <div class="opt"><div class="check"></div><div>Mentorlik<span class="opt-en">Mentorship</span></div></div>
+        <div class="opt"><div class="check"></div><div>Tadbirkorlik<span class="opt-en">Entrepreneurship</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block">
+      <span class="q-number">4</span>
+      <div class="q-text">
+        <div class="q-uz">Hozirda imkoniyatlarni qanday topasiz?</div>
+        <div class="q-en">How do you find opportunities today?</div>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check round"></div><div>Telegram kanallar<span class="opt-en">Telegram channels</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Instagram<span class="opt-en">Instagram</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Do'stlar va oila<span class="opt-en">Friends &amp; family</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Universitet / maktab<span class="opt-en">University / school</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Qidiruv tizimlari<span class="opt-en">Search engines</span></div></div>
+        <div class="opt"><div class="check round"></div><div>LinkedIn<span class="opt-en">LinkedIn</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Deyarli topa olmayman<span class="opt-en">Rarely find anything</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block">
+      <span class="q-number">5</span>
+      <div class="q-text">
+        <div class="q-uz">Hozirgi eng katta qiyinligingiz nima?</div>
+        <div class="q-en">What is your biggest challenge today?</div>
+        <span class="q-note">Bittasini tanlang &nbsp;·&nbsp; Choose one</span>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check round"></div><div>Nima borligini bilmayman<span class="opt-en">Don't know what exists</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Muddatlarni o'tkazaman<span class="opt-en">Miss deadlines</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Menga nima mos bilmayman<span class="opt-en">Don't know what fits me</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Karerani qanday qurish bilmayman<span class="opt-en">Don't know how to build career</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Mentor yoki yo'l-yo'riq yo'q<span class="opt-en">No guidance or mentors</span></div></div>
+        <div class="opt"><div class="check round"></div><div>Ko'pchiligi juda qimmat<span class="opt-en">Too expensive</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-block">
+      <span class="q-number">6</span>
+      <div class="q-text">
+        <div class="q-uz">Bitta ilovada eng qimmatli narsa nima bo'lardi?</div>
+        <div class="q-en">What would be most valuable in one app?</div>
+        <span class="q-note">2 tagacha tanlang &nbsp;·&nbsp; Choose up to 2</span>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check"></div><div>Menga mos imkoniyatlar<span class="opt-en">Opportunities matched to me</span></div></div>
+        <div class="opt"><div class="check"></div><div>Stipendiyalar bazasi<span class="opt-en">Scholarship database</span></div></div>
+        <div class="opt"><div class="check"></div><div>Amaliyot va ish<span class="opt-en">Internship &amp; jobs</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ta'lim tadbirlari<span class="opt-en">Educational events</span></div></div>
+        <div class="opt"><div class="check"></div><div>Karera bo'yicha maslahat<span class="opt-en">Career guidance</span></div></div>
+        <div class="opt"><div class="check"></div><div>Kurslar va o'rganish<span class="opt-en">Courses &amp; learning</span></div></div>
+        <div class="opt"><div class="check"></div><div>Mentorlik<span class="opt-en">Mentorship</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ariza bo'yicha maslahatlar<span class="opt-en">Application tips &amp; guides</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-block">
+      <span class="q-number">7</span>
+      <div class="q-text">
+        <div class="q-uz">Ilovani muntazam ochishingiz uchun nima kerak?</div>
+        <div class="q-en">What would make you open the app regularly?</div>
+        <span class="q-note">2 tagacha tanlang &nbsp;·&nbsp; Choose up to 2</span>
+      </div>
+      <div class="options">
+        <div class="opt"><div class="check"></div><div>Shaxsiy tavsiyalar<span class="opt-en">Personalised picks</span></div></div>
+        <div class="opt"><div class="check"></div><div>Stipendiya ogohlantirishlari<span class="opt-en">Scholarship alerts</span></div></div>
+        <div class="opt"><div class="check"></div><div>Ish / amaliyot ogohlantirishlari<span class="opt-en">Job &amp; internship alerts</span></div></div>
+        <div class="opt"><div class="check"></div><div>Kurslar va resurslar<span class="opt-en">Courses &amp; resources</span></div></div>
+        <div class="opt"><div class="check"></div><div>Mukofotlar va topshiriqlar<span class="opt-en">Rewards &amp; challenges</span></div></div>
+        <div class="opt"><div class="check"></div><div>Yoshlar tadbirlari taqvimi<span class="opt-en">Youth events calendar</span></div></div>
+        <div class="opt"><div class="check"></div><div>Muvaffaqiyat hikoyalari<span class="opt-en">Success stories</span></div></div>
+        <div class="opt"><div class="check"></div><div>Mentorlik<span class="opt-en">Mentorship</span></div></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-block full-width open-text">
+      <span class="q-number">8</span>
+      <div class="q-text">
+        <div class="q-uz">Bu platformani siz uchun haqiqatan foydali qiladigan bitta narsa nima?</div>
+        <div class="q-en">What one thing would make this platform truly useful for you?</div>
+        <span class="q-note">Ixtiyoriy, erkin javob &nbsp;·&nbsp; Optional, open answer</span>
+      </div>
+      <div class="open-box">Javobingizni shu yerga yozing… &nbsp;/&nbsp; Write your answer here…</div>
+    </div>
+
+  </div><!-- /questions -->
+
+</div><!-- /page -->
+</body>
+</html>
