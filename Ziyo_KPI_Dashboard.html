@@ -219,6 +219,12 @@ const DATA = {
       kpis: [
         { name:"Total registered users", value:24500, target:20000, unit:"", fmt:"int", higher:true,
           def:"Cumulative sign-ups since launch.", trend:[9,11,13,15,18,20,22,24.5] },
+        { name:"New registrations this month", value:1820, target:1500, unit:"", fmt:"int", higher:true,
+          def:"New accounts created in the current calendar month.", trend:[940,1050,1120,1200,1310,1450,1620,1820] },
+        { name:"App downloads", value:31400, target:25000, unit:"", fmt:"int", higher:true,
+          def:"Cumulative installs across App Store and Play Store.", trend:[14200,17000,19800,22400,25100,27600,29400,31400] },
+        { name:"Profile completions", value:8740, target:8000, unit:"", fmt:"int", higher:true,
+          def:"Users who completed all required profile fields (photo, bio, skills, location).", trend:[3800,4500,5300,6100,6900,7600,8100,8740] },
         { name:"Activation rate", value:41, target:45, unit:"%", fmt:"pct", higher:true,
           def:"Onboarding complete + ≥1 meaningful action in the first session.", trend:[30,33,34,36,38,39,40,41] }
       ]
@@ -232,6 +238,12 @@ const DATA = {
           def:"Average users active each day this month.", trend:[540,620,700,780,850,950,1080,1240] },
         { name:"Monthly Active Users (MAU)", value:4430, target:3500, unit:"", fmt:"int", higher:true,
           def:"Unique users who performed at least one action this month.", trend:[1900,2200,2600,2900,3200,3600,4000,4430] },
+        { name:"Total sessions", value:18600, target:15000, unit:"", fmt:"int", higher:true,
+          def:"App sessions opened this month across all users.", trend:[8200,9800,11200,12600,13900,15400,16800,18600] },
+        { name:"Applications submitted", value:892, target:750, unit:"", fmt:"int", higher:true,
+          def:"Job, internship, and grant applications sent through the platform this month.", trend:[310,390,470,560,640,720,800,892] },
+        { name:"Content items saved", value:4210, target:3000, unit:"", fmt:"int", higher:true,
+          def:"Bookmarks across jobs, courses, events, and grants this month.", trend:[1600,2000,2400,2800,3200,3600,3900,4210] },
         { name:"Leaderboard participation", value:61, target:50, unit:"%", fmt:"pct", higher:true,
           def:"% of users with ≥1 point transaction. Gamification working as designed.", trend:[42,46,50,53,56,58,60,61] },
         { name:"User satisfaction", value:4.4, target:4.3, unit:"/5", fmt:"dec", higher:true,
@@ -243,7 +255,7 @@ const DATA = {
     {
       key: "outcome", name: "Outcome", sub: "Impact KPIs",
       q: "Did anything change in their lives?", icon: "🎯",
-      report: true, badge: "Reported to donors", color: "var(--outcome)", bg: "var(--outcome-bg)",
+      report: true, badge: "", color: "var(--outcome)", bg: "var(--outcome-bg)",
       kpis: [
         { name:"Jobs posted", value:248, target:200, unit:"", fmt:"int", higher:true,
           def:"Job and career opportunities posted on the platform this period.", trend:[80,100,120,145,170,195,220,248] },
