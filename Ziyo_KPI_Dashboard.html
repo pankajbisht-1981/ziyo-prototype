@@ -190,7 +190,7 @@
   <div class="panel" id="outcomePanel"></div>
 
   <div class="footer">
-    Ziyo · Impact KPI Framework · Only the <b style="color:var(--brand-d)">Outcome</b> layer counts as mission delivery.<br>
+    Ziyo · Impact KPI Dashboard · Only the <b style="color:var(--brand-d)">Outcome</b> layer is reported to donors.<br>
     North Star: <b>Active Beneficiaries</b> — honest · auditable · grant-defensible.
   </div>
 
@@ -209,38 +209,33 @@ const DATA = {
     deltaPct: 18,
     def: "Users who completed at least one outcome-linked action and shared a success story.",
     tags: ["Honest", "Auditable", "Grant-defensible"],
-    // 12-month trend
     trend: [310, 360, 420, 505, 560, 640, 720, 815, 910, 1040, 1150, 1284]
   },
   layers: [
     {
       key: "reach", name: "Reach", sub: "Growth KPIs",
       q: "Are we reaching the right people?", icon: "📣",
-      report: false, badge: "Internal health", color: "var(--reach)", bg: "var(--reach-bg)",
+      report: false, badge: "", color: "var(--reach)", bg: "var(--reach-bg)",
       kpis: [
         { name:"Total registered users", value:24500, target:20000, unit:"", fmt:"int", higher:true,
           def:"Cumulative sign-ups since launch.", trend:[9,11,13,15,18,20,22,24.5] },
-        { name:"Organic referral rate", value:22, target:25, unit:"%", fmt:"pct", higher:true,
-          def:"New users via invite/share ÷ total new. Word-of-mouth trust signal.", trend:[12,14,15,17,18,19,21,22] },
         { name:"Activation rate", value:41, target:45, unit:"%", fmt:"pct", higher:true,
-          def:"Onboarding complete + ≥1 meaningful action. Quality of user entry.", trend:[30,33,34,36,38,39,40,41] }
+          def:"Onboarding complete + ≥1 meaningful action in the first session.", trend:[30,33,34,36,38,39,40,41] }
       ]
     },
     {
       key: "engage", name: "Engagement", sub: "Behaviour KPIs",
       q: "Are they using the platform purposefully?", icon: "🔁",
-      report: false, badge: "Internal health", color: "var(--engage)", bg: "var(--engage-bg)",
+      report: false, badge: "", color: "var(--engage)", bg: "var(--engage-bg)",
       kpis: [
-        { name:"Stickiness (DAU/MAU)", value:28, target:30, unit:"%", fmt:"pct", higher:true,
-          def:"Daily-habit strength. Below 15% signals low stickiness.", trend:[19,21,22,24,25,26,27,28] },
-        { name:"Return after onboarding", value:52, target:50, unit:"%", fmt:"pct", higher:true,
-          def:"% who return within 7 days of signup. Leading indicator of retention.", trend:[40,43,45,47,48,50,51,52] },
-        { name:"30-day retention", value:34, target:35, unit:"%", fmt:"pct", higher:true,
-          def:"Active in week 4 ÷ signed up in week 1. Standard cohort-health metric.", trend:[26,28,29,30,31,32,33,34] },
+        { name:"Daily Active Users (DAU)", value:1240, target:1000, unit:"", fmt:"int", higher:true,
+          def:"Average users active each day this month.", trend:[540,620,700,780,850,950,1080,1240] },
+        { name:"Monthly Active Users (MAU)", value:4430, target:3500, unit:"", fmt:"int", higher:true,
+          def:"Unique users who performed at least one action this month.", trend:[1900,2200,2600,2900,3200,3600,4000,4430] },
         { name:"Leaderboard participation", value:61, target:50, unit:"%", fmt:"pct", higher:true,
           def:"% of users with ≥1 point transaction. Gamification working as designed.", trend:[42,46,50,53,56,58,60,61] },
         { name:"User satisfaction", value:4.4, target:4.3, unit:"/5", fmt:"dec", higher:true,
-          def:"Ratings & feedback from in-app survey, App Store and Play Store.", trend:[4.0,4.1,4.1,4.2,4.2,4.3,4.3,4.4] },
+          def:"Ratings from in-app survey, App Store and Play Store.", trend:[4.0,4.1,4.1,4.2,4.2,4.3,4.3,4.4] },
         { name:"Event attendance", value:68, target:60, unit:"%", fmt:"pct", higher:true,
           def:"Registered attendees who showed up — plus event ratings & feedback.", trend:[55,58,60,62,63,65,67,68] }
       ]
@@ -248,45 +243,39 @@ const DATA = {
     {
       key: "outcome", name: "Outcome", sub: "Impact KPIs",
       q: "Did anything change in their lives?", icon: "🎯",
-      report: true, badge: "The ministry", color: "var(--outcome)", bg: "var(--outcome-bg)",
+      report: true, badge: "Reported to donors", color: "var(--outcome)", bg: "var(--outcome-bg)",
       kpis: [
-        { name:"Job placement rate", value:12, target:10, unit:"%", fmt:"pct", higher:true,
-          def:"Users placed in jobs via the platform.", trend:[6,7,8,9,10,11,11,12] },
+        { name:"Jobs posted", value:248, target:200, unit:"", fmt:"int", higher:true,
+          def:"Job and career opportunities posted on the platform this period.", trend:[80,100,120,145,170,195,220,248] },
         { name:"Internships secured", value:340, target:300, unit:"", fmt:"int", higher:true,
-          def:"Number of internships secured by beneficiaries.", trend:[120,165,200,240,275,300,320,340] },
+          def:"Internships secured by beneficiaries through the platform.", trend:[120,165,200,240,275,300,320,340] },
         { name:"Grants awarded", value:142, target:150, unit:"", fmt:"int", higher:true,
-          def:"Number of grants awarded to beneficiaries.", trend:[60,78,92,105,118,128,136,142] },
-        { name:"Grant conversion rate", value:8, target:12, unit:"%", fmt:"pct", higher:true,
-          def:"Grants awarded ÷ applications submitted. Shows real uplift, not just clicks.", trend:[5,6,6,7,7,8,8,8] },
-        { name:"Volunteer opportunities", value:76, target:60, unit:"", fmt:"int", higher:true,
-          def:"Number of volunteer opportunities taken up by beneficiaries.", trend:[28,36,44,52,58,64,70,76] },
+          def:"Grants awarded to beneficiaries through the platform.", trend:[60,78,92,105,118,128,136,142] },
+        { name:"Certificates issued", value:3120, target:2500, unit:"", fmt:"int", higher:true,
+          def:"Verified certificates earned by beneficiaries.", trend:[1200,1500,1800,2100,2400,2700,2900,3120] },
         { name:"Course completion rate", value:47, target:50, unit:"%", fmt:"pct", higher:true,
           def:"Courses finished ÷ courses started. Learning actually happened.", trend:[35,38,40,42,44,45,46,47] },
         { name:"Skills progression score", value:23, target:20, unit:"%", fmt:"pct", higher:true,
           def:"Average quiz-score improvement over time. Measurable knowledge gain.", trend:[12,14,16,18,19,21,22,23] },
-        { name:"Event-to-action rate", value:31, target:30, unit:"%", fmt:"pct", higher:true,
-          def:"Attendees who then applied for a job or grant. Event quality, not just attendance.", trend:[20,22,24,26,27,29,30,31] },
-        { name:"Certificates issued", value:3120, target:2500, unit:"", fmt:"int", higher:true,
-          def:"Verified certificates earned by beneficiaries.", trend:[1.2,1.5,1.8,2.1,2.4,2.7,2.9,3.12] }
+        { name:"Events hosted", value:34, target:24, unit:"", fmt:"int", higher:true,
+          def:"Events and workshops hosted on the platform this period.", trend:[10,13,16,19,22,26,30,34] },
+        { name:"Success stories", value:87, target:80, unit:"", fmt:"int", higher:true,
+          def:"Beneficiaries who submitted a verified success story on the platform.", trend:[22,30,38,47,56,64,74,87] }
       ]
     },
     {
-      key: "ops", name: "Operations", sub: "Foundation KPIs",
-      q: "Is the platform healthy, reliable and shipping?", icon: "🛠️",
-      report: false, badge: "Infrastructure", color: "var(--ops)", bg: "var(--ops-bg)",
+      key: "ops", name: "App Operations", sub: "Platform health KPIs",
+      q: "Is the platform reliable and shipping?", icon: "🛠️",
+      report: false, badge: "", color: "var(--ops)", bg: "var(--ops-bg)",
       kpis: [
         { name:"Uptime", value:99.7, target:99.5, unit:"%", fmt:"dec", higher:true,
           def:"Share of time the platform was available this month.", trend:[99.2,99.3,99.4,99.5,99.6,99.5,99.6,99.7] },
         { name:"Incidents reported", value:4, target:5, unit:"/mo", fmt:"int", higher:false,
           def:"Downtime / service incidents reported this month. Lower is better.", trend:[11,9,8,7,6,5,5,4] },
-        { name:"Time to recovery (MTTR)", value:38, target:60, unit:" min", fmt:"int", higher:false,
-          def:"Mean time to restore service after an incident. Lower is better.", trend:[95,82,74,66,58,50,44,38] },
         { name:"Time-to-publish", value:2.4, target:3, unit:" days", fmt:"dec", higher:false,
-          def:"Avg time from content ready to live. Lower is better.", trend:[5.5,4.8,4.2,3.6,3.2,2.9,2.6,2.4] },
-        { name:"Release frequency", value:3.2, target:2, unit:"/mo", fmt:"dec", higher:true,
-          def:"Production releases per month. Delivery velocity.", trend:[1.0,1.2,1.5,1.8,2.2,2.6,2.9,3.2] },
-        { name:"Support satisfaction (CSAT)", value:92, target:90, unit:"%", fmt:"pct", higher:true,
-          def:"Satisfaction from support tickets & resolution feedback.", trend:[84,85,87,88,89,90,91,92] }
+          def:"Average time from content-ready to live on platform. Lower is better.", trend:[5.5,4.8,4.2,3.6,3.2,2.9,2.6,2.4] },
+        { name:"Release completion", value:3.2, target:2, unit:"/mo", fmt:"dec", higher:true,
+          def:"Production releases shipped per month. Delivery velocity.", trend:[1.0,1.2,1.5,1.8,2.2,2.6,2.9,3.2] }
       ]
     }
   ]
@@ -423,7 +412,7 @@ function render(){
           <div class="lh-name">${l.name} <span style="font-weight:600;opacity:.7;font-size:13px">· ${l.sub}</span></div>
           <div class="lh-q">${l.q}</div>
         </div>
-        <div class="lh-badge ${l.report?'report':''}">${l.badge || (l.report?'Reported to donors':'Internal health')}</div>
+        ${l.badge ? `<div class="lh-badge ${l.report?'report':''}">${l.badge}</div>` : ''}
       </div>
       <div class="grid">${cards}</div>
     </div>`;
