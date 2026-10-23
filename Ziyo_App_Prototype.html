@@ -150,6 +150,15 @@
 
   /* ── Glow/shadow CSS vars for mono theme ── */
   [data-theme="mono"]{--glow-c:rgba(124,92,252,.35);--fab-glow:rgba(124,92,252,.25);}
+  /* ── Card borders — tile visibility on Electric Night bg ── */
+  [data-theme="mono"] .card{border:1px solid var(--line);}
+  /* ── Leaderboard header bottom fade ── */
+  [data-theme="mono"] .lb-fade{position:absolute;bottom:0;left:0;right:0;height:64px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none;}
+  /* ── Profile header — 3-stop diagonal gradient for depth ── */
+  [data-theme="mono"] .profile-hdr{background:linear-gradient(135deg,#3D28B8,#7C5CFC,#9070FF)!important;}
+  /* ── Complete-profile button — visible accent border ── */[data-theme="mono"] .btn.sec{border:1.5px solid var(--green)!important;}
+  /* ── Match-ring track arc — dark violet in mono theme ── */
+  [data-theme="mono"] .match-ring svg circle:first-child{stroke:var(--line)!important;}
 
   /* ── SVG ring circles (presentation attrs can't use CSS vars) ── */
   [data-theme="mono"] #profile-pct-circle,
@@ -1445,7 +1454,7 @@
     <div class="view" id="v-profile" data-tab="profile">
       <div class="scroll">
         <!-- header -->
-        <div style="background:linear-gradient(135deg,var(--green),var(--green-m));padding:20px 18px 56px;color:#fff;position:relative;">
+        <div class="profile-hdr" style="background:linear-gradient(135deg,var(--green),var(--green-m));padding:20px 18px 56px;color:#fff;position:relative;">
           <div class="row sb">
             <div style="font-size:20px;font-weight:800;">Profil</div>
             <div class="row gap12">
@@ -2133,6 +2142,7 @@
             <div style="background:rgba(255,255,255,.2);border-radius:10px 10px 0 0;height:34px;width:62px;margin-top:6px;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;font-weight:800;">3</div>
           </div>
         </div>
+        <div class="lb-fade"></div>
       </div>
       <div id="lb-coins-panel" class="scroll no-tab" style="padding-top:0;padding-bottom:120px;">
         <div class="card" style="margin:-50px 14px 0;border-radius:22px;padding:8px 6px;position:relative;">
