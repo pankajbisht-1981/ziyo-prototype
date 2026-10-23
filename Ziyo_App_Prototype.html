@@ -17,66 +17,66 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   :root{
-    --green:#17C41E; --green-d:#13A318; --green-m:#0E9E14; --green-dk:#1b3a2e;
-    --green-l:#E8FBE9; --green-ll:#F3FDF4;
-    --ink:#0E1B12; --ink2:#3A4A40; --muted:#8A968E; --line:#ECEFEC;
-    --bg:#F4F6F4; --card:#FFFFFF; --coral:#FF4D4F; --gold:#F7B500; --blue:#2E7CF6;
+    --green:#7C3AED; --green-d:#6D28D9; --green-m:#8B5CF6; --green-dk:#2E1065;
+    --green-l:#EDE9FE; --green-ll:#F5F3FF;
+    --ink:#1E1B4B; --ink2:#4C3D8A; --muted:#9B93C4; --line:#DDD6FE;
+    --bg:#F8F5FF; --card:#FFFFFF; --coral:#F43F5E; --gold:#F59E0B; --blue:#3B82F6;
     --radius:18px; --tab-h:78px;
   }
   /* ══════════════════════════════════════════════════════════
-     PROFESSIONAL — Deep Space Indigo
-     60% #0A0B1E  |  30% #161936 + #E2E4F9  |  10% #A259FF
+     GEN Z DARK — Deep Night Purple
+     60% #0F0620  |  30% #180C35  |  10% #A78BFA
      ══════════════════════════════════════════════════════════ */
   [data-theme="mono"] {
-    --green:  #4F8FE8;   /* Clean corporate blue — primary accent  */
-    --green-m:#3A78D0;   /* Slightly deeper blue                   */
-    --green-dk:#0A1830;  /* Near-black navy                        */
-    --green-d:#2F68B8;   /* Deeper blue                            */
-    --green-l:#0C1A30;   /* Dark blue surface                      */
-    --green-ll:#070E1C;  /* Deepest blue bg                        */
-    --ink:    #EDF0FA;   /* Near-white — primary text              */
-    --ink2:   #7088AA;   /* Cool grey-blue secondary text          */
-    --muted:  #3D5070;   /* Muted / placeholder text               */
-    --line:   #121C2E;   /* Borders & dividers                     */
-    --bg:     #0A0B1E;   /* Deep Space Indigo — page bg            */
-    --card:   #0D1224;   /* Card surfaces                          */
-    --coral:  #8A5060;   /* Muted rose — error                     */
-    --gold:   #707060;   /* Desaturated sand                       */
-    --blue:   #5080A0;   /* Muted teal-blue                        */
+    --green:  #A78BFA;   /* Violet-400 — primary accent dark mode  */
+    --green-m:#9061F4;   /* Medium violet                          */
+    --green-dk:#1E0A3C;  /* Near-black deep purple                 */
+    --green-d:#8748E0;   /* Deeper violet                          */
+    --green-l:#200C3E;   /* Dark purple surface                    */
+    --green-ll:#0F0620;  /* Deepest purple bg                      */
+    --ink:    #F0EBFF;   /* Near-white — primary text              */
+    --ink2:   #9B89C4;   /* Muted violet secondary text            */
+    --muted:  #5C4E80;   /* Muted / placeholder text               */
+    --line:   #2D1650;   /* Borders & dividers                     */
+    --bg:     #0F0620;   /* Deep Night Purple — page bg            */
+    --card:   #180C35;   /* Card surfaces                          */
+    --coral:  #F87171;   /* Soft red                               */
+    --gold:   #FBD14B;   /* Gold                                   */
+    --blue:   #60A5FA;   /* Blue accent                            */
   }
 
   /* ── Overrides for hardcoded #fff / light backgrounds in CSS ── */
   [data-theme="mono"] .tabbar{
-    background:rgba(13,14,37,.96);backdrop-filter:blur(20px);
+    background:rgba(15,6,32,.96);backdrop-filter:blur(20px);
     border-top-color:var(--line);
   }
   [data-theme="mono"] .nav.ghost .back{
-    background:rgba(22,25,54,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
+    background:rgba(24,12,53,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
   }
   [data-theme="mono"] .tab.fab .fabc{
-    box-shadow:0 8px 18px rgba(79,143,232,.25);
+    box-shadow:0 8px 18px rgba(167,139,250,.25);
   }
   [data-theme="mono"] .btn.ghost{
-    background:#1E213C;color:var(--ink2);
+    background:#200C3E;color:var(--ink2);
   }
   [data-theme="mono"] .btn.sec{
-    background:#1D1545;color:var(--green);
+    background:#1B0A38;color:var(--green);
   }
-  [data-theme="mono"] .seg{background:#0D0E25;}
+  [data-theme="mono"] .seg{background:#0F0620;}
   [data-theme="mono"] .seg div.on{
-    background:#1E213C;color:var(--ink);
+    background:#200C3E;color:var(--ink);
     box-shadow:0 2px 6px rgba(0,0,0,.5);
   }
   [data-theme="mono"] .searchbar{
     background:var(--card);border-color:var(--line);color:var(--muted);
   }
-  [data-theme="mono"] .sheet{background:#161936;}
-  [data-theme="mono"] .grab{background:#252847;}
+  [data-theme="mono"] .sheet{background:#150830;}
+  [data-theme="mono"] .grab{background:#2D1650;}
   [data-theme="mono"] .react{
-    background:#1A1D3A;border-color:#252847;color:var(--ink2);
+    background:#180A30;border-color:#2D1650;color:var(--ink2);
   }
   [data-theme="mono"] .react.on{
-    background:#1D1545;border-color:var(--green);color:var(--green);
+    background:#1B0A38;border-color:var(--green);color:var(--green);
   }
   [data-theme="mono"] .react-pick,
   [data-theme="mono"] .msg-react{
@@ -99,7 +99,7 @@
     background:var(--card);border-color:var(--line);color:var(--ink);
   }
   [data-theme="mono"] .quiz-opt .qkey{
-    background:#0D0E25;color:var(--ink2);
+    background:#0F0620;color:var(--ink2);
   }
   [data-theme="mono"] .quiz-opt.correct{
     border-color:var(--green);background:var(--green-l);color:var(--green);
@@ -116,11 +116,11 @@
   }
   [data-theme="mono"] .mbar,
   [data-theme="mono"] .q-prog,
-  [data-theme="mono"] .ob-prog{background:#0D0E25;}
+  [data-theme="mono"] .ob-prog{background:#0F0620;}
   [data-theme="mono"] .mbar>i{
     background:linear-gradient(90deg,var(--green),var(--green-d));
   }
-  [data-theme="mono"] .ev-img{background:#0D0E25;}
+  [data-theme="mono"] .ev-img{background:#0F0620;}
   [data-theme="mono"] .shadow{box-shadow:0 6px 20px rgba(0,0,0,.45);}
   [data-theme="mono"] .mascot-bubble{
     background:var(--card);
@@ -144,25 +144,27 @@
   }
   [data-theme="mono"] .match-ring .mr-txt{color:var(--ink2);}
   [data-theme="mono"] .scan-line{
-    box-shadow:0 0 10px 2px rgba(79,143,232,.4);
+    box-shadow:0 0 10px 2px rgba(167,139,250,.4);
   }
 
 
   /* ── Glow/shadow CSS vars for mono theme ── */
-  [data-theme="mono"]{--glow-c:rgba(79,143,232,.35);--fab-glow:rgba(79,143,232,.25);}
+  [data-theme="mono"]{--glow-c:rgba(167,139,250,.35);--fab-glow:rgba(167,139,250,.25);}
 
   /* ── SVG ring circles (presentation attrs can't use CSS vars) ── */
+  #profile-pct-circle,
+  .match-ring svg circle:last-child{stroke:var(--green);}
   [data-theme="mono"] #profile-pct-circle,
   [data-theme="mono"] .match-ring svg circle:last-child{stroke:var(--green);}
 
   /* ── Profile picture gradient — dark navy ── */
   [data-theme="mono"] .profile-pic{
-    background:linear-gradient(135deg,#0C1A30,var(--green));
+    background:linear-gradient(135deg,#1E0A3C,var(--green));
   }
 
   /* ── Mascot tinted to cool blue-indigo palette ── */
   [data-theme="mono"] .mascot img{
-    filter:grayscale(.6) hue-rotate(195deg) saturate(.65) brightness(.88);
+    filter:grayscale(.3) hue-rotate(260deg) saturate(.8) brightness(.9);
   }
 
   /* ── Force text-color inheritance so hardcoded dark text becomes readable ── */
@@ -3084,8 +3086,8 @@
         <!-- Appearance / Theme -->
         <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;" id="set-theme-lbl">🎨 Appearance</div>
         <div class="seg" id="theme-seg" style="flex-wrap:wrap;gap:6px;">
-          <div id="theme-green" class="on" onclick="setAppTheme('green')" style="cursor:pointer;">🌿 Ziyo Green</div>
-          <div id="theme-mono" onclick="setAppTheme('mono')" style="cursor:pointer;">◼ Professional</div>
+          <div id="theme-green" class="on" onclick="setAppTheme('green')" style="cursor:pointer;">💜 Ziyo Purple</div>
+          <div id="theme-mono" onclick="setAppTheme('mono')" style="cursor:pointer;">🌙 Dark Mode</div>
           <div id="theme-purple" onclick="setAppTheme('purple')" style="cursor:pointer;">💜 Purple</div>
         </div>
 
