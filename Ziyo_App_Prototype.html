@@ -24,59 +24,59 @@
     --radius:18px; --tab-h:78px;
   }
   /* ══════════════════════════════════════════════════════════
-     PROFESSIONAL — Deep Space Indigo
-     60% #0A0B1E  |  30% #161936 + #E2E4F9  |  10% #A259FF
+     PROFESSIONAL — Electric Night Violet
+     60% #0C0A18  |  30% #141028  |  10% #7C5CFC
      ══════════════════════════════════════════════════════════ */
   [data-theme="mono"] {
-    --green:  #4F8FE8;   /* Clean corporate blue — primary accent  */
-    --green-m:#3A78D0;   /* Slightly deeper blue                   */
-    --green-dk:#0A1830;  /* Near-black navy                        */
-    --green-d:#2F68B8;   /* Deeper blue                            */
-    --green-l:#0C1A30;   /* Dark blue surface                      */
-    --green-ll:#070E1C;  /* Deepest blue bg                        */
-    --ink:    #EDF0FA;   /* Near-white — primary text              */
-    --ink2:   #7088AA;   /* Cool grey-blue secondary text          */
-    --muted:  #3D5070;   /* Muted / placeholder text               */
-    --line:   #121C2E;   /* Borders & dividers                     */
-    --bg:     #0A0B1E;   /* Deep Space Indigo — page bg            */
-    --card:   #0D1224;   /* Card surfaces                          */
-    --coral:  #8A5060;   /* Muted rose — error                     */
-    --gold:   #707060;   /* Desaturated sand                       */
-    --blue:   #5080A0;   /* Muted teal-blue                        */
+    --green:  #7C5CFC;   /* Electric violet — primary accent       */
+    --green-m:#9070FF;   /* Lighter violet                         */
+    --green-dk:#1A1240;  /* Very dark violet surface               */
+    --green-d:#6644E8;   /* Deeper violet                          */
+    --green-l:#1F1648;   /* Dark accent bg                         */
+    --green-ll:#0C0A18;  /* Deepest bg — same as page              */
+    --ink:    #F2EEFF;   /* Near-white w/ violet tint              */
+    --ink2:   #A090CC;   /* Muted lavender secondary text          */
+    --muted:  #5A4E80;   /* Deep muted violet                      */
+    --line:   #231A44;   /* Dark violet borders                    */
+    --bg:     #0C0A18;   /* Electric Night — page bg               */
+    --card:   #141028;   /* Card surfaces                          */
+    --coral:  #FF6B8A;   /* Gen Z pink/coral — error               */
+    --gold:   #FBBF24;   /* Warm amber                             */
+    --blue:   #38BDF8;   /* Sky blue accent                        */
   }
 
   /* ── Overrides for hardcoded #fff / light backgrounds in CSS ── */
   [data-theme="mono"] .tabbar{
-    background:rgba(13,14,37,.96);backdrop-filter:blur(20px);
+    background:rgba(12,10,24,.96);backdrop-filter:blur(20px);
     border-top-color:var(--line);
   }
   [data-theme="mono"] .nav.ghost .back{
-    background:rgba(22,25,54,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
+    background:rgba(20,16,40,.85);box-shadow:0 2px 10px rgba(0,0,0,.4);
   }
   [data-theme="mono"] .tab.fab .fabc{
-    box-shadow:0 8px 18px rgba(79,143,232,.25);
+    box-shadow:0 8px 18px rgba(124,92,252,.25);
   }
   [data-theme="mono"] .btn.ghost{
-    background:#1E213C;color:var(--ink2);
+    background:#1F1648;color:var(--ink2);
   }
   [data-theme="mono"] .btn.sec{
-    background:#1D1545;color:var(--green);
+    background:#1A1240;color:var(--green);
   }
-  [data-theme="mono"] .seg{background:#0D0E25;}
+  [data-theme="mono"] .seg{background:#0C0A18;}
   [data-theme="mono"] .seg div.on{
-    background:#1E213C;color:var(--ink);
+    background:#1F1648;color:var(--ink);
     box-shadow:0 2px 6px rgba(0,0,0,.5);
   }
   [data-theme="mono"] .searchbar{
     background:var(--card);border-color:var(--line);color:var(--muted);
   }
-  [data-theme="mono"] .sheet{background:#161936;}
-  [data-theme="mono"] .grab{background:#252847;}
+  [data-theme="mono"] .sheet{background:#130E2C;}
+  [data-theme="mono"] .grab{background:#231A44;}
   [data-theme="mono"] .react{
-    background:#1A1D3A;border-color:#252847;color:var(--ink2);
+    background:#170F32;border-color:#231A44;color:var(--ink2);
   }
   [data-theme="mono"] .react.on{
-    background:#1D1545;border-color:var(--green);color:var(--green);
+    background:#1A1240;border-color:var(--green);color:var(--green);
   }
   [data-theme="mono"] .react-pick,
   [data-theme="mono"] .msg-react{
@@ -99,7 +99,7 @@
     background:var(--card);border-color:var(--line);color:var(--ink);
   }
   [data-theme="mono"] .quiz-opt .qkey{
-    background:#0D0E25;color:var(--ink2);
+    background:#0C0A18;color:var(--ink2);
   }
   [data-theme="mono"] .quiz-opt.correct{
     border-color:var(--green);background:var(--green-l);color:var(--green);
@@ -116,11 +116,11 @@
   }
   [data-theme="mono"] .mbar,
   [data-theme="mono"] .q-prog,
-  [data-theme="mono"] .ob-prog{background:#0D0E25;}
+  [data-theme="mono"] .ob-prog{background:#0C0A18;}
   [data-theme="mono"] .mbar>i{
     background:linear-gradient(90deg,var(--green),var(--green-d));
   }
-  [data-theme="mono"] .ev-img{background:#0D0E25;}
+  [data-theme="mono"] .ev-img{background:#0C0A18;}
   [data-theme="mono"] .shadow{box-shadow:0 6px 20px rgba(0,0,0,.45);}
   [data-theme="mono"] .mascot-bubble{
     background:var(--card);
@@ -128,28 +128,28 @@
   }
   [data-theme="mono"] .mascot-bubble b{color:var(--green);}
   [data-theme="mono"] .pill.hot{
-    background:rgba(140,100,80,.18);color:#A08060;
+    background:rgba(255,107,138,.15);color:#FF6B8A;
   }
   [data-theme="mono"] .pill.soon{
-    background:rgba(120,120,100,.15);color:#909080;
+    background:rgba(124,92,252,.12);color:#9070FF;
   }
   [data-theme="mono"] .match{
     background:var(--green-l);color:var(--green);
   }
   [data-theme="mono"] .match.mid{
-    background:rgba(110,110,90,.15);color:#909078;
+    background:rgba(58,58,100,.18);color:#8888C0;
   }
   [data-theme="mono"] .match.low{
     background:rgba(140,80,90,.15);color:var(--coral);
   }
   [data-theme="mono"] .match-ring .mr-txt{color:var(--ink2);}
   [data-theme="mono"] .scan-line{
-    box-shadow:0 0 10px 2px rgba(79,143,232,.4);
+    box-shadow:0 0 10px 2px rgba(124,92,252,.4);
   }
 
 
   /* ── Glow/shadow CSS vars for mono theme ── */
-  [data-theme="mono"]{--glow-c:rgba(79,143,232,.35);--fab-glow:rgba(79,143,232,.25);}
+  [data-theme="mono"]{--glow-c:rgba(124,92,252,.35);--fab-glow:rgba(124,92,252,.25);}
 
   /* ── SVG ring circles (presentation attrs can't use CSS vars) ── */
   [data-theme="mono"] #profile-pct-circle,
@@ -157,12 +157,12 @@
 
   /* ── Profile picture gradient — dark navy ── */
   [data-theme="mono"] .profile-pic{
-    background:linear-gradient(135deg,#0C1A30,var(--green));
+    background:linear-gradient(135deg,#1A0C40,var(--green));
   }
 
   /* ── Mascot tinted to cool blue-indigo palette ── */
   [data-theme="mono"] .mascot img{
-    filter:grayscale(.6) hue-rotate(195deg) saturate(.65) brightness(.88);
+    filter:grayscale(.2) hue-rotate(250deg) saturate(.9) brightness(.85);
   }
 
   /* ── Force text-color inheritance so hardcoded dark text becomes readable ── */
