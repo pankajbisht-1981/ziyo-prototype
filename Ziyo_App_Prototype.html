@@ -508,6 +508,8 @@
   .mascot-bubble .mb-close{position:absolute;top:6px;right:9px;color:var(--muted);font-size:14px;cursor:pointer;}
   .mascot-bubble b{color:var(--green-d);}
   .mascot-tagline{display:block;font-size:11px;font-style:italic;color:var(--muted);margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid var(--line);line-height:1.4;}
+  /* ===== ZIYOCOIN ICON (branded, theme-agnostic gold coin) ===== */
+  .zc{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;background:url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><defs><linearGradient%20id='g'%20x1='0'%20y1='0'%20x2='0'%20y2='1'><stop%20offset='0'%20stop-color='%23FFE08A'/><stop%20offset='0.5'%20stop-color='%23F7C14B'/><stop%20offset='1'%20stop-color='%23E09A00'/></linearGradient></defs><circle%20cx='12'%20cy='12'%20r='11.2'%20fill='url(%23g)'%20stroke='%23C6870A'%20stroke-width='1.1'/><circle%20cx='12'%20cy='12'%20r='8.7'%20fill='none'%20stroke='%23FFF0BE'%20stroke-width='1.1'%20opacity='0.75'/><g%20fill='%239A6400'><path%20d='M7.6%207.5H16.4V9.9H7.6Z'/><path%20d='M7.6%2014.1H16.4V16.5H7.6Z'/><path%20d='M13.5%209.9H16.4L10.5%2014.1H7.6Z'/></g></svg>") center/contain no-repeat;}
 </style>
 </head>
 <body>
@@ -557,7 +559,7 @@
                   <div class="xs" style="opacity:.85;">ZiyoCoin balansingiz</div>
                   <div onclick="openSheet('sheet-zc')" style="width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;cursor:pointer;">i</div>
                 </div>
-                <div style="font-size:30px;font-weight:800;margin-top:2px;">🪙 <span data-coin>1,250</span> <span style="font-size:15px;font-weight:600;">ZiyoCoin</span></div>
+                <div style="font-size:30px;font-weight:800;margin-top:2px;"><i class="zc"></i> <span data-coin>1,250</span> <span style="font-size:15px;font-weight:600;">ZiyoCoin</span></div>
               </div>
               <div style="text-align:center;background:rgba(255,255,255,.18);border-radius:16px;padding:10px 14px;cursor:pointer;" onclick="go('shop')">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="display:block;margin:0 auto 3px;"><path d="M6 2 3 6v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
@@ -669,7 +671,7 @@
               <div style="height:92px;background:linear-gradient(135deg,#B47A00,#F7B500);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;">🧠<span class="pill" style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);color:#9A7400;">TEST</span></div>
               <div style="padding:11px 13px;">
                 <div style="font-weight:700;font-size:14px;line-height:1.3;">JavaScript bilim testi</div>
-                <div class="xs muted mt4">10 savol · 🪙 gacha +120</div>
+                <div class="xs muted mt4">10 savol · <i class="zc"></i> gacha +120</div>
               </div>
             </div>
           </div>
@@ -738,7 +740,7 @@
               <div style="padding:11px 13px;">
                 <div style="font-weight:700;font-size:14px;line-height:1.3;">Full-Stack Web Dasturlash</div>
                 <div class="xs muted mt4">8 hafta · Boshlang'ich</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy</span><span class="pill free">🪙 +200</span></div>
+                <div class="row sb mt8"><span class="xs muted">Ziyo Academy</span><span class="pill free"><i class="zc"></i> +200</span></div>
               </div>
             </div>
           </div>
@@ -748,7 +750,7 @@
               <div style="padding:11px 13px;">
                 <div style="font-weight:700;font-size:14px;line-height:1.3;">UX/UI Dizayn Workshopi</div>
                 <div class="xs muted mt4">2 kun · Online</div>
-                <div class="row sb mt8"><span class="xs muted">Dizayn Hub</span><span class="pill free">🪙 +80</span></div>
+                <div class="row sb mt8"><span class="xs muted">Dizayn Hub</span><span class="pill free"><i class="zc"></i> +80</span></div>
               </div>
             </div>
           </div>
@@ -758,7 +760,7 @@
               <div style="padding:11px 13px;">
                 <div style="font-weight:700;font-size:14px;line-height:1.3;">Data Analitika Asoslari</div>
                 <div class="xs muted mt4">6 hafta · O'rta</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy</span><span class="pill free">🪙 +150</span></div>
+                <div class="row sb mt8"><span class="xs muted">Ziyo Academy</span><span class="pill free"><i class="zc"></i> +150</span></div>
               </div>
             </div>
           </div>
@@ -836,7 +838,7 @@
             <div style="padding:13px 15px;">
               <div style="font-weight:700;font-size:16px;">Startup Weekend Tashkent</div>
               <div class="row gap12 sm muted mt8"><span>📍 Impact Hub</span></div>
-              <div class="row sb mt12"><span class="sm muted">150 ketyapti</span><span class="pill soon">🪙 120</span></div>
+              <div class="row sb mt12"><span class="sm muted">150 ketyapti</span><span class="pill soon"><i class="zc"></i> 120</span></div>
             </div>
           </div>
           <!-- card 3 -->
@@ -878,7 +880,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">8 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Full-Stack Web Dasturlash</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · Boshlang'ich</span><span class="pill free">🪙 +200</span></div>
+                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · Boshlang'ich</span><span class="pill free"><i class="zc"></i> +200</span></div>
               </div>
             </div>
           </div>
@@ -888,7 +890,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:#E8F0FF;color:#2E7CF6;">WORKSHOP</span><span class="xs muted">2 kun</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">UX/UI Dizayn Workshopi</div>
-                <div class="row sb mt8"><span class="xs muted">Dizayn Hub · Online</span><span class="pill free">🪙 +80</span></div>
+                <div class="row sb mt8"><span class="xs muted">Dizayn Hub · Online</span><span class="pill free"><i class="zc"></i> +80</span></div>
               </div>
             </div>
           </div>
@@ -898,7 +900,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">6 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Data Analitika Asoslari</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free">🪙 +150</span></div>
+                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +150</span></div>
               </div>
             </div>
           </div>
@@ -908,7 +910,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:#E8F0FF;color:#2E7CF6;">WORKSHOP</span><span class="xs muted">1 kun</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Public Speaking Treningi</div>
-                <div class="row sb mt8"><span class="xs muted">Soft Skills Lab · Toshkent</span><span class="pill free">🪙 +60</span></div>
+                <div class="row sb mt8"><span class="xs muted">Soft Skills Lab · Toshkent</span><span class="pill free"><i class="zc"></i> +60</span></div>
               </div>
             </div>
           </div>
@@ -918,7 +920,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">10 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Sun'iy Intellekt &amp; Python</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free">🪙 +250</span></div>
+                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +250</span></div>
               </div>
             </div>
           </div>
@@ -942,7 +944,7 @@
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><div style="font-weight:600;">8 hafta · haftasiga 3 dars</div><div class="xs muted">Jonli + yozib olingan darslar</div></div></div>
             <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div><div style="font-weight:600;">Boshlang'ich daraja</div><div class="xs muted">Oldindan tajriba shart emas</div></div></div>
-            <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><div style="font-weight:600;">Sertifikat + 🪙 200 ZiyoCoin</div><div class="xs muted">Kursni tugatganingizda beriladi</div></div></div>
+            <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><div style="font-weight:600;">Sertifikat + <i class="zc"></i> 200 ZiyoCoin</div><div class="xs muted">Kursni tugatganingizda beriladi</div></div></div>
           </div>
           <div class="divider"></div>
           <div class="h-sec" style="font-size:16px;">Kurs haqida</div>
@@ -960,7 +962,7 @@
       </div>
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);z-index:30;">
         <div class="row sb gap12">
-          <div><div class="xs muted">Mukofot</div><div style="font-size:18px;font-weight:800;color:var(--green);">🪙 +200</div></div>
+          <div><div class="xs muted">Mukofot</div><div style="font-size:18px;font-weight:800;color:var(--green);"><i class="zc"></i> +200</div></div>
           <button class="btn" style="flex:1;" onclick="toast('Kursga yozildingiz! 🎓');setTimeout(()=>go('ticket'),1000)">Kursga yozilish</button>
         </div>
       </div>
@@ -981,7 +983,7 @@
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div><div><div style="font-weight:600;">12-noyabr, 2026</div><div class="xs muted">10:00 — 18:00</div></div></div>
             <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><div style="font-weight:600;">Tashkent IT Park</div><div class="xs muted">Olmazor tumani, Toshkent</div></div></div>
-            <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg></div><div><div style="font-weight:600;">320 ishtirokchi</div><div class="xs muted">+30 🪙 qatnashganlik uchun</div></div></div>
+            <div class="row gap12"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg></div><div><div style="font-weight:600;">320 ishtirokchi</div><div class="xs muted">+30 <i class="zc"></i> qatnashganlik uchun</div></div></div>
           </div>
           <div class="divider"></div>
           <div class="h-sec" style="font-size:16px;">Tadbir haqida</div>
@@ -1137,7 +1139,7 @@
               <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:60px;opacity:.25;">▦</div>
             </div>
             <div style="font-weight:700;font-size:17px;margin-top:30px;text-align:center;">Tadbir yoki kurs QR kodini skanerlang</div>
-            <div class="sm" style="opacity:.7;margin-top:8px;text-align:center;max-width:260px;">Tadbirga kelganingizni tasdiqlang va ZiyoCoin yutib oling 🪙</div>
+            <div class="sm" style="opacity:.7;margin-top:8px;text-align:center;max-width:260px;">Tadbirga kelganingizni tasdiqlang va ZiyoCoin yutib oling <i class="zc"></i></div>
           </div>
 
           <div style="padding:0 24px 60px;">
@@ -1159,7 +1161,7 @@
           <div class="card shadow row sb" style="background:linear-gradient(135deg,var(--green),var(--green-m));color:#fff;padding:16px 18px;align-items:center;">
             <div>
               <div class="xs" style="opacity:.85;">Sizning balansingiz</div>
-              <div style="font-size:26px;font-weight:800;margin-top:2px;">🪙 <span data-coin>1,250</span></div>
+              <div style="font-size:26px;font-weight:800;margin-top:2px;"><i class="zc"></i> <span data-coin>1,250</span></div>
             </div>
             <div onclick="openSheet('sheet-zc')" style="background:rgba(255,255,255,.18);border-radius:12px;padding:9px 13px;font-size:12px;font-weight:700;cursor:pointer;">Qanday ishlaydi?</div>
           </div>
@@ -1179,7 +1181,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Futbolka</div>
               <div class="xs muted mt4">(Klassik)</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Futbolka',350)">🪙 350</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Futbolka',350)"><i class="zc"></i> 350</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="merch">
@@ -1187,7 +1189,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Naqshli Futbolka</div>
               <div class="xs muted mt4">Maxsus dizayn</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Naqshli Futbolka',400)">🪙 400</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Naqshli Futbolka',400)"><i class="zc"></i> 400</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="merch">
@@ -1195,7 +1197,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Futbolka</div>
               <div class="xs muted mt4">Orqa ko'rinish</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Futbolka',350)">🪙 350</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Futbolka',350)"><i class="zc"></i> 350</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="merch">
@@ -1203,7 +1205,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Kepkasi</div>
               <div class="xs muted mt4">Unisex</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Kepkasi',300)">🪙 300</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Kepkasi',300)"><i class="zc"></i> 300</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1211,7 +1213,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Breloki</div>
               <div class="xs muted mt4">Maxsus logotip</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Breloki',150)">🪙 150</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Breloki',150)"><i class="zc"></i> 150</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1219,7 +1221,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">A5, 120 bet</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1227,7 +1229,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">Yashil rangli</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1235,7 +1237,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">Ko'k rangli</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1243,7 +1245,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">Sariq rangli</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1251,7 +1253,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">Qizil rangli</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1259,7 +1261,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">To'q rangli</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)">🪙 200</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',200)"><i class="zc"></i> 200</button>
             </div>
           </div>
           <div class="card shadow" style="overflow:hidden;" data-cat="aksessuarlar">
@@ -1267,7 +1269,7 @@
             <div style="padding:11px 12px;">
               <div style="font-weight:700;font-size:14px;">Ziyo Daftar</div>
               <div class="xs muted mt4">Maxsus nusxa</div>
-              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',250)">🪙 250</button>
+              <button class="btn" style="height:40px;font-size:13px;margin-top:10px;" onclick="buyItem('Ziyo Daftar',250)"><i class="zc"></i> 250</button>
             </div>
           </div>
         </div>
@@ -1476,7 +1478,7 @@
         <!-- stats -->
         <div class="px" style="margin-top:-38px;position:relative;z-index:2;">
           <div class="card shadow row" style="padding:16px 0;">
-            <div style="flex:1;text-align:center;"><div style="font-size:20px;font-weight:800;color:var(--green);">🪙 <span data-coin>1,250</span></div><div class="xs muted">ZiyoCoin</div></div>
+            <div style="flex:1;text-align:center;"><div style="font-size:20px;font-weight:800;color:var(--green);"><i class="zc"></i> <span data-coin>1,250</span></div><div class="xs muted">ZiyoCoin</div></div>
             <div style="width:1px;background:var(--line);"></div>
             <div style="flex:1;text-align:center;"><div style="font-size:20px;font-weight:800;">7</div><div class="xs muted">Tadbir</div></div>
             <div style="width:1px;background:var(--line);"></div>
@@ -1525,7 +1527,7 @@
           <div class="card shadow" style="padding:16px;">
             <div class="row sb" style="align-items:center;">
               <div class="row gap12" style="align-items:center;">
-                <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#F7B500,#B47A00);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🪙</div>
+                <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#F7B500,#B47A00);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;"><i class="zc"></i></div>
                 <div>
                   <div style="font-weight:700;">ZiyoCoin hamyoni</div>
                   <div class="xs muted mt4"><span data-coin>1,250</span> coin · tadbir va kurslardan</div>
@@ -1548,7 +1550,7 @@
                 <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--green-d),var(--green));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏆</div>
                 <div>
                   <div style="font-weight:700;">ZiyoCoin reytingi</div>
-                  <div class="xs muted mt4">Siz #4-o'rindasiz · Top 3 gacha 290 🪙</div>
+                  <div class="xs muted mt4">Siz #4-o'rindasiz · Top 3 gacha 290 <i class="zc"></i></div>
                 </div>
               </div>
               <span style="color:var(--green);font-weight:800;font-size:18px;">›</span>
@@ -1565,7 +1567,7 @@
                 <div style="width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🤝</div>
                 <div>
                   <div style="font-weight:800;" data-ref-i18n="title">Do'st taklif qiling</div>
-                  <div class="xs mt4" style="opacity:.92;" data-ref-i18n="sub">Har bir faol do'st uchun <b>+100 🪙</b></div>
+                  <div class="xs mt4" style="opacity:.92;" data-ref-i18n="sub">Har bir faol do'st uchun <b>+100 <i class="zc"></i></b></div>
                 </div>
               </div>
               <span style="font-weight:800;font-size:18px;">›</span>
@@ -1725,7 +1727,7 @@
             <div class="xs muted mt4" data-ref-i18n="st-joined">Qo'shildi</div>
           </div>
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;">
-            <div style="font-size:24px;font-weight:800;">🪙 <span id="ref-earned">100</span></div>
+            <div style="font-size:24px;font-weight:800;"><i class="zc"></i> <span id="ref-earned">100</span></div>
             <div class="xs muted mt4" data-ref-i18n="st-earned">Ishlangan</div>
           </div>
         </div>
@@ -1739,11 +1741,11 @@
           </div>
           <div class="card shadow row gap12" style="padding:13px;align-items:center;">
             <div style="width:38px;height:38px;border-radius:11px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">📲</div>
-            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s2-t">2. Do'st qo'shiladi</div><div class="xs muted mt4" data-ref-i18n="s2-s">Ilovani o'rnatib, ro'yxatdan o'tadi — <b>+50 🪙</b></div></div>
+            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s2-t">2. Do'st qo'shiladi</div><div class="xs muted mt4" data-ref-i18n="s2-s">Ilovani o'rnatib, ro'yxatdan o'tadi — <b>+50 <i class="zc"></i></b></div></div>
           </div>
           <div class="card shadow row gap12" style="padding:13px;align-items:center;">
             <div style="width:38px;height:38px;border-radius:11px;background:var(--green-ll);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">🎓</div>
-            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s3-t">3. Faol bo'ladi</div><div class="xs muted mt4" data-ref-i18n="s3-s">Onboardingni tugatib, birinchi amalni bajaradi — <b>+100 🪙</b></div></div>
+            <div style="flex:1;"><div style="font-weight:700;" data-ref-i18n="s3-t">3. Faol bo'ladi</div><div class="xs muted mt4" data-ref-i18n="s3-s">Onboardingni tugatib, birinchi amalni bajaradi — <b>+100 <i class="zc"></i></b></div></div>
           </div>
         </div>
 
@@ -1801,7 +1803,7 @@
         </div>
       </div>
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);">
-        <button class="btn" onclick="toast('Rahmat! Fikringiz yuborildi 🙌');earnCoins(10,'Baho');setTimeout(()=>{back()},900)">Yuborish · +10 🪙</button>
+        <button class="btn" onclick="toast('Rahmat! Fikringiz yuborildi 🙌');earnCoins(10,'Baho');setTimeout(()=>{back()},900)">Yuborish · +10 <i class="zc"></i></button>
       </div>
     </div>
 
@@ -2022,7 +2024,7 @@
           <div class="card shadow row" style="padding:16px 0;">
             <div style="flex:1;text-align:center;"><div id="mpEvents" style="font-size:20px;font-weight:800;color:var(--green);">12</div><div class="xs muted">Tadbir</div></div>
             <div style="width:1px;background:var(--line);"></div>
-            <div style="flex:1;text-align:center;"><div id="mpCoins" style="font-size:20px;font-weight:800;color:var(--green);">🪙 820</div><div class="xs muted">ZiyoCoin</div></div>
+            <div style="flex:1;text-align:center;"><div id="mpCoins" style="font-size:20px;font-weight:800;color:var(--green);"><i class="zc"></i> 820</div><div class="xs muted">ZiyoCoin</div></div>
             <div style="width:1px;background:var(--line);"></div>
             <div style="flex:1;text-align:center;"><div id="mpCerts" style="font-size:20px;font-weight:800;">4</div><div class="xs muted">Sertifikat</div></div>
           </div>
@@ -2115,7 +2117,7 @@
           <div class="xs" style="opacity:.9;margin-top:2px;">Eng faol foydalanuvchilar</div>
         </div>
         <div class="seg mt20" id="lb-type-seg" style="max-width:260px;margin:16px auto 0;background:rgba(255,255,255,.22);">
-          <div class="on" onclick="lbType(this,'coins')">🪙 ZiyoCoins</div>
+          <div class="on" onclick="lbType(this,'coins')"><i class="zc"></i> ZiyoCoins</div>
           <div onclick="lbType(this,'activity')">📊 Faollik</div>
         </div>
                 <div id="lb-period-seg" class="seg" style="max-width:280px;margin:10px auto 0;background:rgba(255,255,255,.22);">
@@ -2128,20 +2130,20 @@
           <div style="text-align:center;color:#fff;">
             <div class="avatar" style="width:52px;height:52px;margin:0 auto;background:#fff;color:var(--green-d);border:2px solid #C0C0C0;">NK</div>
             <div class="xs" style="font-weight:700;margin-top:5px;">Nilufar</div>
-            <div style="font-size:12px;font-weight:800;">🪙 1,920</div>
+            <div style="font-size:12px;font-weight:800;"><i class="zc"></i> 1,920</div>
             <div style="background:rgba(255,255,255,.2);border-radius:10px 10px 0 0;height:46px;width:62px;margin-top:6px;display:flex;align-items:flex-start;justify-content:center;padding-top:5px;font-weight:800;">2</div>
           </div>
           <div style="text-align:center;color:#fff;">
             <div style="font-size:20px;">👑</div>
             <div class="avatar" style="width:62px;height:62px;margin:0 auto;background:#fff;color:var(--green-d);border:2px solid var(--gold,#F5B700);">JA</div>
             <div class="xs" style="font-weight:700;margin-top:5px;">Jasur</div>
-            <div style="font-size:13px;font-weight:800;">🪙 2,480</div>
+            <div style="font-size:13px;font-weight:800;"><i class="zc"></i> 2,480</div>
             <div style="background:rgba(255,255,255,.28);border-radius:10px 10px 0 0;height:66px;width:62px;margin-top:6px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;font-weight:800;font-size:18px;">1</div>
           </div>
           <div style="text-align:center;color:#fff;">
             <div class="avatar" style="width:52px;height:52px;margin:0 auto;background:#fff;color:var(--green-d);border:2px solid #CD7F32;">SU</div>
             <div class="xs" style="font-weight:700;margin-top:5px;">Sardor</div>
-            <div style="font-size:12px;font-weight:800;">🪙 1,540</div>
+            <div style="font-size:12px;font-weight:800;"><i class="zc"></i> 1,540</div>
             <div style="background:rgba(255,255,255,.2);border-radius:10px 10px 0 0;height:34px;width:62px;margin-top:6px;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;font-weight:800;">3</div>
           </div>
         </div>
@@ -2149,12 +2151,12 @@
       </div>
       <div id="lb-coins-panel" class="scroll no-tab" style="padding-top:0;padding-bottom:120px;">
         <div class="card" style="margin:12px 14px 0;border-radius:22px;padding:8px 6px;position:relative;">
-          <div class="lb-row you"><div class="lb-rank">4</div><div class="avatar xs">DT</div><div style="flex:1;"><div style="font-weight:700;">Doston Toshmatov <span class="xs" style="color:var(--green-d);">· Siz</span></div><div class="xs delta-up">▲ 2 o'rin</div></div><div style="font-weight:800;color:var(--green-d);">🪙 1,250</div></div>
-          <div class="lb-row"><div class="lb-rank">5</div><div class="avatar xs">AN</div><div style="flex:1;"><div style="font-weight:700;">Asilbek Normatov</div><div class="xs delta-dn">▼ 1 o'rin</div></div><div style="font-weight:800;">🪙 960</div></div>
-          <div class="lb-row"><div class="lb-rank">6</div><div class="avatar xs">MY</div><div style="flex:1;"><div style="font-weight:700;">Malika Yusupova</div><div class="xs delta-eq">— o'zgarishsiz</div></div><div style="font-weight:800;">🪙 870</div></div>
-          <div class="lb-row"><div class="lb-rank">7</div><div class="avatar xs">BQ</div><div style="flex:1;"><div style="font-weight:700;">Bobur Qodirov</div><div class="xs delta-up">▲ 3 o'rin</div></div><div style="font-weight:800;">🪙 740</div></div>
-          <div class="lb-row"><div class="lb-rank">8</div><div class="avatar xs">ZS</div><div style="flex:1;"><div style="font-weight:700;">Zarina Saidova</div><div class="xs delta-dn">▼ 2 o'rin</div></div><div style="font-weight:800;">🪙 610</div></div>
-          <div class="lb-row" style="border-bottom:none;"><div class="lb-rank">9</div><div class="avatar xs">JT</div><div style="flex:1;"><div style="font-weight:700;">Jahongir Tursunov</div><div class="xs delta-up">▲ 1 o'rin</div></div><div style="font-weight:800;">🪙 520</div></div>
+          <div class="lb-row you"><div class="lb-rank">4</div><div class="avatar xs">DT</div><div style="flex:1;"><div style="font-weight:700;">Doston Toshmatov <span class="xs" style="color:var(--green-d);">· Siz</span></div><div class="xs delta-up">▲ 2 o'rin</div></div><div style="font-weight:800;color:var(--green-d);"><i class="zc"></i> 1,250</div></div>
+          <div class="lb-row"><div class="lb-rank">5</div><div class="avatar xs">AN</div><div style="flex:1;"><div style="font-weight:700;">Asilbek Normatov</div><div class="xs delta-dn">▼ 1 o'rin</div></div><div style="font-weight:800;"><i class="zc"></i> 960</div></div>
+          <div class="lb-row"><div class="lb-rank">6</div><div class="avatar xs">MY</div><div style="flex:1;"><div style="font-weight:700;">Malika Yusupova</div><div class="xs delta-eq">— o'zgarishsiz</div></div><div style="font-weight:800;"><i class="zc"></i> 870</div></div>
+          <div class="lb-row"><div class="lb-rank">7</div><div class="avatar xs">BQ</div><div style="flex:1;"><div style="font-weight:700;">Bobur Qodirov</div><div class="xs delta-up">▲ 3 o'rin</div></div><div style="font-weight:800;"><i class="zc"></i> 740</div></div>
+          <div class="lb-row"><div class="lb-rank">8</div><div class="avatar xs">ZS</div><div style="flex:1;"><div style="font-weight:700;">Zarina Saidova</div><div class="xs delta-dn">▼ 2 o'rin</div></div><div style="font-weight:800;"><i class="zc"></i> 610</div></div>
+          <div class="lb-row" style="border-bottom:none;"><div class="lb-rank">9</div><div class="avatar xs">JT</div><div style="flex:1;"><div style="font-weight:700;">Jahongir Tursunov</div><div class="xs delta-up">▲ 1 o'rin</div></div><div style="font-weight:800;"><i class="zc"></i> 520</div></div>
         </div>
         <div class="card" style="margin:14px 14px 0;border-radius:18px;padding:14px 16px;background:var(--green-ll);">
           <div class="row gap12" style="align-items:center;">
@@ -2195,8 +2197,8 @@
         <div class="lb-row you" style="border:none;padding:0;">
           <div class="lb-rank" style="background:var(--green);color:#fff;">4</div>
           <div class="avatar xs">DT</div>
-          <div style="flex:1;"><div style="font-weight:800;">Sizning o'rningiz</div><div class="xs muted">Top 3 gacha 290 🪙 qoldi</div></div>
-          <div style="font-weight:800;color:var(--green-d);">🪙 1,250</div>
+          <div style="flex:1;"><div style="font-weight:800;">Sizning o'rningiz</div><div class="xs muted">Top 3 gacha 290 <i class="zc"></i> qoldi</div></div>
+          <div style="font-weight:800;color:var(--green-d);"><i class="zc"></i> 1,250</div>
         </div>
       </div>
     </div>
@@ -2233,10 +2235,10 @@
 
           <!-- ZiyoCoin earned -->
           <div class="notif-item unread shadow" onclick="toast('ZiyoCoin balansi: 1,250 <img class=&quot;cico&quot; src=&quot;data:image/png;base64,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&quot; style=&quot;height:1.1em;width:1.1em;vertical-align:-0.2em;object-fit:contain;flex-shrink:0;&quot;>');markRead(this)">
-            <div class="notif-ico" style="background:#FFF6DB;">🪙</div>
+            <div class="notif-ico" style="background:#FFF6DB;"><i class="zc"></i></div>
             <div style="flex:1;">
               <div style="font-weight:700;font-size:14px;">+30 ZiyoCoin qo'shildi!</div>
-              <div class="sm" style="color:var(--ink2);margin-top:3px;">UX/UI Bootcamp tadbirida qatnashganingiz uchun mukofot. Balansingiz: 🪙 1,250</div>
+              <div class="sm" style="color:var(--ink2);margin-top:3px;">UX/UI Bootcamp tadbirida qatnashganingiz uchun mukofot. Balansingiz: <i class="zc"></i> 1,250</div>
               <div class="xs muted mt4">Kecha · 14:30</div>
             </div>
             <div class="notif-dot"></div>
@@ -2247,7 +2249,7 @@
             <div class="notif-ico" style="background:var(--green-l);">🏆</div>
             <div style="flex:1;">
               <div style="font-weight:700;font-size:14px;">Reytingda ko'tarildingiz! 🎉</div>
-              <div class="sm" style="color:var(--ink2);margin-top:3px;">Haftalik reytingda #6-o'rindan #4-o'ringa ko'tarildingiz. Top 3 gacha 290 🪙 qoldi!</div>
+              <div class="sm" style="color:var(--ink2);margin-top:3px;">Haftalik reytingda #6-o'rindan #4-o'ringa ko'tarildingiz. Top 3 gacha 290 <i class="zc"></i> qoldi!</div>
               <div class="xs muted mt4">2-noyabr · 09:00</div>
             </div>
             <div class="notif-dot"></div>
@@ -2268,7 +2270,7 @@
             <div class="notif-ico" style="background:var(--green-l);">🎟️</div>
             <div style="flex:1;">
               <div style="font-weight:700;font-size:14px;">Yangi tadbir: Startup Weekend</div>
-              <div class="sm" style="color:var(--ink2);margin-top:3px;">18-noyabr kuni Startup Weekend boshlanadi. Ro'yxatdan o'ting va +50 🪙 yig'ing!</div>
+              <div class="sm" style="color:var(--ink2);margin-top:3px;">18-noyabr kuni Startup Weekend boshlanadi. Ro'yxatdan o'ting va +50 <i class="zc"></i> yig'ing!</div>
               <div class="xs muted mt4">25-oktabr · 11:00</div>
             </div>
           </div>
@@ -2737,7 +2739,7 @@
           <!-- Sort & filter row -->
           <div class="hscroll" style="padding:12px 16px 0;gap:8px;">
             <select style="border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12px;background:var(--card);color:var(--ink);outline:none;cursor:pointer;white-space:nowrap;" onchange="sortJobPane('jobs-social',this.value)">
-              <option value="coins">🪙 Tangalar (ko'pdan)</option>
+              <option value="coins"><i class="zc"></i> Tangalar (ko'pdan)</option>
               <option value="new">📅 Yangi loyihalar</option>
               <option value="rating">⭐ Reyting</option>
             </select>
@@ -2754,7 +2756,7 @@
                 <div class="row gap12" style="align-items:center;">
                   <div style="width:52px;height:52px;border-radius:14px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">🌱</div>
                   <div style="flex:1;">
-                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Eco Volontyorlik</span><span class="pill free">+40 🪙</span></div>
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Eco Volontyorlik</span><span class="pill free">+40 <i class="zc"></i></span></div>
                     <div class="xs muted mt4">Green Uzbekistan · Daraxt ekish aksiyasi</div>
                     <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.9 · 64 sharh</span></div>
                   </div>
@@ -2771,7 +2773,7 @@
                 <div class="row gap12" style="align-items:center;">
                   <div style="width:52px;height:52px;border-radius:14px;background:#FFF0E8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📚</div>
                   <div style="flex:1;">
-                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Bolalarga ta'lim</span><span class="pill free">+30 🪙</span></div>
+                    <div class="row sb"><span style="font-weight:700;font-size:15px;">Bolalarga ta'lim</span><span class="pill free">+30 <i class="zc"></i></span></div>
                     <div class="xs muted mt4">Ziyo Forum · Mahalla o'quv markazi</div>
                     <div class="row gap8 mt8" style="align-items:center;"><span class="stars-sm">★★★★★</span><span class="xs muted">4.8 · 29 sharh</span></div>
                   </div>
@@ -2860,7 +2862,7 @@
           </div>
           <div class="row sb mt16" style="align-items:center;">
             <span class="pill" id="q-test-label" style="background:var(--green-l);color:var(--green-d);">JavaScript testi</span>
-            <span class="xs muted" id="q-reward">Bu savol: +10 🪙</span>
+            <span class="xs muted" id="q-reward">Bu savol: +10 <i class="zc"></i></span>
           </div>
 
           <!-- question -->
@@ -3023,17 +3025,17 @@
       <div class="sheet">
         <div class="grab"></div>
         <div style="text-align:center;">
-          <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#F7B500,#B47A00);display:flex;align-items:center;justify-content:center;font-size:32px;margin:4px auto 0;">🪙</div>
+          <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#F7B500,#B47A00);display:flex;align-items:center;justify-content:center;font-size:32px;margin:4px auto 0;"><i class="zc"></i></div>
           <div style="font-size:20px;font-weight:800;margin-top:12px;">ZiyoCoin nima?</div>
           <div class="sm muted mt8" style="line-height:1.6;">ZiyoCoin — Ziyo ekotizimidagi mukofot ballari. Faol bo'ling va yig'ib boring!</div>
         </div>
 
         <div class="h-sec mt24" style="font-size:15px;">Qanday yig'iladi?</div>
         <div class="mt12" style="display:flex;flex-direction:column;gap:12px;">
-          <div class="row gap12"><div class="ico">🎟️</div><div><div style="font-weight:600;">Tadbirda qatnashing</div><div class="xs muted">QR kodni skanerlab tasdiqlang · +20–50 🪙</div></div></div>
-          <div class="row gap12"><div class="ico">📚</div><div><div style="font-weight:600;">Kursni tugating</div><div class="xs muted">Sertifikat bilan birga · +150–250 🪙</div></div></div>
-          <div class="row gap12"><div class="ico">🎨</div><div><div style="font-weight:600;">Workshopda ishtirok eting</div><div class="xs muted">Amaliy treninglar uchun · +60–80 🪙</div></div></div>
-          <div class="row gap12"><div class="ico">⭐</div><div><div style="font-weight:600;">Fikr bildiring</div><div class="xs muted">Tadbirga baho bering · +10 🪙</div></div></div>
+          <div class="row gap12"><div class="ico">🎟️</div><div><div style="font-weight:600;">Tadbirda qatnashing</div><div class="xs muted">QR kodni skanerlab tasdiqlang · +20–50 <i class="zc"></i></div></div></div>
+          <div class="row gap12"><div class="ico">📚</div><div><div style="font-weight:600;">Kursni tugating</div><div class="xs muted">Sertifikat bilan birga · +150–250 <i class="zc"></i></div></div></div>
+          <div class="row gap12"><div class="ico">🎨</div><div><div style="font-weight:600;">Workshopda ishtirok eting</div><div class="xs muted">Amaliy treninglar uchun · +60–80 <i class="zc"></i></div></div></div>
+          <div class="row gap12"><div class="ico">⭐</div><div><div style="font-weight:600;">Fikr bildiring</div><div class="xs muted">Tadbirga baho bering · +10 <i class="zc"></i></div></div></div>
         </div>
 
         <div class="card" style="background:var(--green-ll);padding:14px;margin-top:18px;">
@@ -3410,7 +3412,7 @@ function openMember(key){
   document.getElementById('mpName').innerHTML = escapeHtml(m.name) + (m.admin?' 👑':'');
   document.getElementById('mpRole').textContent = (m.online?'🟢 Online · ':'') + m.role;
   document.getElementById('mpEvents').textContent = m.events;
-  document.getElementById('mpCoins').innerHTML = '🪙 '+m.coins;
+  document.getElementById('mpCoins').innerHTML = '<i class="zc"></i> '+m.coins;
   document.getElementById('mpCerts').textContent = m.certs;
   document.getElementById('mpBio').textContent = m.bio;
   document.getElementById('mpInterests').innerHTML = m.interests.map(i=>
