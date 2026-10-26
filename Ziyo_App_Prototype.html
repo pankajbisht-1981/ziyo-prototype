@@ -510,6 +510,14 @@
   .mascot-tagline{display:block;font-size:11px;font-style:italic;color:var(--muted);margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid var(--line);line-height:1.4;}
   /* ===== ZIYOCOIN ICON (branded, theme-agnostic gold coin) ===== */
   .zc{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;background:url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><defs><linearGradient%20id='g'%20x1='0'%20y1='0'%20x2='0'%20y2='1'><stop%20offset='0'%20stop-color='%23FFE08A'/><stop%20offset='0.5'%20stop-color='%23F7C14B'/><stop%20offset='1'%20stop-color='%23E09A00'/></linearGradient></defs><circle%20cx='12'%20cy='12'%20r='11.2'%20fill='url(%23g)'%20stroke='%23C6870A'%20stroke-width='1.1'/><circle%20cx='12'%20cy='12'%20r='8.7'%20fill='none'%20stroke='%23FFF0BE'%20stroke-width='1.1'%20opacity='0.75'/><g%20fill='%239A6400'><path%20d='M7.6%207.5H16.4V9.9H7.6Z'/><path%20d='M7.6%2014.1H16.4V16.5H7.6Z'/><path%20d='M13.5%209.9H16.4L10.5%2014.1H7.6Z'/></g></svg>") center/contain no-repeat;}
+  /* ===== BOOKMARK BUTTON ===== */
+  .bm-card{background:none;border:none;cursor:pointer;padding:3px 5px;font-size:18px;line-height:1;flex-shrink:0;border-radius:7px;transition:background .15s,transform .15s;opacity:.45;}
+  .bm-card.saved{background:var(--green-l);opacity:1;}
+  .bm-card:active{transform:scale(1.2);}
+  .bm-byte{cursor:pointer;text-align:center;color:#fff;}
+  .bm-byte .bi{font-size:26px;line-height:1;opacity:.7;transition:opacity .15s,transform .2s;}
+  .bm-byte.saved .bi{opacity:1;transform:scale(1.15);}
+  .bm-byte .bm-lbl{font-size:10px;font-weight:700;margin-top:2px;opacity:.8;}
 </style>
 </head>
 <body>
@@ -880,7 +888,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">8 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Full-Stack Web Dasturlash</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · Boshlang'ich</span><span class="pill free"><i class="zc"></i> +200</span></div>
+                <div style="display:flex;align-items:center;margin-top:8px;gap:6px;"><span class="xs muted" style="flex:1;">Ziyo Academy · Boshlang'ich</span><span class="pill free"><i class="zc"></i> +200</span><button class="bm-card" data-bm="c1" data-bm-type="course" onclick="event.stopPropagation();toggleBookmark('course','c1','Full-Stack Web Dasturlash','Ziyo Academy')">🔖</button></div>
               </div>
             </div>
           </div>
@@ -890,7 +898,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:#E8F0FF;color:#2E7CF6;">WORKSHOP</span><span class="xs muted">2 kun</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">UX/UI Dizayn Workshopi</div>
-                <div class="row sb mt8"><span class="xs muted">Dizayn Hub · Online</span><span class="pill free"><i class="zc"></i> +80</span></div>
+                <div style="display:flex;align-items:center;margin-top:8px;gap:6px;"><span class="xs muted" style="flex:1;">Dizayn Hub · Online</span><span class="pill free"><i class="zc"></i> +80</span><button class="bm-card" data-bm="c2" data-bm-type="course" onclick="event.stopPropagation();toggleBookmark('course','c2','UX/UI Dizayn Workshopi','Dizayn Hub')">🔖</button></div>
               </div>
             </div>
           </div>
@@ -900,7 +908,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">6 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Data Analitika Asoslari</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +150</span></div>
+                <div style="display:flex;align-items:center;margin-top:8px;gap:6px;"><span class="xs muted" style="flex:1;">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +150</span><button class="bm-card" data-bm="c3" data-bm-type="course" onclick="event.stopPropagation();toggleBookmark('course','c3','Data Analitika Asoslari','Ziyo Academy')">🔖</button></div>
               </div>
             </div>
           </div>
@@ -910,7 +918,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:#E8F0FF;color:#2E7CF6;">WORKSHOP</span><span class="xs muted">1 kun</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Public Speaking Treningi</div>
-                <div class="row sb mt8"><span class="xs muted">Soft Skills Lab · Toshkent</span><span class="pill free"><i class="zc"></i> +60</span></div>
+                <div style="display:flex;align-items:center;margin-top:8px;gap:6px;"><span class="xs muted" style="flex:1;">Soft Skills Lab · Toshkent</span><span class="pill free"><i class="zc"></i> +60</span><button class="bm-card" data-bm="c4" data-bm-type="course" onclick="event.stopPropagation();toggleBookmark('course','c4','Public Speaking Treningi','Soft Skills Lab')">🔖</button></div>
               </div>
             </div>
           </div>
@@ -920,7 +928,7 @@
               <div style="flex:1;">
                 <div class="row gap8" style="align-items:center;"><span class="pill" style="background:var(--green-l);color:var(--green-d);">KURS</span><span class="xs muted">10 hafta</span></div>
                 <div style="font-weight:700;font-size:15px;margin-top:5px;">Sun'iy Intellekt &amp; Python</div>
-                <div class="row sb mt8"><span class="xs muted">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +250</span></div>
+                <div style="display:flex;align-items:center;margin-top:8px;gap:6px;"><span class="xs muted" style="flex:1;">Ziyo Academy · O'rta</span><span class="pill free"><i class="zc"></i> +250</span><button class="bm-card" data-bm="c5" data-bm-type="course" onclick="event.stopPropagation();toggleBookmark('course','c5','Sun\'iy Intellekt &amp; Python','Ziyo Academy')">🔖</button></div>
               </div>
             </div>
           </div>
@@ -963,6 +971,7 @@
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:16px 18px 26px;border-top:1px solid var(--line);z-index:30;">
         <div class="row sb gap12">
           <div><div class="xs muted">Mukofot</div><div style="font-size:18px;font-weight:800;color:var(--green);"><i class="zc"></i> +200</div></div>
+          <button class="bm-card" style="font-size:22px;padding:6px 10px;" data-bm="c1" data-bm-type="course" onclick="toggleBookmark('course','c1','Full-Stack Web Dasturlash','Ziyo Academy')">🔖</button>
           <button class="btn" style="flex:1;" onclick="toast('Kursga yozildingiz! 🎓');setTimeout(()=>go('ticket'),1000)">Kursga yozilish</button>
         </div>
       </div>
@@ -1293,6 +1302,7 @@
             <div onclick="likeByte(this)" style="cursor:pointer;"><div style="font-size:28px;">🤍</div><div class="xs" style="font-weight:700;">1.2k</div></div>
             <div style="cursor:pointer;" onclick="toast('Izohlar')"><div style="font-size:26px;">💬</div><div class="xs" style="font-weight:700;">84</div></div>
             <div style="cursor:pointer;" onclick="toast('Ulashildi')"><div style="font-size:26px;">↗</div><div class="xs" style="font-weight:700;">Share</div></div>
+            <div class="bm-byte" data-bm="b1" data-bm-type="video" onclick="toggleBookmark('video','b1','60 soniyada grantga qanday ariza beriladi','@ziyo.career')"><div class="bi">🔖</div><div class="xs bm-lbl">Saqla</div></div>
           </div>
           <div style="max-width:76%;">
             <div class="row gap8" style="align-items:center;"><div class="avatar" style="width:34px;height:34px;background:rgba(255,255,255,.3);color:#fff;">Z</div><span style="font-weight:700;">@ziyo.career</span></div>
@@ -1308,6 +1318,7 @@
             <div onclick="likeByte(this)" style="cursor:pointer;"><div style="font-size:28px;">🤍</div><div class="xs" style="font-weight:700;">980</div></div>
             <div style="cursor:pointer;" onclick="toast('Izohlar')"><div style="font-size:26px;">💬</div><div class="xs" style="font-weight:700;">52</div></div>
             <div style="cursor:pointer;" onclick="toast('Ulashildi')"><div style="font-size:26px;">↗</div><div class="xs" style="font-weight:700;">Share</div></div>
+            <div class="bm-byte" data-bm="b2" data-bm-type="video" onclick="toggleBookmark('video','b2','Mukammal CV yozishning 3 siri','@mentor.aziz')"><div class="bi">🔖</div><div class="xs bm-lbl">Saqla</div></div>
           </div>
           <div style="max-width:76%;">
             <div class="row gap8" style="align-items:center;"><div class="avatar" style="width:34px;height:34px;background:rgba(255,255,255,.3);color:#fff;">M</div><span style="font-weight:700;">@mentor.aziz</span></div>
@@ -1323,6 +1334,7 @@
             <div onclick="likeByte(this)" style="cursor:pointer;"><div style="font-size:28px;">🤍</div><div class="xs" style="font-weight:700;">2.4k</div></div>
             <div style="cursor:pointer;" onclick="toast('Izohlar')"><div style="font-size:26px;">💬</div><div class="xs" style="font-weight:700;">210</div></div>
             <div style="cursor:pointer;" onclick="toast('Ulashildi')"><div style="font-size:26px;">↗</div><div class="xs" style="font-weight:700;">Share</div></div>
+            <div class="bm-byte" data-bm="b3" data-bm-type="video" onclick="toggleBookmark('video','b3','Suhbatda ko\'p so\'raladigan 5 savol','@dilnoza.hr')"><div class="bi">🔖</div><div class="xs bm-lbl">Saqla</div></div>
           </div>
           <div style="max-width:76%;">
             <div class="row gap8" style="align-items:center;"><div class="avatar" style="width:34px;height:34px;background:rgba(255,255,255,.3);color:#fff;">D</div><span style="font-weight:700;">@dilnoza.hr</span></div>
@@ -1346,7 +1358,10 @@
               <span class="pill soon">YANGI QISM</span>
               <div style="font-weight:800;font-size:18px;margin-top:8px;">Yoshlar va Karyera</div>
               <div class="xs muted mt4">1-qism · Birinchi ishga qanday kirish mumkin</div>
-              <button class="btn mt16" onclick="event.stopPropagation();go('podcast')">▶ Tinglash · 24 daq</button>
+              <div class="row gap8 mt16" style="align-items:center;">
+                <button class="btn" style="flex:1;" onclick="event.stopPropagation();go('podcast')">▶ Tinglash · 24 daq</button>
+                <button class="bm-card" style="font-size:20px;padding:6px 10px;" data-bm="p1" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p1','Yoshlar va Karyera','1-qism')">🔖</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1362,6 +1377,7 @@
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--green));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">2-qism · Grantlar olami</div><div class="xs muted mt4">Xalqaro stipendiyalar bo'yicha qo'llanma</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 31 daqiqa</div></div>
+            <button class="bm-card" data-bm="p2" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p2','2-qism · Grantlar olami','Xalqaro stipendiyalar')">🔖</button>
           </div>
         </div>
 
@@ -1374,6 +1390,7 @@
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#F7B500,#FF4D4F);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">3-qism · Startap boshlash</div><div class="xs muted mt4">Nol'dan birinchi mahsulotgacha</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 27 daqiqa</div></div>
+            <button class="bm-card" data-bm="p3" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p3','3-qism · Startap boshlash','Nol\'dan birinchi mahsulotgacha')">🔖</button>
           </div>
         </div>
 
@@ -1386,6 +1403,7 @@
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#8B5CF6,#2E7CF6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">4-qism · Networking san'ati</div><div class="xs muted mt4">Professional aloqalar qanday quriladi</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 19 daqiqa</div></div>
+            <button class="bm-card" data-bm="p4" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p4','4-qism · Networking san\'ati','Professional aloqalar')">🔖</button>
           </div>
         </div>
 
@@ -1398,6 +1416,7 @@
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,var(--green),#0a5c0e);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">5-qism · Motivatsiya sirlari</div><div class="xs muted mt4">Maqsadga erishish psixologiyasi</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 22 daqiqa</div></div>
+            <button class="bm-card" data-bm="p5" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p5','5-qism · Motivatsiya sirlari','Maqsadga erishish psixologiyasi')">🔖</button>
           </div>
         </div>
 
@@ -1410,6 +1429,7 @@
           <div class="card shadow row gap12" style="padding:12px;cursor:pointer;align-items:center;" onclick="go('podcast')">
             <div style="width:56px;height:56px;border-radius:13px;background:linear-gradient(135deg,#FF4D4F,#B47A00);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">🎧</div>
             <div style="flex:1;"><div style="font-weight:700;">6-qism · Ilm-fan yo'li</div><div class="xs muted mt4">Tadqiqotchi bo'lishning qiyinchiliklari</div><div class="xs mt8" style="color:var(--green);font-weight:700;">▶ 35 daqiqa</div></div>
+            <button class="bm-card" data-bm="p6" data-bm-type="podcast" onclick="event.stopPropagation();toggleBookmark('podcast','p6','6-qism · Ilm-fan yo\'li','Tadqiqotchi bo\'lishning qiyinchiliklari')">🔖</button>
           </div>
         </div>
         <div style="height:10px;"></div>
@@ -1441,8 +1461,8 @@
           </div>
 
           <div class="row sb mt24" style="opacity:.9;">
-            <div style="cursor:pointer;" onclick="toast('1.0x → 1.5x')">1.0x</div>
-            <div style="cursor:pointer;" onclick="toast('Saqlandi')">♡ Saqlash</div>
+            <div style="cursor:pointer;" onclick="toast('Saqlandi')">1.0x → 1.5x</div>
+            <div class="bm-byte" data-bm="p1" data-bm-type="podcast" style="color:inherit;" onclick="toggleBookmark('podcast','p1','Yoshlar va Karyera','1-qism')"><span class="bi" style="font-size:inherit;">🔖</span> <span class="bm-lbl" style="font-size:inherit;">Saqlash</span></div>
             <div style="cursor:pointer;" onclick="toast('Transkript')">📄 Matn</div>
           </div>
 
@@ -1455,9 +1475,16 @@
       </div>
     </div>
 
+    <!-- ============ SAVED ITEMS ============ -->
+    <div class="view" id="v-saved" data-notab="1">
+      <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Saqlangan 🔖</div></div>
+      <div class="scroll" style="padding-top:98px;padding-bottom:30px;">
+        <div id="saved-list"></div>
+      </div>
+    </div>
+
     <!-- ============ PROFILE ============ -->
-    <div class="view" id="v-profile" data-tab="profile">
-      <div class="scroll">
+    <div class="view" id="v-profile" data-tab="profile">      <div class="scroll">
         <!-- header -->
         <div class="profile-hdr" style="background:linear-gradient(135deg,var(--green),var(--green-m));padding:20px 18px 56px;color:#fff;position:relative;">
           <div class="row sb">
@@ -1579,7 +1606,7 @@
         <div class="px mt16 row gap12">
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="go('ticket')"><div style="font-size:22px;">🎟️</div><div class="xs mt8" style="font-weight:600;">Chiptalarim</div></div>
           <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="go('shop')"><div style="font-size:22px;">🎁</div><div class="xs mt8" style="font-weight:600;">Mukofotlar</div></div>
-          <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="toast('Saqlanganlar')"><div style="font-size:22px;">🔖</div><div class="xs mt8" style="font-weight:600;">Saqlangan</div></div>
+          <div class="card shadow" style="flex:1;padding:14px;text-align:center;cursor:pointer;" onclick="go('saved')"><div style="font-size:22px;">🔖</div><div class="xs mt8" style="font-weight:600;">Saqlangan</div></div>
         </div>
 
         <!-- volunteer preference -->
@@ -3289,6 +3316,7 @@ function go(id, push=true){
   if(id==='referral') renderReferral();
   if(id==='grants') renderGrants();
   if(id==='contact') { /* category picker — no extra init needed */ }
+  if(id==='saved') renderSaved();
 
   if(push){ if(histStack[histStack.length-1]!==id) histStack.push(id); }
 }
@@ -3342,6 +3370,62 @@ function filterEvents(q){
 }
 
 function likeByte(el){ const h=el.querySelector('div'); const on=h.textContent==='❤️'; h.textContent=on?'🤍':'❤️'; }
+
+/* ===== BOOKMARKS ===== */
+const BM_KEY='ziyo_bm_v1';
+let bookmarks=JSON.parse(localStorage.getItem(BM_KEY)||'{}');
+function _saveBm(){localStorage.setItem(BM_KEY,JSON.stringify(bookmarks));}
+function toggleBookmark(type,id,title,sub){
+  const key=type+':'+id;
+  if(bookmarks[key]){delete bookmarks[key];}
+  else{bookmarks[key]={type,id,title,sub:sub||'',ts:Date.now()};}
+  _saveBm();
+  const saved=!!bookmarks[key];
+  document.querySelectorAll('[data-bm="'+id+'"]').forEach(function(el){
+    el.classList.toggle('saved',saved);
+    var lbl=el.querySelector('.bm-lbl');
+    if(lbl)lbl.textContent=saved?'Saqlandi':'Saqla';
+  });
+  toast(saved?'Saqlandi 🔖':"Saqlanganlardan o'chirildi");
+}
+function _esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function renderSaved(){
+  var el=document.getElementById('saved-list');
+  if(!el)return;
+  var all=Object.values(bookmarks).sort(function(a,b){return b.ts-a.ts;});
+  if(!all.length){
+    el.innerHTML='<div style="text-align:center;padding:70px 24px;"><div style="font-size:52px;margin-bottom:14px;">🔖</div><div style="font-weight:700;font-size:17px;">Hali hech narsa saqlanmagan</div><div class="sm muted mt8" style="line-height:1.5;">Kurslar, videolar va podkastlarni saqlash uchun 🔖 ni bosing</div></div>';
+    return;
+  }
+  var grp={};
+  all.forEach(function(b){if(!grp[b.type])grp[b.type]=[];grp[b.type].push(b);});
+  var icons={course:'📚',video:'⚡',podcast:'🎙️'};
+  var lls={course:'📚 Kurslar',video:'⚡ Quick Bytes',podcast:'🎙️ Podkastlar'};
+  var h='';
+  ['course','video','podcast'].forEach(function(t){
+    if(!grp[t])return;
+    h+='<div class="px mt20 h-sec mb12">'+lls[t]+'</div><div class="px" style="display:flex;flex-direction:column;gap:10px;">';
+    grp[t].forEach(function(b){
+      var onc="toggleBookmark('"+b.type+"','"+b.id+"','"+b.title.replace(/'/g,"\\'")+"','"+b.sub.replace(/'/g,"\\'")+"')";
+      h+='<div class="card shadow row gap12" style="padding:12px;align-items:center;">'
+        +'<div style="width:48px;height:48px;border-radius:12px;background:var(--green-l);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;">'+icons[t]+'</div>'
+        +'<div style="flex:1;"><div style="font-weight:700;font-size:14px;">'+_esc(b.title)+'</div>'+(b.sub?'<div class="xs muted mt4">'+_esc(b.sub)+'</div>':'')+'</div>'
+        +'<button class="bm-card saved" data-bm="'+b.id+'" onclick="'+onc+'">🔖</button>'
+        +'</div>';
+    });
+    h+='</div>';
+  });
+  el.innerHTML=h;
+}
+function initBmButtons(){
+  document.querySelectorAll('[data-bm]').forEach(function(el){
+    var id=el.dataset.bm;
+    var t=el.dataset.bmType||'';
+    el.classList.toggle('saved',!!(bookmarks[t+':'+id]));
+    var lbl=el.querySelector('.bm-lbl');
+    if(lbl&&bookmarks[t+':'+id])lbl.textContent='Saqlandi';
+  });
+}
 function toggleAudio(el){ const p=el.textContent.trim()==='▶'; el.textContent=p?'⏸':'▶'; toast(p?'Ijro etilmoqda':'Pauza'); }
 function segHist(el,which){ segPick(el); document.getElementById('hist-past').style.display = which==='past'?'flex':'none'; document.getElementById('hist-upcoming').style.display = which==='upcoming'?'flex':'none'; }
 const STAR_LBL=['','Yomon 😕',"O'rtacha",'Yaxshi 🙂',"Zo'r 😃",'Ajoyib! 🤩'];
@@ -5746,7 +5830,7 @@ function setAppTheme(t) {
   }
 }
 
-renderCoins(); mascotUpdate('home');
+renderCoins(); mascotUpdate('home'); initBmButtons();
 
 </script>
 </body>
