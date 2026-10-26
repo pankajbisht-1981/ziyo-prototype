@@ -252,8 +252,12 @@ const DATA = {
           def:"Bookmarks across jobs, courses, events, and grants this month.", trend:[1600,2000,2400,2800,3200,3600,3900,4210] },
         { name:"Leaderboard participation", value:61, target:50, unit:"%", fmt:"pct", higher:true,
           def:"% of users with ≥1 point transaction. Gamification working as designed.", trend:[42,46,50,53,56,58,60,61] },
-        { name:"User satisfaction", value:4.4, target:4.3, unit:"/5", fmt:"dec", higher:true,
-          def:"Ratings from in-app survey, App Store and Play Store.", trend:[4.0,4.1,4.1,4.2,4.2,4.3,4.3,4.4] },
+        { name:"In-app rating", value:4.6, target:4.3, unit:"/5", fmt:"dec", higher:true,
+          def:"Average rating from the in-app satisfaction survey this quarter.", trend:[4.2,4.3,4.3,4.4,4.5,4.6] },
+        { name:"App Store rating", value:4.5, target:4.3, unit:"/5", fmt:"dec", higher:true,
+          def:"Average App Store rating this quarter.", trend:[4.1,4.2,4.3,4.4,4.4,4.5] },
+        { name:"Play Store rating", value:4.3, target:4.2, unit:"/5", fmt:"dec", higher:true,
+          def:"Average Google Play rating this quarter.", trend:[3.9,4.0,4.1,4.2,4.2,4.3] },
         { name:"Event attendance", value:68, target:60, unit:"%", fmt:"pct", higher:true,
           def:"Registered attendees who showed up — plus event ratings & feedback.", trend:[55,58,60,62,63,65,67,68] }
       ]
@@ -263,6 +267,8 @@ const DATA = {
       q: "Did anything change in their lives?", icon: "🎯",
       report: true, badge: "", color: "var(--outcome)", bg: "var(--outcome-bg)",
       kpis: [
+        { name:"Success stories", value:87, target:80, unit:"", fmt:"int", higher:true,
+          def:"Beneficiaries who submitted a verified success story on the platform.", trend:[22,30,38,47,56,64,74,87] },
         { name:"Events hosted", value:34, target:45, unit:"", fmt:"int", higher:true,
           def:"Events and workshops actually delivered on the platform this period.", trend:[10,13,16,19,22,26,30,34] },
         { name:"Internships posted", value:340, target:300, unit:"", fmt:"int", higher:true,
@@ -276,9 +282,7 @@ const DATA = {
         { name:"Course completion rate", value:47, target:50, unit:"%", fmt:"pct", higher:true,
           def:"Courses finished ÷ courses started. Learning actually happened.", trend:[35,38,40,42,44,45,46,47] },
         { name:"Skills progression score", value:23, target:20, unit:"%", fmt:"pct", higher:true,
-          def:"Average quiz-score improvement over time. Measurable knowledge gain.", trend:[12,14,16,18,19,21,22,23] },
-        { name:"Success stories", value:87, target:80, unit:"", fmt:"int", higher:true,
-          def:"Beneficiaries who submitted a verified success story on the platform.", trend:[22,30,38,47,56,64,74,87] }
+          def:"Average quiz-score improvement over time. Measurable knowledge gain.", trend:[12,14,16,18,19,21,22,23] }
       ]
     },
     {
