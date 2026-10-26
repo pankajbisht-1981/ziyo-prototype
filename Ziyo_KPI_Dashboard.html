@@ -197,7 +197,7 @@
 
   <div class="footer">
     Ziyo · Impact KPI Dashboard · Only the <b style="color:var(--brand-d)">Outcome</b> layer is reported to donors.<br>
-    North Star: <b>Active Beneficiaries</b> — honest · auditable · grant-defensible.
+    North Star: <b>Active Beneficiaries</b> — honest · auditable.
   </div>
 
 </div>
@@ -214,7 +214,7 @@ const DATA = {
     value: 1284,
     deltaPct: 12,
     def: "Users who completed at least one outcome-linked action — Applied for an internship/job, won a grant, earned a certificate, or finished a course.",
-    tags: ["Honest", "Auditable", "Grant-defensible"],
+    tags: ["Honest", "Auditable"],
     trend: [310, 360, 420, 505, 560, 640, 720, 815, 910, 1040, 1150, 1284]
   },
   layers: [
@@ -237,7 +237,7 @@ const DATA = {
     },
     {
       key: "engage", name: "Engagement", sub: "Behaviour KPIs",
-      q: "Are they using the platform purposefully?", icon: "🔁",
+      q: "Are they using the App purposefully?", icon: "🔁",
       report: false, badge: "", color: "var(--engage)", bg: "var(--engage-bg)",
       kpis: [
         { name:"Daily Active Users (DAU)", value:1240, target:1000, unit:"", fmt:"int", higher:true,
@@ -266,17 +266,17 @@ const DATA = {
       report: true, badge: "", color: "var(--outcome)", bg: "var(--outcome-bg)",
       kpis: [
         { name:"Success stories", value:87, target:80, unit:"", fmt:"int", higher:true,
-          def:"Beneficiaries who submitted a verified success story on the platform.", trend:[22,30,38,47,56,64,74,87] },
+          def:"Beneficiaries who submitted a verified success story on the App.", trend:[22,30,38,47,56,64,74,87] },
         { name:"Applications triggered", value:892, target:750, unit:"", fmt:"int", higher:true,
           def:"Number of times users tapped Apply and were redirected to an external application.", trend:[310,390,470,560,640,720,800,892] },
         { name:"Events hosted", value:34, target:45, unit:"", fmt:"int", higher:true,
-          def:"Events and workshops actually delivered on the platform this quarter.", trend:[10,13,16,19,22,26,30,34] },
+          def:"Events and workshops actually delivered on the App this quarter.", trend:[10,13,16,19,22,26,30,34] },
         { name:"Internships posted", value:340, target:300, unit:"", fmt:"int", higher:true,
-          def:"Internship opportunities posted on the platform this quarter.", trend:[120,165,200,240,275,300,320,340] },
+          def:"Internship opportunities posted on the App this quarter.", trend:[120,165,200,240,275,300,320,340] },
         { name:"Grants & Scholarships posted", value:210, target:210, unit:"", fmt:"int", higher:true,
-          def:"Grant and scholarship opportunities posted on the platform this quarter (142 grants + 68 scholarships).", trend:[82,106,127,147,166,182,198,210] },
+          def:"Grant and scholarship opportunities posted on the App this quarter (142 grants + 68 scholarships).", trend:[82,106,127,147,166,182,198,210] },
         { name:"Jobs posted", value:248, target:280, unit:"", fmt:"int", higher:true,
-          def:"Live job listings published on the platform this quarter.", trend:[80,100,120,145,170,195,220,248] },
+          def:"Live job listings published on the App this quarter.", trend:[80,100,120,145,170,195,220,248] },
         { name:"Certificates issued", value:3120, target:2500, unit:"", fmt:"int", higher:true,
           def:"Verified certificates earned by beneficiaries this quarter.", trend:[1200,1500,1800,2100,2400,2700,2900,3120] },
         { name:"Course completion rate", value:47, target:50, unit:"%", fmt:"pct", higher:true,
@@ -286,8 +286,8 @@ const DATA = {
       ]
     },
     {
-      key: "ops", name: "App Operations", sub: "Platform health KPIs",
-      q: "Is the platform reliable and shipping?", icon: "🛠️",
+      key: "ops", name: "App Operations", sub: "App health KPIs",
+      q: "Is the App reliable and shipping?", icon: "🛠️",
       report: false, badge: "", color: "var(--ops)", bg: "var(--ops-bg)",
       kpis: [
         { name:"Uptime", value:99.7, target:99.5, unit:"%", fmt:"dec", higher:true,
