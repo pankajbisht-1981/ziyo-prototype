@@ -2463,12 +2463,12 @@
             <option>📅 Sanasi bo'yicha</option>
             <option>⭐ Reyting bo'yicha</option>
           </select>
-          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Germaniya')" style="white-space:nowrap;">🇩🇪 Germaniya</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: UK')" style="white-space:nowrap;">🇬🇧 UK</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: AQSH')" style="white-space:nowrap;">🇺🇸 AQSH</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Sherzod')" style="white-space:nowrap;">👤 Sherzod</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Nodira')" style="white-space:nowrap;">👤 Nodira</div>
+          <div class="chip" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Germaniya')" style="white-space:nowrap;">🇩🇪 Germaniya</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: UK')" style="white-space:nowrap;">🇬🇧 UK</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: AQSH')" style="white-space:nowrap;">🇺🇸 AQSH</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Sherzod')" style="white-space:nowrap;">👤 Sherzod</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Nodira')" style="white-space:nowrap;">👤 Nodira</div>
         </div>
 
         <!-- featured hero card -->
@@ -2510,10 +2510,10 @@
             <option>📅 Sanasi bo'yicha</option>
             <option>⭐ Reyting bo'yicha</option>
           </select>
-          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Motivatsiya xat')" style="white-space:nowrap;">✍️ Motivatsion xat</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Hujjatlar')" style="white-space:nowrap;">📑 Hujjatlar</div>
-          <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Suhbat')" style="white-space:nowrap;">🎤 Suhbat</div>
+          <div class="chip" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Motivatsiya xat')" style="white-space:nowrap;">✍️ Motivatsion xat</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Hujjatlar')" style="white-space:nowrap;">📑 Hujjatlar</div>
+          <div class="chip" onclick="var p=this.parentElement;var a=p.querySelector('.chip');a.classList.remove('on');this.classList.toggle('on');if(!p.querySelectorAll('.chip.on').length)a.classList.add('on');toast('Filtr: Suhbat')" style="white-space:nowrap;">🎤 Suhbat</div>
         </div>
         <div class="hscroll">
           <div class="vthumb shadow" onclick="toast('Dars: Motivatsion xat yozish')">
@@ -2536,7 +2536,7 @@
             <option value="deadline">⏳ Muddati bo'yicha</option>
             <option value="match">📊 Moslik % bo'yicha</option>
           </select>
-          <div class="chip on" id="grantAllChip" onclick="clearGrantFilters()" style="white-space:nowrap;">Hammasi</div>
+          <div class="chip" id="grantAllChip" onclick="clearGrantFilters()" style="white-space:nowrap;">Hammasi</div>
           <div class="chip gfilter" data-g="country" data-v="DE" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇩🇪 Germaniya</div>
           <div class="chip gfilter" data-g="country" data-v="UK" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇬🇧 UK</div>
           <div class="chip gfilter" data-g="country" data-v="US" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇺🇸 AQSH</div>
@@ -4719,6 +4719,7 @@ const EN_DICT = {
   "Hujjatlar tayyorlash": "Document preparation",
   "Xat yozish": "Writing essays",
   "Suhbat": "Interview",
+  "🎤 Suhbat": "🎤 Interview",
   "Magistratura": "Master's",
   "Doktorantura": "PhD",
   "Bakalavr": "Bachelor's",
@@ -4837,6 +4838,7 @@ const EN_DICT = {
   "Mutaxassis darslari 🎥": "Expert Lessons 🎥",
   "Motivatsion xat yozish": "Writing a Motivation Letter",
   "Motivatsion xat": "Motivation Letter",
+  "✍️ Motivatsion xat": "✍️ Motivation Letter",
   "Ekspert · Qadam-baqadam": "Expert · Step by Step",
   "Ekspert · Checklist": "Expert · Checklist",
   "Ekspert": "Expert",
@@ -5632,6 +5634,10 @@ const RU_DICT = {
   "Doktorantura":"Докторантура","Bakalavr":"Бакалавриат",
   "Hujjatlar tayyorlash":"Подготовка документов","Xat yozish":"Написание эссе",
   "Suhbat":"Собеседование","Muddati":"Дедлайн","Muddat":"Дедлайн",
+  "🎤 Suhbat":"🎤 Собеседование","✍️ Motivatsion xat":"✍️ Мотивационное письмо",
+  "📑 Hujjatlar":"📑 Документы","🇩🇪 Germaniya":"🇩🇪 Германия","🇺🇸 AQSH":"🇺🇸 США",
+  "📅 Sanasi bo'yicha":"📅 По дате","⭐ Reyting bo'yicha":"⭐ По рейтингу",
+  "⏳ Muddati bo'yicha":"⏳ По дедлайну","📊 Moslik % bo'yicha":"📊 По совпадению %",
   "⏳ Doimiy ochiq":"⏳ Всегда открыто","Ariza topshirish":"Подать заявку",
   "Talablarga mosligingiz":"Ваше соответствие требованиям",
   "🧑‍🏫 Maslahat olish — bepul":"🧑‍🏫 Получить консультацию — бесплатно",
