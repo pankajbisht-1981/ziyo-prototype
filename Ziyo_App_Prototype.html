@@ -601,7 +601,7 @@
         <!-- categories -->
         <div class="px mt20 row" style="gap:10px;">
           <div onclick="go('events')" style="flex:1;text-align:center;cursor:pointer;">
-            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">🎫</div></div>
+            <div class="card shadow" style="padding:16px 0;"><div style="font-size:24px;">📅</div></div>
             <div class="xs mt8" style="font-weight:600;">Tadbirlar</div>
           </div>
           <div onclick="document.getElementById('home-news').scrollIntoView({behavior:'smooth'})" style="flex:1;text-align:center;cursor:pointer;">
@@ -783,28 +783,37 @@
         <div class="px mt24 row sb mb12"><div class="h-sec">Quick Bytes ⚡</div><div class="link" onclick="go('bytes')">Barchasi</div></div>
         <div class="hscroll">
           <div onclick="go('bytes')" style="cursor:pointer;flex-shrink:0;">
-            <div style="width:116px;height:180px;border-radius:16px;background:linear-gradient(160deg,var(--blue),var(--green));position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;">
-              <div style="height:100px;background:linear-gradient(160deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;">🎓</div>
-              <div style="flex:1;background:rgba(0,0,0,0.35);display:flex;align-items:flex-end;padding:8px 10px;position:relative;">
-                <span style="position:absolute;top:6px;right:8px;font-size:14px;">▶</span>
+            <div style="width:116px;height:180px;border-radius:16px;position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;background:#111;">
+              <div style="height:100px;position:relative;overflow:hidden;flex-shrink:0;">
+                <svg viewBox="0 0 116 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block;"><defs><linearGradient id="qbg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E7CF6"/><stop offset="1" stop-color="#1FA463"/></linearGradient></defs><rect width="116" height="100" fill="url(#qbg1)"/><circle cx="92" cy="16" r="26" fill="#fff" opacity=".13"/><path d="M24 100 Q24 72 58 72 Q92 72 92 100 Z" fill="#fff" opacity=".92"/><rect x="51" y="58" width="14" height="18" rx="6" fill="#EEB48C"/><circle cx="58" cy="45" r="16" fill="#F3C49E"/><path d="M42 44 Q43 27 58 27 Q73 27 74 44 Q69 35 58 35 Q47 35 42 44 Z" fill="#3A2E28"/><text x="80" y="90" font-size="16">🎓</text></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.9);"><span style="font-size:13px;line-height:1;margin-left:2px;">▶</span></div></div>
+                <div style="position:absolute;bottom:5px;right:6px;background:rgba(0,0,0,.72);font-size:9px;font-weight:700;padding:1px 5px;border-radius:5px;">0:58</div>
+              </div>
+              <div style="flex:1;background:rgba(0,0,0,0.78);display:flex;align-items:flex-end;padding:8px 10px;">
                 <div class="xs" style="font-weight:700;line-height:1.3;">60s: Grantga ariza</div>
               </div>
             </div>
           </div>
           <div onclick="go('bytes')" style="cursor:pointer;flex-shrink:0;">
-            <div style="width:116px;height:180px;border-radius:16px;background:linear-gradient(160deg,#F7B500,#FF4D4F);position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;">
-              <div style="height:100px;background:linear-gradient(160deg,#F7B500,#FF4D4F);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;">📄</div>
-              <div style="flex:1;background:rgba(0,0,0,0.35);display:flex;align-items:flex-end;padding:8px 10px;position:relative;">
-                <span style="position:absolute;top:6px;right:8px;font-size:14px;">▶</span>
+            <div style="width:116px;height:180px;border-radius:16px;position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;background:#111;">
+              <div style="height:100px;position:relative;overflow:hidden;flex-shrink:0;">
+                <svg viewBox="0 0 116 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block;"><defs><linearGradient id="qbg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7B500"/><stop offset="1" stop-color="#FF4D4F"/></linearGradient></defs><rect width="116" height="100" fill="url(#qbg2)"/><circle cx="90" cy="18" r="24" fill="#fff" opacity=".13"/><path d="M24 100 Q24 72 58 72 Q92 72 92 100 Z" fill="#fff" opacity=".92"/><rect x="51" y="58" width="14" height="18" rx="6" fill="#D99A74"/><circle cx="58" cy="45" r="16" fill="#E7B088"/><path d="M42 46 Q40 28 58 27 Q76 28 74 46 Q72 34 58 34 Q44 34 42 46 Z" fill="#20160F"/><text x="80" y="90" font-size="16">📄</text></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.9);"><span style="font-size:13px;line-height:1;margin-left:2px;">▶</span></div></div>
+                <div style="position:absolute;bottom:5px;right:6px;background:rgba(0,0,0,.72);font-size:9px;font-weight:700;padding:1px 5px;border-radius:5px;">1:12</div>
+              </div>
+              <div style="flex:1;background:rgba(0,0,0,0.78);display:flex;align-items:flex-end;padding:8px 10px;">
                 <div class="xs" style="font-weight:700;line-height:1.3;">CV yozish sirlari</div>
               </div>
             </div>
           </div>
           <div onclick="go('bytes')" style="cursor:pointer;flex-shrink:0;">
-            <div style="width:116px;height:180px;border-radius:16px;background:linear-gradient(160deg,#8B5CF6,#2E7CF6);position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;">
-              <div style="height:100px;background:linear-gradient(160deg,#8B5CF6,#2E7CF6);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;">🎤</div>
-              <div style="flex:1;background:rgba(0,0,0,0.35);display:flex;align-items:flex-end;padding:8px 10px;position:relative;">
-                <span style="position:absolute;top:6px;right:8px;font-size:14px;">▶</span>
+            <div style="width:116px;height:180px;border-radius:16px;position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff;background:#111;">
+              <div style="height:100px;position:relative;overflow:hidden;flex-shrink:0;">
+                <svg viewBox="0 0 116 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block;"><defs><linearGradient id="qbg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#2E7CF6"/></linearGradient></defs><rect width="116" height="100" fill="url(#qbg3)"/><circle cx="90" cy="18" r="24" fill="#fff" opacity=".13"/><path d="M24 100 Q24 72 58 72 Q92 72 92 100 Z" fill="#fff" opacity=".92"/><rect x="51" y="58" width="14" height="18" rx="6" fill="#C98A6A"/><circle cx="58" cy="45" r="16" fill="#DDA07A"/><path d="M41 44 Q42 26 58 26 Q74 26 75 44 Q70 36 58 36 Q46 36 41 44 Z" fill="#2A1C14"/><text x="80" y="90" font-size="16">🎤</text></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.9);"><span style="font-size:13px;line-height:1;margin-left:2px;">▶</span></div></div>
+                <div style="position:absolute;bottom:5px;right:6px;background:rgba(0,0,0,.72);font-size:9px;font-weight:700;padding:1px 5px;border-radius:5px;">0:45</div>
+              </div>
+              <div style="flex:1;background:rgba(0,0,0,0.78);display:flex;align-items:flex-end;padding:8px 10px;">
                 <div class="xs" style="font-weight:700;line-height:1.3;">Suhbatga tayyorlanish</div>
               </div>
             </div>
@@ -2783,6 +2792,7 @@
               <option value="new">📅 Yangi loyihalar</option>
               <option value="rating">⭐ Reyting</option>
             </select>
+            <div class="chip on" data-f="all" onclick="toggleJobChip(this,'jobs-social')" style="white-space:nowrap;">Barchasi</div>
             <div class="chip" data-f="ecology" onclick="toggleJobChip(this,'jobs-social')" style="white-space:nowrap;">🌿 Ekologiya</div>
             <div class="chip" data-f="education" onclick="toggleJobChip(this,'jobs-social')" style="white-space:nowrap;">📚 Ta'lim</div>
             <div class="chip" data-f="health" onclick="toggleJobChip(this,'jobs-social')" style="white-space:nowrap;">🏥 Sog'liq</div>
