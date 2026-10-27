@@ -704,6 +704,7 @@
             </div>
             <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Xorijda tahsil olish imkoniyatlari kengaymoqda</div>
             <div class="xs muted mt4">2026 yilda 3 000 dan ortiq grant o'rinlari e'lon qilindi</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="bm-card" data-bm="n1" data-bm-type="news" onclick="event.stopPropagation();toggleBookmark('news','n1','Xorijda tahsil olish imkoniyatlari kengaymoqda','Avlod Media')">🔖</button></div>
           </div>
           <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
             <div class="row sb">
@@ -712,6 +713,7 @@
             </div>
             <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">50 000 ta yangi o'qituvchi ish o'rinlari yaratiladi</div>
             <div class="xs muted mt4">Respublika bo'ylab maktab ta'limini rivojlantirish dasturi</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="bm-card" data-bm="n2" data-bm-type="news" onclick="event.stopPropagation();toggleBookmark('news','n2','50 000 ta yangi o\'qituvchi ish o\'rinlari yaratiladi','Ta\'lim vazirligi')">🔖</button></div>
           </div>
           <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
             <div class="row sb">
@@ -720,6 +722,7 @@
             </div>
             <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">IT Park: Yosh dasturchilar uchun bepul kurslar boshlandi</div>
             <div class="xs muted mt4">Toshkent, Samarqand va Namanganda bir vaqtda ishga tushirildi</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="bm-card" data-bm="n3" data-bm-type="news" onclick="event.stopPropagation();toggleBookmark('news','n3','IT Park: Yosh dasturchilar uchun bepul kurslar boshlandi','Avlod Media')">🔖</button></div>
           </div>
           <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
             <div class="row sb">
@@ -728,6 +731,7 @@
             </div>
             <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Maktab o'quvchilariga 500 000 ta planshet bepul beriladigan bo'ldi</div>
             <div class="xs muted mt4">Prezidentlik dasturi doirasida raqamli qurilmalar ajratiladi</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="bm-card" data-bm="n4" data-bm-type="news" onclick="event.stopPropagation();toggleBookmark('news','n4','Maktab o\'quvchilariga 500 000 ta planshet bepul beriladigan bo\'ldi','Hukumat')">🔖</button></div>
           </div>
           <div class="card shadow" style="padding:14px 16px;cursor:pointer;">
             <div class="row sb">
@@ -736,6 +740,7 @@
             </div>
             <div style="font-weight:700;font-size:14px;line-height:1.4;margin-top:8px;">Ingliz tili o'qituvchilari uchun yangi malaka standarti joriy etildi</div>
             <div class="xs muted mt4">IELTS 6.5 ball minimal talab sifatida belgilandi</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="bm-card" data-bm="n5" data-bm-type="news" onclick="event.stopPropagation();toggleBookmark('news','n5','Ingliz tili o\'qituvchilari uchun yangi malaka standarti joriy etildi','Avlod Media')">🔖</button></div>
           </div>
         </div>
 
@@ -3410,10 +3415,10 @@ function renderSaved(){
   }
   var grp={};
   all.forEach(function(b){if(!grp[b.type])grp[b.type]=[];grp[b.type].push(b);});
-  var icons={course:'📚',video:'⚡',podcast:'🎙️',event:'🎫',grant:'🏆',intern:'💼',job:'💼',project:'🌱'};
-  var lls={course:'📚 Kurslar',video:'⚡ Quick Bytes',podcast:'🎙️ Podkastlar',event:'🎫 Tadbirlar',grant:'🏆 Grantlar',intern:'💼 Amaliyotlar',job:'💼 Ishlar',project:'🌱 Ijtimoiy loyihalar'};
+  var icons={course:'📚',video:'⚡',podcast:'🎙️',event:'🎫',grant:'🏆',intern:'💼',job:'💼',project:'🌱',news:'📰'};
+  var lls={course:'📚 Kurslar',video:'⚡ Quick Bytes',podcast:'🎙️ Podkastlar',event:'🎫 Tadbirlar',grant:'🏆 Grantlar',intern:'💼 Amaliyotlar',job:'💼 Ishlar',project:'🌱 Ijtimoiy loyihalar',news:'📰 Yangiliklar'};
   var h='';
-  ['course','video','podcast','event','grant','intern','job','project'].forEach(function(t){
+  ['course','video','podcast','event','grant','intern','job','project','news'].forEach(function(t){
     if(!grp[t])return;
     h+='<div class="px mt20 h-sec mb12">'+lls[t]+'</div><div class="px" style="display:flex;flex-direction:column;gap:10px;">';
     grp[t].forEach(function(b){
