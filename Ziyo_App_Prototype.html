@@ -1574,8 +1574,8 @@
               <div class="row gap12" style="align-items:center;">
                 <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#2E3A8C,#5B7CF6);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🧠</div>
                 <div>
-                  <div style="font-weight:700;">Complete your CV by adding your skills</div>
-                  <div class="xs muted mt4" id="skills-summary-txt">Ko'nikmalar qo'shing · CV biriktiring</div>
+                  <div style="font-weight:700;">Skills & CV</div>
+                  <div class="xs muted mt4" id="skills-summary-txt">Complete your CV by adding your skills</div>
                 </div>
               </div>
               <span style="color:var(--green);font-weight:800;font-size:18px;">›</span>
@@ -1734,7 +1734,7 @@
           <div class="card shadow" style="padding:14px;">
             <div id="survey-form">
               <div style="font-weight:800;font-size:15px;" id="survey-title">How happy are you with ZiyoApp?</div>
-              <div class="row mt12" style="justify-content:center;gap:10px;font-size:28px;" id="pstars">
+              <div class="row mt12" style="justify-content:center;gap:10px;font-size:28px;color:var(--green);" id="pstars">
                 <span onclick="setPStar(1)" style="cursor:pointer;transition:transform .12s;">&#9734;</span>
                 <span onclick="setPStar(2)" style="cursor:pointer;transition:transform .12s;">&#9734;</span>
                 <span onclick="setPStar(3)" style="cursor:pointer;transition:transform .12s;">&#9734;</span>
@@ -1840,7 +1840,7 @@
           </div>
 
           <div class="h-sec mt24" style="font-size:17px;">Tadbir sizga qanday yoqdi?</div>
-          <div class="row" style="justify-content:center;gap:10px;margin-top:16px;font-size:38px;" id="stars">
+          <div class="row" style="justify-content:center;gap:10px;margin-top:16px;font-size:38px;color:var(--green);" id="stars">
             <span onclick="setStars(1)" style="cursor:pointer;">☆</span>
             <span onclick="setStars(2)" style="cursor:pointer;">☆</span>
             <span onclick="setStars(3)" style="cursor:pointer;">☆</span>
@@ -3463,7 +3463,7 @@ const STAR_LBL=['','Yomon 😕',"O'rtacha",'Yaxshi 🙂',"Zo'r 😃",'Ajoyib! �
 function setPStar(n){
   var s=document.getElementById('pstars').children;
   for(var i=0;i<5;i++){s[i].textContent=i<n?'★':'☆';s[i].style.transform=i<n?'scale(1.1)':'scale(1)';}
-  document.getElementById('pstars').style.color='var(--gold)';
+  document.getElementById('pstars').style.color='var(--green)';
   document.getElementById('pstars').dataset.val=n;
 }
 function submitSurvey(){
@@ -3473,7 +3473,7 @@ function submitSurvey(){
   document.getElementById('survey-form').style.display='none';
   document.getElementById('survey-thanks').style.display='block';
 }
-function setStars(n){ const s=document.getElementById('stars').children; for(let i=0;i<5;i++) s[i].textContent=i<n?'★':'☆'; document.getElementById('stars').style.color='var(--gold)'; document.getElementById('starLabel').textContent=STAR_LBL[n]; }
+function setStars(n){ const s=document.getElementById('stars').children; for(let i=0;i<5;i++) s[i].textContent=i<n?'★':'☆'; document.getElementById('stars').style.color='var(--green)'; document.getElementById('starLabel').textContent=STAR_LBL[n]; }
 function escapeHtml(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function sendMsg(){
   const inp=document.getElementById('chatInput');
