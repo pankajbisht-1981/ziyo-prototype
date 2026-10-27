@@ -2466,7 +2466,7 @@
             <option>📅 Sanasi bo'yicha</option>
             <option>⭐ Reyting bo'yicha</option>
           </select>
-          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Barchasi</div>
+          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Germaniya')" style="white-space:nowrap;">🇩🇪 Germaniya</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: UK')" style="white-space:nowrap;">🇬🇧 UK</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: AQSH')" style="white-space:nowrap;">🇺🇸 AQSH</div>
@@ -2514,7 +2514,7 @@
             <option>📅 Sanasi bo'yicha</option>
             <option>⭐ Reyting bo'yicha</option>
           </select>
-          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Barchasi</div>
+          <div class="chip on" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')" style="white-space:nowrap;">Hammasi</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Motivatsiya xat')" style="white-space:nowrap;">✍️ Motivatsion xat</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Hujjatlar')" style="white-space:nowrap;">📑 Hujjatlar</div>
           <div class="chip" onclick="this.classList.toggle('on');toast('Filtr: Suhbat')" style="white-space:nowrap;">🎤 Suhbat</div>
@@ -2541,7 +2541,7 @@
             <option value="deadline">⏳ Muddati bo'yicha</option>
             <option value="match">📊 Moslik % bo'yicha</option>
           </select>
-          <div class="chip on" id="grantAllChip" onclick="clearGrantFilters()" style="white-space:nowrap;">Barchasi</div>
+          <div class="chip on" id="grantAllChip" onclick="clearGrantFilters()" style="white-space:nowrap;">Hammasi</div>
           <div class="chip gfilter" data-g="country" data-v="DE" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇩🇪 Germaniya</div>
           <div class="chip gfilter" data-g="country" data-v="UK" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇬🇧 UK</div>
           <div class="chip gfilter" data-g="country" data-v="US" onclick="toggleGrantFilter(this)" style="white-space:nowrap;">🇺🇸 AQSH</div>
@@ -3416,7 +3416,7 @@ function toggleBookmark(type,id,title,sub){
   document.querySelectorAll('[data-bm="'+id+'"]').forEach(function(el){
     el.classList.toggle('saved',saved);
     var lbl=el.querySelector('.bm-lbl');
-    if(lbl)lbl.textContent=saved?'Saqlandi':'Saqla';
+    if(lbl)lbl.textContent=_lang==='en'?(saved?'Saved':'Save'):_lang==='ru'?(saved?'Сохранено':'Сохранить'):(saved?'Saqlandi':'Saqla');
   });
   toast(saved?'Saqlandi 🔖':"Saqlanganlardan o'chirildi");
 }
@@ -5484,6 +5484,12 @@ const EN_DICT = {
   "💼 Karyera": "💼 Career",
   "Karyera": "Career",
   "karyera": "career",
+  "Siz #3-o'rindasiz": "You're ranked #3",
+  "Siz #3-o'rindasiz · Top 1 gacha 290 ": "You're ranked #3 · 290 to Top 1 ",
+  "Top 1 gacha 290 ": "290 to Top 1 ",
+  "· Siz": "· You",
+  "Saqla": "Save",
+  "Saqlandi": "Saved",
 };
 
 /* ---- English mascot tips ---- */
