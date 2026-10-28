@@ -901,16 +901,16 @@
     <div class="view" id="v-courses" data-tab="home">
       <div class="nav"><div class="back" onclick="back()">‹</div><div class="title">Kurslar va treninglar</div></div>
       <div class="scroll" style="padding-top:98px;">
-        <div class="hscroll">
-          <div class="chip on">Barchasi</div>
-          <div class="chip" onclick="this.closest('.hscroll').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')">Kurslar</div>
-          <div class="chip" onclick="this.closest('.hscroll').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')">Workshoplar</div>
-          <div class="chip" onclick="this.closest('.hscroll').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')">Online</div>
-          <div class="chip" onclick="this.closest('.hscroll').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')">Bepul</div>
+        <div class="hscroll" id="courseFilters">
+          <div class="chip on" onclick="var p=this.closest('#courseFilters');p.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on');filterCourses()">Barchasi</div>
+          <div class="chip" data-cf="kurs" onclick="var p=this.closest('#courseFilters');p.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on');filterCourses()">Kurslar</div>
+          <div class="chip" data-cf="workshop" onclick="var p=this.closest('#courseFilters');p.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on');filterCourses()">Workshoplar</div>
+          <div class="chip" data-cf="online" onclick="var p=this.closest('#courseFilters');p.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on');filterCourses()">Online</div>
+          <div class="chip" data-cf="bepul" onclick="var p=this.closest('#courseFilters');p.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on');filterCourses()">Bepul</div>
         </div>
 
-        <div class="px mt20" style="display:flex;flex-direction:column;gap:14px;">
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
+        <div class="px mt20" id="courseList" style="display:flex;flex-direction:column;gap:14px;">
+          <div class="card shadow course-card" data-ct="kurs" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
             <div class="row gap12" style="padding:14px;align-items:center;">
               <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--green-m),var(--green));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">💻</div>
               <div style="flex:1;">
@@ -920,7 +920,7 @@
               </div>
             </div>
           </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
+          <div class="card shadow course-card" data-ct="workshop online" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
             <div class="row gap12" style="padding:14px;align-items:center;">
               <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,#2E3A8C,#2E7CF6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">🎨</div>
               <div style="flex:1;">
@@ -930,7 +930,7 @@
               </div>
             </div>
           </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
+          <div class="card shadow course-card" data-ct="kurs" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
             <div class="row gap12" style="padding:14px;align-items:center;">
               <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,#B47A00,#F7B500);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">📊</div>
               <div style="flex:1;">
@@ -940,7 +940,7 @@
               </div>
             </div>
           </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
+          <div class="card shadow course-card" data-ct="workshop bepul" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
             <div class="row gap12" style="padding:14px;align-items:center;">
               <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,#7A2E8C,#C44FD6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">🗣️</div>
               <div style="flex:1;">
@@ -950,7 +950,7 @@
               </div>
             </div>
           </div>
-          <div class="card shadow" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
+          <div class="card shadow course-card" data-ct="kurs online" style="overflow:hidden;cursor:pointer;" onclick="go('course')">
             <div class="row gap12" style="padding:14px;align-items:center;">
               <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--green));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;">🤖</div>
               <div style="flex:1;">
@@ -3702,6 +3702,15 @@ function filterLessons(){
     var show=!active.length||active.includes(el);
     if(c.id==='elComingSoon'){c.style.display=(active.includes('interview'))?'':'none';}
     else{c.style.display=show?'':'none';}
+  });
+}
+function filterCourses(){
+  var row=document.getElementById('courseFilters');
+  var activeChip=row.querySelector('.chip.on[data-cf]');
+  var cf=activeChip?activeChip.dataset.cf:null;
+  document.querySelectorAll('#courseList .course-card').forEach(function(c){
+    var ct=(c.dataset.ct||'').split(' ');
+    c.style.display=(!cf||ct.includes(cf))?'':'none';
   });
 }
 function renderGrants(){
